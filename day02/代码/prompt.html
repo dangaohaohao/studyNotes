@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+
+// prompt(str1，str2)  弹出可输入的对话框
+// str1: 要显示在消息对话框中的文本(提示文字)
+// str2：文本框中的内容(输入的内容)
+// 返回值:
+// 1. 点击确定按钮，文本框中的内容将作为函数的返回值
+// 2. 点击取消按钮，将返回null
+
+// var val = prompt('请输入密码');
+// console.log(val);
+// console.log(typeof val);//string
+// console.log(Number(val));// 转成number
+// console.log(parseInt(val));// 转成number
+
+
+var val = prompt('我喜欢什么颜色？');
+if (val == null){
+    document.write('请输入答案，不能访问');
+} else if (val == ''){
+    document.write('请输入答案，不能访问');
+} else if (val != '红色'){
+    document.write('答案错误，不能访问');
+} else{
+    document.write('欢迎光临小店~');
+}
+
+</script>
+</body>
+</html>

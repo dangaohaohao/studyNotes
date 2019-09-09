@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.box{
+    overflow: hidden;
+}
+.box span{
+    float: left;
+    width: 200px;
+    height: 50px;
+}
+</style>
+</head>
+<body>
+<div class="box"></div>
+
+<script>
+
+// 写一个函数 randomColor 生成随机的十六进制颜色值  #E1A2D7
+// 16进制数: 0 1 2 3 4 5 6 7 8 9 a b c d e f
+
+function randomColor(){
+    var col = '#';
+    var arr = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];//0-15
+    for (var i = 0; i < 6; i++){
+        var num = Math.round(Math.random()*15);//0-15
+        col += arr[num];
+    }
+    return col;
+}
+// console.log(randomColor());
+
+var box = document.querySelector('.box');
+for (var i = 0; i < 100; i++){
+    box.innerHTML += '<span style="background:'+randomColor()+';"></span>';
+}
+
+</script>
+</body>
+</html>

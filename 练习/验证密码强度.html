@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>密码强度验证</title>
+<style>
+* {margin: 0;padding: 0;}
+.ipt {
+    font-size: 24px;
+    padding: 4px 10px;
+}
+.level {
+    overflow: hidden;
+    width: 300px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    margin-top: 10px;
+}
+.level p {
+    float: left;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #eee;
+    background-color: #eee;
+}
+
+</style>
+</head>
+<body>
+
+<input type="text" class="ipt">
+<div class="level">
+    <p>弱</p>
+    <p>中</p>
+    <p>强</p>
+</div>
+
+<script>
+
+var ipt = document.querySelector('.ipt');
+var ps = document.querySelectorAll('.level p');
+
+ipt.onkeyup = function () {
+    // 获取输入的值并转成大写
+    var str = ipt.value.toUpperCase();
+
+    // 值为空，返回
+    if (!str) {
+        ps[0].style.backgroundColor = '#eee';
+        ps[1].style.backgroundColor = '#eee';
+        ps[2].style.backgroundColor = '#eee';
+        return;
+    }
+
+    // 记录状态，表示是否有数字、字母、特殊字符
+    var hasNum = false;
+    var hasChar = false;
+    var hasSign = false;
+    for (var i = 0; i < str.length; i++){
+        if (str.charCodeAt(i) >= 48 && str.charCodeAt(i) <= 57) {
+            hasNum = true;
+            continue;
+        }
+        if (str.charCodeAt(i) >= 65 && str.charCodeAt(i) <= 90) {
+            hasChar = true;
+            continue;
+        }
+        if (!(str.charCodeAt(i) >= 48 && str.charCodeAt(i) <= 57) && !(str.charCodeAt(i) >= 65 && str.charCodeAt(i) <= 90)) {
+            hasSign = true;
+            continue;
+        }
+    }
+
+    // 判断密码强度等级
+    if (hasNum && hasChar && hasSign) {
+        // 强：包含数字、字母、特殊字符中的三种字符
+        ps[0].style.backgroundColor = 'red';
+        ps[1].style.backgroundColor = 'yellow';
+        ps[2].style.backgroundColor = 'green';
+    } else if ((hasNum && hasChar) || (hasNum && hasSign) || (hasChar && hasSign)){
+        // 中：包含数字、字母、特殊字符中的两种字符
+        ps[0].style.backgroundColor = 'red';
+        ps[1].style.backgroundColor = 'yellow';
+        ps[2].style.backgroundColor = '#eee';
+    } else {
+        // 弱：包含数字、字母、特殊字符中的一种字符
+        ps[0].style.backgroundColor = 'red';
+        ps[1].style.backgroundColor = '#eee';
+        ps[2].style.backgroundColor = '#eee';
+    }
+
+}
+
+</script>
+</body>
+</html>

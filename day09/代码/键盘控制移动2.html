@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.box{
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    position: absolute;
+}
+
+</style>
+</head>
+<body>
+<div class="box"></div>
+
+<script>
+var box = document.querySelector('.box');
+var timer, l = false, r = false, t = false, b = false;
+
+setInterval(function (){
+    if (l) {
+        box.style.left = box.offsetLeft - 5 + 'px';
+    }
+    if (r) {
+        box.style.left = box.offsetLeft + 5 + 'px';
+    }
+    if (t) {
+        box.style.top = box.offsetTop - 5 + 'px';
+    }
+    if (b) {
+        box.style.top = box.offsetTop + 5 + 'px';
+    }
+},10);
+
+document.onkeydown = function (ev){
+    var e = ev || window.event;
+    // console.log(e.keyCode);// 37 38 39 40
+    switch(e.keyCode){
+        case 37:
+            l = true;
+            break;
+        case 38:
+            t = true;
+            break;
+        case 39:
+            r = true;
+            break;
+        case 40:
+            b = true;
+            break;
+    }
+}
+
+document.onkeyup = function (ev){
+    var e = ev || window.event;
+    // console.log(e.keyCode);// 37 38 39 40
+    switch(e.keyCode){
+        case 37:
+            l = false;
+            break;
+        case 38:
+            t = false;
+            break;
+        case 39:
+            r = false;
+            break;
+        case 40:
+            b = false;
+            break;
+    }
+}
+
+</script>
+</body>
+</html>

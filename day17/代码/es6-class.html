@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+<script>
+// 定义类
+class Cat {
+    constructor(n,c){//构造器
+        this.name = n;
+        this.color = c;
+        this.eat = function (){
+            alert('fish');
+        }
+    }
+    food = 'fish';// 原型上的属性
+    skill(){//原型上的方法
+        alert('抓老虎');
+    }
+}
+// var cat1 = new Cat('xiaobai','bai');
+// console.log(cat1.color);
+// console.log(cat1.food);
+// cat1.eat();
+// cat1.skill();
+
+class Dog extends Cat {//继承
+    constructor(f,n,c){
+        super(n,c);// Cat.call(this,n,c)
+        // console.log(this);
+        this.food = f;
+        // console.log(super);//不能直接访问
+        // console.log(super.food);//不能访问属性
+        // super.skill();//作为对象使用，可以访问函数，不能访问属性
+    }
+}
+var dog1 = new Dog('骨头','大黄','yellow');
+// console.log(dog1.food);
+// console.log(dog1.name);
+// dog1.skill();
+
+</script>
+</body>
+</html>

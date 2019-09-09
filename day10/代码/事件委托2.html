@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+*{margin: 0; padding: 0; list-style: none;}
+ul li{
+    float: left;
+    width: 50px;
+    height: 50px;
+    background-color: #ccc;
+    margin-right: 10px;
+}
+</style>
+</head>
+<body>
+<button class="btn">按钮</button>
+<ul class="list">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+<script>
+// var btn = document.querySelector('.btn');
+var list = document.querySelector('.list');
+// var lis = list.children;
+
+// 正常实现
+// btn.onclick = function (){
+//     var newLi = document.createElement('li');
+//     newLi.innerText = '新来的';
+//     list.appendChild(newLi);
+//     var lis = list.children;
+//     // console.log(lis);
+//     // console.log(lis.length);
+//     for (var i = 0; i < lis.length; i++){
+//         lis[i].onclick = function (){
+//             this.style.background = 'pink';
+//         }
+//     }
+// }
+
+// for (var i = 0; i < lis.length; i++){
+//     lis[i].onclick = function (){
+//         this.style.background = 'pink';
+//     }
+// }
+
+
+// 事件委托
+document.body.onclick = function (ev){
+    var e = ev || window.event;
+    var tg = e.target || e.srcElement;
+
+    // 创建元素
+    if (tg.className == 'btn') {
+        var newLi = document.createElement('li');
+        newLi.innerText = '新来的';
+        list.appendChild(newLi);
+    }
+
+    // LI的点击事件
+    if (tg.nodeName == 'LI' && tg.parentNode.className == 'list') {
+        tg.style.background = 'pink';
+    }
+
+}
+
+
+</script>
+</body>
+</html>

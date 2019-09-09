@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div id="box">一个块</div>
+<button id="btn">移除事件</button>
+<script>
+var box = document.getElementById('box');
+var btn = document.getElementById('btn');
+
+btn.onclick = function (){
+    // box.onclick = null;//移除事件
+    // box.removeEventListener('click',function (){
+    //     alert(44);
+    // },false);//不能移除
+    box.removeEventListener('click',fn,false);
+    // 需要移除同一个函数
+}
+
+
+
+console.log( {} == {} );//false
+console.log( {} === {} );//false
+
+var obj1 = {};
+var obj2 = obj1;
+console.log( obj1 == obj2 );//true
+console.log( obj1 === obj2 );//true
+
+
+
+// box.onclick = function (){
+//     alert(11);
+// }
+// box.onclick = function (){
+//     alert(22);
+// }
+// box.onclick = function (){
+//     alert(33);
+// }
+
+
+// function fn(){
+//     alert(44);
+// }
+// box.addEventListener('click',fn,false);
+// box.addEventListener('click',function (){
+//     alert(55);
+// },false);
+// box.addEventListener('click',function (){
+//     alert(66);
+// },false);
+
+
+// 事件监听兼容
+function addEvent(dom,type,fn){
+    if (dom.attachEvent) {//IE
+        dom.attachEvent('on'+type,fn);
+    } else {
+        dom.addEventListener(type,fn,false);
+    }
+}
+
+// addEvent(box,'click',function (){
+//     alert('123456');
+// });
+
+
+
+</script>
+
+</body>
+</html>

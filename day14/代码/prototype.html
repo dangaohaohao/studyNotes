@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+<script>
+Object.prototype.abc = 123;
+Object.prototype.test = function (){
+    alert('abc');
+}
+// var obj = {};
+// var arr = [];
+// var str = 'sdfsf';
+// var num = 234;
+// var fun = function (){};
+// var boo = true;
+// function Cat(){}
+// var cat1 = new Cat();
+// console.log(Cat.prototype);
+
+
+// console.log(obj.abc);
+// console.log(arr.abc);
+// console.log(str.abc);
+// console.log(num.abc);//自身查找属性abc 没有-> Number.prototype 没有 -> Object.prototype 有  返回abc的值
+// console.log(boo.abc);
+// console.log(fun.abc);
+// console.log(cat1.abc);
+
+// console.log(Object.prototype);//原型对象
+
+// Array.prototype.www = '888';
+// arr.ttt = 123;
+
+// console.log(obj.www);
+// console.log(arr.www);
+// console.log(str.www);
+// console.log(Array.prototype);
+
+// var arr1 = [1,2,3];
+// console.log(arr1.www);//888
+// console.log(arr1.ttt);//undefined
+
+// Array.prototype.noRepeat = function (){
+//     var arr = [];
+//     this.sort(function (a,b){return a-b;});
+//     for (var i = 0; i < this.length; i++){
+//         if (this[i] != this[i+1]) {
+//             arr.push(this[i]);
+//         }
+//     }
+//     return arr;
+// }
+// var arr2 = [12,44,12,4,6,33,4,12,17];
+// arr2 = arr2.noRepeat();
+// console.log(arr2);
+
+
+// Date.prototype.getWeek = function (){
+//     var arr = ['星期7','星期1','星期2','星期3','星期4','星期5','星期6'];
+//     return arr[this.getDay()];
+// }
+// var d = new Date();
+// console.log( d.getWeek() );
+
+</script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.box{
+    width: 400px;
+    height: 200px;
+    overflow: hidden;
+    background-color: red;
+}
+.box2{
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    left: 50px;
+    top: 250px;
+    background-color: blue;
+}
+</style>
+</head>
+<body>
+<button class="btn1">按钮1</button>
+<button class="btn2">按钮2</button>
+<div class="box">个块</div>
+<div class="box2">个块</div>
+
+<script src="jquery-1.8.3/jquery-1.8.3.js"></script>
+<script src="jquery.easing.min.js"></script>
+<script>
+
+$('.btn1').click(function (){
+    // $('.box').slideUp();//收起
+    // $('.box').slideUp(1000,'easeOutBounce');
+    // $('.box').slideUp({
+    //     duration: 1000,
+    //     easing: 'easeOutBounce',
+    //     complete: function (){
+    //         // console.log('动画执行完成');
+    //         $('.box').slideDown(1000,'easeOutBounce');
+    //     }
+    // });
+
+
+    // $('.box').toggle();//1.显示隐藏
+    // $('.box').toggle(1000);//3.开关动画
+
+    // $('.box').hide();//隐藏
+    // $('.box').css('display','none');
+    // $('.box').hide(1000);//隐藏
+
+
+    // $('.box').fadeOut(2000);//淡出
+
+    // $('.box').animate({
+    //     width: 0
+    // },1000,'linear');
+
+    // $('.box2').animate({
+    //     left: 1200
+    // },2000,'linear',function (){
+    //     $('.box2').animate({
+    //         top: 450
+    //     },1000,'linear',function (){
+    //         $('.box2').animate({
+    //             left: 50
+    //         },2000,'linear');
+    //     });
+    // });
+
+
+    // $('.box2').animate({
+    //     left: 1200
+    // },2000,'linear').animate({
+    //     top: 450
+    // },1000,'linear').animate({
+    //     left: 50
+    // },2000,'linear');
+
+
+    $('.box2').animate({
+        left: 1200
+    },{
+        queue: true,//加入队列
+        duration: 4000,
+        duration: 4000,
+        easing: 'linear'
+    }).animate({
+        top: 500
+    },{
+        queue: true,//加入队列
+        duration: 2000,
+        easing: 'linear'
+    });
+
+});
+
+// 2.响应轮流的点击事件
+$('.box').toggle(function (){
+    alert(1);
+},function (){
+    alert(2);
+},function (){
+    alert(3);
+});
+
+
+$('.btn2').click(function (){
+    // $('.box').slideDown();//展开
+    // $('.box').slideDown(1000,'easeOutBounce');
+
+
+    // $('.box').show();//显示
+    // $('.box').show(1000);//显示
+
+
+    // $('.box').fadeIn(2000);//淡入
+
+
+    // $('.box').animate({
+    //     width: 400
+    // },1000,'linear');
+
+
+    // $('.box2').stop();//停止当前动画(并不会停止动画队列中剩下的动画)
+    // $('.box2').stop(true);//停止所有动画
+    $('.box2').stop(true,true);//停止所有动画，并到当前动画终点
+
+});
+
+
+</script>
+</body>
+</html>

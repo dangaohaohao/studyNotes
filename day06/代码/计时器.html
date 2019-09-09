@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    
+    .box{
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        left: 100px;
+        top: 100px;
+        background-color: red;
+    }
+    </style>
+</head>
+<body>
+<button class="btn">按钮</button>
+<div class="box"></div>
+
+<script>
+// 重复计时器 (重复执行)
+// setInterval('要执行的函数','时间间隔');//单位毫秒  1秒=1000毫秒
+// var timer1 = setInterval(function (){
+//     console.log(123);
+// }, 1000);
+// console.log(timer1);//1
+
+// 延迟计时器(执行一次)
+// setTimeout('要执行的函数','延迟执行的时间');
+// var timer2 = setTimeout(function (){
+//     alert('老中医祖传秘方');
+// },5000);
+// console.log(timer2);//2
+
+var btn = document.querySelector('.btn');
+var box = document.querySelector('.box');
+btn.onclick = function (){
+    // clearInterval(timer1);
+    // clearTimeout(timer2);
+
+    var l = 100;
+    var t = 100;
+    setInterval(function (){
+        l+=5;
+        t+=2;
+        box.style.left = l + 'px';
+        box.style.top = t + 'px';
+    },30);
+
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+<script>
+// Math是一个内置对象，不需要创建，可以直接使用。
+// π -> Math.PI  3.1415926.....
+
+var num1 = 21.7;
+var num2 = 21.4;
+var num3 = 21.01;
+
+// 向上取整
+// console.log( Math.ceil(num1) );//22
+// console.log( Math.ceil(num2) );//22
+// console.log( Math.ceil(num3) );//22
+
+// 向下取整
+// console.log( Math.floor(num1) );//21
+// console.log( Math.floor(num2) );//21
+// console.log( parseInt(num1) );//21
+
+// 四舍五入取整
+// console.log( Math.round(num1) );//22
+// console.log( Math.round(num2) );//21
+
+// 返回绝对值
+// console.log(Math.abs(1));//1
+// console.log(Math.abs(-1));//1
+// console.log(Math.abs(0));//0
+// console.log(Math.abs(-0));//0
+// console.log(Math.abs(-0.123));//0.123
+
+// 返回x的y次方
+// console.log( Math.pow(2,3) );//8
+// console.log( Math.pow(3,2) );//9
+
+// 返回x的平方根
+// console.log( Math.sqrt(9) );//3
+// console.log( Math.sqrt(4) );//2
+
+// 返回abc...中的最小值
+// var min = Math.min(21,12,7,16,3,32);
+// var max = Math.max(21,12,7,16,3,32);
+// console.log(min);//3
+// console.log(max);//32
+
+// 随机数
+// console.log(Math.random());//0.8736188611266282
+
+// for (var i = 0; i < 30; i++){
+//     console.log(Math.random());
+// }
+
+
+// 生成随机整数
+// 如何得到 0 ~ 1 的随机整数[0,1]？
+// var int = Math.round( Math.random() );
+
+// 如何得到 0 ~ 5 的随机整数[0,5]？
+// for (var i = 0; i < 30; i++){
+//     var int = Math.round(Math.random()*5);
+//     console.log(int);
+// }
+
+// 如何得到 5 ~ 10 的随机整数[5,10]？
+// for (var i = 0; i < 30; i++){
+//     var int = Math.round(Math.random()*(10-5))+5;
+//     console.log(int);
+// }
+
+// 如何得到 8 ~ 24 的随机整数[8,24]？
+// for (var i = 0; i < 30; i++){
+//     var int = Math.round(Math.random()*(24-8))+8;
+//     console.log(int);
+// }
+
+// 写一个函数 randomInt(min,max) 随机生成[min,max]区间的整数。
+function randomInt(min,max){
+    return Math.round(Math.random()*(max-min))+min;
+}
+for (var i = 0; i < 30; i++){
+    console.log( randomInt(100,200) );
+}
+
+
+</script>
+</body>
+</html>

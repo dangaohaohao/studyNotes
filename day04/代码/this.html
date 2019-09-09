@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div class="box">一个坑</div>
+
+
+<script>
+var box = document.querySelector('.box');
+// console.log(this);//window
+
+function show(){
+    console.log(this);
+}
+
+// 1、函数的调用对象(谁去调用)
+// show();
+// window.show();//this指向它所在的函数的调用对象(谁去调用)
+
+// 2.this指向事件的调用对象
+// box.onclick = function (){//this指向事件的调用对象
+//     console.log(this);//box
+//     // show();//window
+//     // window.show();//window
+// }
+
+// box.onclick = show();
+// box.onclick = undefined;
+
+// box.onclick = show;//box
+// box.onclick = window.show;//box
+// box.onclick = function show(){
+//     console.log(this);
+// }
+
+
+
+</script>
+</body>
+</html>

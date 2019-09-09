@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.cvs{
+    background-color: #eee;
+}
+</style>
+</head>
+<body>
+    
+<canvas class="cvs" width="1200" height="600">亲，别再用古董浏览器了！</canvas>
+<button class="btn">清除</button>
+
+<script>
+var btn = document.querySelector('.btn');
+var cvs = document.querySelector('.cvs');//画纸
+var ctx = cvs.getContext('2d');//画笔
+
+// ctx.beginPath();//开始绘制路径
+// ctx.arc(200,200,100,0,360);
+// ctx.fillStyle = 'red',
+// ctx.shadowColor = '#000';
+// ctx.shadowBlur = 15;
+// ctx.shadowOffsetX = 5;
+// ctx.shadowOffsetY = 5;
+// ctx.fill();
+// ctx.closePath();//关闭路径
+
+// ctx.beginPath();//开始绘制路径
+// ctx.arc(700,200,100,0,360);
+// ctx.fillStyle = 'blue',
+// ctx.shadowColor = '#000';
+// ctx.shadowBlur = 15;
+// ctx.shadowOffsetX = 5;
+// ctx.shadowOffsetY = 5;
+// ctx.fill();
+// ctx.closePath();//关闭路径
+
+
+
+ctx.beginPath();//开始绘制路径
+ctx.arc(200,200,100,0,360);
+ctx.fillStyle = 'red',
+ctx.fill();
+ctx.closePath();//关闭路径
+
+// ctx.globalCompositeOperation = 'source-over';
+// ctx.globalCompositeOperation = 'source-in';
+// ctx.globalCompositeOperation = 'source-out';
+// ctx.globalCompositeOperation = 'source-atop';
+// ctx.globalCompositeOperation = 'destination-over';
+// ctx.globalCompositeOperation = 'destination-in';
+// ctx.globalCompositeOperation = 'destination-out';
+// ctx.globalCompositeOperation = 'destination-atop';
+// ctx.globalCompositeOperation = 'lighter';
+// ctx.globalCompositeOperation = 'xor';
+ctx.globalCompositeOperation = 'copy';
+
+ctx.beginPath();//开始绘制路径
+ctx.arc(300,200,100,0,360);
+ctx.fillStyle = 'blue',
+ctx.fill();
+ctx.closePath();//关闭路径
+
+
+
+</script>
+</body>
+</html>

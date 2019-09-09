@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>数据双向绑定</title>
+</head>
+<body>
+
+<p>
+    input1=><input type="text" id="input1">
+</p>
+<p>
+    input2=><input type="text" id="input2">
+</p>
+<div>
+    输入的值是=><span id="span"></span>
+</div>
+
+<script>
+var oInput1 = document.getElementById('input1');
+var oInput2 = document.getElementById('input2');
+var oSpan = document.getElementById('span');
+var data = {a:2};//数据
+// data.a = 3;//怎么监听它的变化？
+Object.defineProperties(data, {
+    val1: {
+        configurable: true,
+        get() {
+            oInput1.value = '';
+            oInput2.value = '';
+            oSpan.innerHTML = '';
+            return '';
+        },
+        set(newValue) {
+            oInput2.value = newValue;
+            oSpan.innerHTML = newValue;
+        }
+    },
+    val2: {
+        configurable: true,
+        get() {
+            oInput1.value = '';
+            oInput2.value = '';
+            oSpan.innerHTML = '';
+            return '';
+        },
+        set(newValue) {
+            oInput1.value = newValue;
+            oSpan.innerHTML = newValue;
+        }
+    }
+})
+oInput1.value = data.val1;//getter
+oInput1.addEventListener('keyup', function() {
+    data.val1 = oInput1.value;//setter
+}, false)
+oInput2.addEventListener('keyup', function() {
+    data.val2 = oInput2.value;//setter
+}, false)
+
+
+</script>
+</body>
+</html>

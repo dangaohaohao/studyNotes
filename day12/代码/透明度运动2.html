@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.box{
+    width: 200px;
+    height: 200px;
+    background-color: #000;
+    float: left;
+    margin: 50px 20px;
+    opacity: 0.3;
+}
+
+</style>
+</head>
+<body>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+
+<script>
+var box = document.querySelectorAll('.box');
+// var timer, opa = 30;
+
+for (var i = 0; i < box.length; i++){
+    box[i].timer = null;
+    box[i].opa = 30;
+    box[i].onmouseover = function (){
+        move(this,100);
+    }
+    box[i].onmouseout = function (){
+        move(this,30);
+    }
+}
+// 多元素进行相同的运动，属性都不能共用！
+function move(dom,target){
+    clearInterval(dom.timer);
+    dom.timer = setInterval(function (){
+        if (dom.opa > target) {//判断运动方向
+            var speed = -5;//透明度减小
+        } else {
+            var speed = 5;//透明度增加
+        }
+        // 剩余运动量 <= 每次运动的量5
+        if (Math.abs(dom.opa - target) <= Math.abs(speed)) {
+            clearInterval(dom.timer);
+            dom.style.opacity = target / 100;//手动设置终点
+        } else{
+            dom.opa += speed;
+            dom.style.opacity = dom.opa / 100;//每次的运动
+        }
+    },40);
+}
+
+</script>
+</body>
+</html>

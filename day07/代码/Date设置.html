@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1></h1>
+
+<script>
+
+var d = new Date();
+console.log( d.getFullYear() );//2019
+console.log( d.getMonth() );//7  -> 8月
+
+d.setFullYear(2020);// 设置年份
+console.log( d.getFullYear() );//2020
+
+d.setMonth(8);//9月
+console.log( d.getMonth() );//8
+
+/* 
+1秒 = 1000 毫秒
+1分 = 1000 * 60
+1时 = 1000 * 60 * 60
+1天 = 1000 * 60 * 60 * 24
+ */
+
+// 向1970/1/1添加毫秒数
+d.setTime(1000 * 60 * 60 * 24);
+console.log(d);// 1970/1/2 8
+
+
+// 创建特定时间的Date对象(倒计时)
+
+setInterval(function (){
+    var d1 = new Date();
+    // var d2 = new Date(1565664153784);
+    var d3 = new Date('2019/10/01 00:00:00');
+    // console.log(d2);
+    // console.log(d3);
+
+    var timeD1 = d1.getTime();//1970/1/1到现在的总毫秒数
+    var timeD3 = d3.getTime();//1970/1/1到2019/10/1的总毫秒数
+    var allTime = timeD3 - timeD1;// 现在到国庆总的时间
+
+    var days = parseInt( allTime/(1000 * 60 * 60 * 24) );//天数
+
+    var hours = 23 - d1.getHours();// 小时
+
+    var minutes = 59 - d1.getMinutes();// 分钟
+
+    var seconds = 59 - d1.getSeconds();// 秒
+
+    var millseconds = 999 - d1.getMilliseconds();// 毫秒
+
+    document.querySelector('h1').innerHTML = '距离2019国庆还有' + days + '天' + hours + '小时' + minutes + '分' + seconds + '秒';
+
+},1);
+
+</script>
+</body>
+</html>

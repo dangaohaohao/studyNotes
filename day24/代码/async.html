@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<button class="btn">请求数据</button>
+<h1 class="con"></h1>
+
+
+<script src="ajax.js"></script>
+<script>
+// function fn(){
+//     return new Promise(function (resolve,reject){
+//         resolve('hello world1');
+//     });
+// }
+// fn().then(function (res){
+//     console.log(res);
+// })
+    
+
+
+// async function test(){
+//     return 'hello world2';
+// }
+// console.log( test() );//Promise {<resolved>: "hello world"}
+
+// test().then(function (res){
+//     console.log(res);//'hello world'
+// })
+    
+
+// var obj = {
+//     name:'xm',
+//     say: function (){
+
+//     },
+//     async foo(){
+
+//     }
+// }
+
+
+// async function test(){
+    // alertt(123);
+    // console.log(123);
+// }
+// console.log( test() );//Promise {<resolved>: "hello world"}
+
+// test().then(function (res){
+//     console.log(res);
+// },function (err){
+//     console.log(err);
+// })
+
+// test().then(function (res){
+//     console.log(res);
+// },function (err){
+//     console.log(err);
+// }).catch(function (err){
+//     console.log(err);
+// });
+
+
+// async function fn1(){
+//     // return 123;
+//     return await 123;
+// }
+// fn1().then(function (res){
+//     console.log(res);
+// })
+
+
+
+// function fn2(){
+//     return await 456;//await is only valid in async function
+// }
+// fn2();
+
+
+
+// (async function (){
+//     var res1 = await new Promise(function (resolve,reject){
+//         setTimeout(function (){
+//             console.log('异步任务1');
+//             resolve('成功1');
+//         },2000);
+//     });
+//     console.log('同步任务2');
+//     var res2 = await new Promise(function (resolve,reject){
+//         setTimeout(function (){
+//             console.log('异步任务3');
+//             resolve('成功2');
+//         },2000);
+//     });
+//     console.log(res1,res2);
+//     console.log('同步任务4');
+// })();
+
+
+var btn = document.querySelector('.btn');
+var con = document.querySelector('.con');
+// btn.onclick = function (){
+
+//     (async function (){
+
+//         var res1 = await promiseAjax({
+//             url: 'datas2.php',
+//             type: 'get',
+//             data: 'userid=abc1001'
+//         });
+//         res1 = JSON.parse(res1);
+//         var res2 = await promiseAjax({
+//             url: 'datas.php',
+//             type: 'get',
+//             data: 'userid=' + res1.id
+//         });
+//         res2 = JSON.parse(res2);
+//         var res3 = await promiseAjax({
+//             url: 'datas.php',
+//             type: 'get',
+//             data: 'userid=' + res2.id
+//         });
+//         res3 = JSON.parse(res3);
+
+//         // con.innerText = `姓名：${res1.name}，身份证：${res2.idcode}，地址：${res3.address}`;
+//         return [res1,res2,res3];
+//     })().then(function (arr){
+//         con.innerText = `姓名：${arr[0].name}，身份证：${arr[1].idcode}，地址：${arr[2].address}`;
+//     },function (err){
+//         console.log(err);
+//     });
+
+// }
+
+
+// alertt(123);//alertt is not defined
+// console.log(456);
+
+
+// try ... catch  处理异常或容易出错的代码
+// try{
+//     alertt(123);//ReferenceError: alertt is not defined
+//     console.log(456);
+// } catch(err){
+//     console.log(err);
+// }
+// console.log(789);//456
+
+
+(async function (){
+    try{
+        var res1 = await promiseAjax({
+            url: 'datas2.php',
+            type: 'get',
+            data: 'userid=abc1001'
+        });
+        res1 = JSON.parse(res1);
+    } catch(e){};
+    var res2 = await promiseAjax({
+        url: 'datas.php',
+        type: 'get',
+        data: 'userid=abc1002'
+    });
+    res2 = JSON.parse(res2);
+    con.innerText = `姓名：${res1 ? res1.name: '未知'}，身份证：${res2.idcode}`;
+
+})();
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+</head>
+<body>
+<canvas class="cvs" width="500" height="300" style="border:1px solid #666;"></canvas>
+<p>
+    <button direction="0">方向1</button>
+    <button direction="1">方向2</button>
+    <button direction="2">方向3</button>
+    <button direction="3">方向4</button>
+    <button direction="4">方向5</button>
+    <button direction="5">方向6</button>
+    <button direction="6">方向7</button>
+    <button direction="7">方向8</button>
+</p>
+<script>
+var btns = document.querySelectorAll('button');
+var cvs = document.querySelector('.cvs');
+var ctx = cvs.getContext('2d');
+
+var time = 20;//时间间隔 ms
+var start = 0;//从第一张图开始
+var direction = 0;//默认方向
+var clipWH = 256;//裁剪图片的宽高
+
+var img = new Image();
+img.src = 'girl.png';
+img.onload = function (){
+    setInterval(() => {
+        ctx.clearRect(0,0,cvs.width,cvs.height);//清屏
+        ctx.beginPath();
+        ctx.drawImage(this,start*clipWH,direction*clipWH,clipWH,clipWH,100,50,clipWH,clipWH);
+        start++;
+        if (start >= 8) {
+            start = 0;
+        }
+        ctx.closePath();
+    },time);
+}
+
+for(var i = 0; i < btns.length; i++){
+    btns[i].onclick = function (){
+        direction = this.getAttribute('direction');
+    }
+}
+
+
+</script>
+</body>
+</html>

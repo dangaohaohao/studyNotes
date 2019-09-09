@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<script>
+// 统计字符串中每个字母的个数
+var str = 'asdfljlasaAakjjjbbbSkljDDqwe';
+// var res = {
+//     a: 1,
+//     b: 3,
+//     c: 7
+// };
+
+function countLetter(str){
+    str = str.toLowerCase();// 转成小写
+    var res = {};//存储统计数据
+    for (var i in str){
+        var letter = str[i];//单个字母
+        if (res[letter]) {//访问对象不存在的属性，返回undefined
+            res[letter] = res[letter]+1;//如果有这个属性，值加一
+        } else {
+            res[letter] = 1;//如果没有该属性，添加属性并赋值
+        }
+    }
+    return res;
+}
+
+var result = countLetter(str);
+console.log( result );
+
+for (var key in result){
+    if (key == 'k') {
+        console.log( result[key] );
+    }
+}
+
+
+</script>
+</body>
+</html>

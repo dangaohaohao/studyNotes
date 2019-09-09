@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.box{
+    width: 200px;
+    height: 200px;
+    background-color: #000;
+    position: absolute;
+    left: 500px;
+    top: 50px;
+    opacity: 0.3;
+}
+span{
+    position: absolute;
+    left: 500px;
+    top: 0;
+    width: 1px;
+    height: 400px;
+    background-color: blue;
+}
+
+</style>
+</head>
+<body>
+<button class="btn">走你</button>
+<div class="box"></div>
+<span></span>
+
+<script>
+var btn = document.querySelector('.btn');
+var box = document.querySelector('.box');
+var timer, opa = 30;
+
+box.onmouseover = function (){
+    // box.style.opacity = 1;
+    move(this,100);
+}
+box.onmouseout = function (){
+    // box.style.opacity = 0.3;
+    move(this,30);
+}
+function move(dom,target){
+    clearInterval(timer);
+    timer = setInterval(function (){
+        if (opa > target) {//判断运动方向
+            var speed = -5;//透明度减小
+        } else {
+            var speed = 5;//透明度增加
+        }
+        // 剩余运动量 <= 每次运动的量5
+        if (Math.abs(opa - target) <= Math.abs(speed)) {
+            clearInterval(timer);
+            dom.style.opacity = target / 100;//手动设置终点
+        } else{
+            opa += speed;
+            dom.style.opacity = opa / 100;//每次的运动
+        }
+    },40);
+}
+
+</script>
+</body>
+</html>

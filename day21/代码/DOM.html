@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+</head>
+<body>
+
+<div id="box">
+    <div class="box">一个块</div>
+    <h4>一个标题</h4>
+    <p class="con">一段内容</p>
+</div>
+<ul class="list">
+    <li>11</li>
+    <li>22</li>
+    <li>33</li>
+    <li>44</li>
+    <li>55</li>
+</ul>
+
+<script src="jquery-1.8.3/jquery-1.8.3.js"></script>
+<script>
+$(function (){
+    
+    // 创建添加节点
+    // var div = document.createElement('div');
+    // div.innerText = '新创建的节点';
+    // document.body.appendChild(div);
+    // document.body.insertBefore(div,box);
+
+    // var oDiv = $('<li>新创建的节点</li>');
+    // $('.list').append(oDiv);
+    // oDiv.appendTo('.list');
+
+    // $('.list').prepend(oDiv);
+    // oDiv.prependTo('.list');
+
+    // $('.list').after('<h3>新建的h3</h3>');
+    // $('<h3>新建的h3</h3>').insertAfter('.list');
+
+    // $('.list').before('<h3>新建的h3</h3>');
+    // $('<h3>新建的h3</h3>').insertBefore('.list');
+
+
+    // 删除节点
+    // box.removeChild(document.querySelector('.con'));
+    // $('.con').remove();
+    // $('#box').empty();//清空box内部
+    // var boxs = $('#box').detach();//删除节点，返回删除节点的副本
+    // $('body').prepend(boxs);// 恢复到页面中
+
+
+    // 替换节点
+    // parent.replaceChild( newNode , oldNode );
+    // $('<h1>新标题</h1>').replaceAll('#box h4');
+
+
+    // 复制节点
+    // var cloneDom = dom.cloneNode(true);
+
+    // $('.con').click(function (){
+    //     alert('BMW');
+    // });
+
+    // var cloneCon = $('.con').clone(true);//深复制 可以复制事件处理程序
+    // $('#box').after(cloneCon);
+
+
+        
+
+});
+
+</script>
+</body>
+</html>

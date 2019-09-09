@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+<script>
+
+// var fn1 = function (){};
+// function fn2(){}
+// var fn3 = new Function();
+// console.log(fn1.prototype);
+// console.log(fn2.prototype);
+// console.log(fn3.prototype);
+
+var str = 'sdfds';
+var num = 1234;
+var boo = true;
+var arr = [];
+var fn = function (){};
+var obj = {};
+
+// console.log(str.constructor);//ƒ String() { [native code] }
+// console.log(num.constructor);//ƒ Number() { [native code] }
+// console.log(boo.constructor);//ƒ Boolean() { [native code] }
+// console.log(arr.constructor);//ƒ Array() { [native code] }
+// console.log(fn.constructor);//ƒ Function() { [native code] }
+// console.log(obj.constructor);//ƒ Object() { [native code] }
+// console.log(null.constructor);
+// console.log(undefinded.constructor);
+
+
+// console.log(String.prototype);//String {"", constructor: ƒ, blink: ƒ, …}
+// console.log(Number.prototype);//Number {0, constructor: ƒ, toPrecision: ƒ, …}
+// console.log(Boolean.prototype);//Boolean {false, constructor: ƒ}
+// console.log(Function.prototype);//ƒ () { [native code] }
+// console.log(Function.prototype.prototype);//undefined
+// console.log(arr.prototype);//undefined
+// console.log(fn.prototype);//{constructor: ƒ}
+
+
+// console.log(String.prototype.constructor);// String
+// console.log(Number.prototype.constructor);// Number
+// console.log(Boolean.prototype.constructor);// Boolean
+// console.log(Function.prototype.constructor);// Function
+// console.log(fn.prototype.constructor);//ƒ (){}
+
+
+// function Cat(n,c){
+//     this.name = n;
+//     this.color = c;
+// }
+// Cat.prototype.food = 'fish';
+// Cat.prototype.skill = function (){
+//     alert('抓老鼠');
+// }
+// var cat1 = new Cat('xb','white');
+// cat1.abc = '12345';
+
+// var obj1 = {
+//     name: 123
+// }
+
+// console.log(cat1.constructor);//Cat
+// console.log(Cat.prototype.constructor);//Cat
+// console.log(cat1.constructor === Cat.prototype.constructor);//true
+// console.log(Cat.prototype);//{food: "fish", skill: ƒ, constructor: ƒ}
+// console.log(cat1);//Cat {name: "xb", color: "white"}
+
+// hasOwnProperty()//判断对象自身是否有某个属性（成员）
+// console.log( cat1.hasOwnProperty('name') );//true
+// console.log( cat1.hasOwnProperty('abc') );//true
+// console.log( cat1.hasOwnProperty('food') );//false
+// console.log( cat1.hasOwnProperty('constructor') );//false
+
+
+
+// __proto__:指向对象的原型(作用：维护原型链)
+// console.log( cat1.__proto__ );//Cat.prototype
+// console.log( str.__proto__ );//String.prototype
+// console.log( num.__proto__ );//Number.prototype
+// console.log( fn.__proto__ );//ƒ () { [native code] }
+
+
+Object.prototype.www = 'baidu.com';
+// console.log(str.www);//baidu.com
+// console.log(cat1.www);//baidu.com
+
+// console.log( str.hasOwnProperty('www') );//false
+// console.log( str.__proto__.hasOwnProperty('www') );//false
+// console.log( str.__proto__ );//Stirng.prototype
+// console.log( str.__proto__.__proto__ );//Object.prototype
+// console.log( str.__proto__.__proto__.constructor );//ƒ Object() { [native code] }
+// console.log( str.__proto__.__proto__.hasOwnProperty('www') );//true
+// console.log( str.__proto__.__proto__.__proto__ );//null
+
+// str.www -> str.__proto__.www -> str.__proto__.__proto__.www -> 'baidu.com'
+
+
+
+// var str2 = new String('aabb');
+// console.log(str2);
+
+
+
+
+function Cat(n,c){
+    this.name = n;
+    this.color = c;
+}
+// Cat.prototype.food = 'fish';
+// Cat.prototype.type = '动物';
+// Cat.prototype.skill = function (){
+//     alert('抓老鼠');
+// }
+Cat.prototype = {//Object.prototype.constructor = Object
+    food: 'fish',
+    type: '动物',
+    skill: function (){
+        alert('抓老鼠');
+    },
+    constructor: Cat
+}
+var cat1 = new Cat('xb','white');
+console.log(cat1.food);
+cat1.skill();
+console.log( cat1.constructor );//ƒ Object() { [native code] }
+
+
+</script>
+</body>
+</html>

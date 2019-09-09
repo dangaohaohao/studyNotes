@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.box2{
+    width: 400px;
+    height: 200px;
+    background: blue;
+}
+</style>
+</head>
+<body>
+
+<div class="box1" style="width:200px;height:100px;background:red;">行间样式</div>
+<div class="box2">非行间样式</div>
+<input type="checkbox" name="" id="ckb">
+
+<script>
+var box1 = document.querySelector('.box1');
+var box2 = document.querySelector('.box2');
+// box1.style.color = 'green';//设置
+// console.log(box1.style);
+// console.log(typeof box1.style);
+// console.log(box1.style.width);//200px
+// console.log(box1.style['width']);//200px
+// console.log(box2.style.width);//''
+
+// console.log( getComputedStyle(box1,null).width );//200px
+// console.log( getComputedStyle(box2,null).width );//400px
+
+// console.log( box1.currentStyle.width );//IE
+// console.log( box2.currentStyle.width );//IE
+
+// 获取元素样式
+function getStyle(dom,style){
+    if (dom.currentStyle) {//IE
+        return dom.currentStyle[style];
+    } else {
+        return getComputedStyle(dom,null)[style];
+    }
+}
+console.log( getStyle(box1,'height') );//'100px'
+
+// 多选框 是否选中状态
+console.log(ckb.checked);//false
+ckb.checked = true;
+console.log(ckb.checked);//true
+</script>
+</body>
+</html>

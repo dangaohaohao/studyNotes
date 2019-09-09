@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+*{margin: 0; padding: 0;}
+.wrap{
+    width: 50px;
+    height: 180px;
+    position: fixed;
+    right: 0px;
+    bottom: 50px;
+}
+.box{
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+.box h5{
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 14px;
+    background-color: #ccc;
+}
+.box p{
+    width: 120px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 14px;
+    background-color: #ccc;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    border-radius: 5px 0 0 5px;
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+    <div class="box">
+        <h5>标题1</h5>
+        <p>内容1</p>
+    </div>
+    <div class="box">
+        <h5>标题2</h5>
+        <p>内容2</p>
+    </div>
+    <div class="box">
+        <h5>标题3</h5>
+        <p>内容3</p>
+    </div>
+</div>
+<script>
+var box = document.querySelectorAll('.box');
+var ps = document.querySelectorAll('.box p');
+var hs = document.querySelectorAll('.box h5');
+
+for (var i = 0; i < box.length; i++){
+    box[i].index = i;
+    ps[i].timer = null;
+    box[i].onmouseenter = function (){
+        ps[this.index].style.background = 'pink';
+        hs[this.index].style.background = 'pink';
+        move(this.children[1],-120);
+        // move(ps[this.index],-120);
+    }
+    box[i].onmouseleave = function (){
+        ps[this.index].style.background = '#ccc';
+        hs[this.index].style.background = '#ccc';
+        move(this.children[1],0);
+    }
+}
+
+
+function move(dom,target){
+    clearInterval(dom.timer);
+    dom.timer = setInterval(function (){
+        if (dom.offsetLeft > target) {//判断运动方向
+            var speed = -5;//左走
+        } else {
+            var speed = 5;//右走
+        }
+        // 剩余运动量 <= 每次运动的量5
+        if (Math.abs(dom.offsetLeft - target) <= Math.abs(speed)) {
+            clearInterval(dom.timer);
+            dom.style.left = target + 'px';//手动设置终点
+        } else{
+            dom.style.left = dom.offsetLeft + speed + 'px';//每次的运动
+        }
+    },20);
+}
+</script>
+</body>
+</html>

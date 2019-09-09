@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<button class="btn">请求数据</button>
+<h1 class="con"></h1>
+
+<script src="ajax.js"></script>
+<script>
+var btn = document.querySelector('.btn');
+var con = document.querySelector('.con');
+var n,c,a;
+btn.onclick = function (){
+
+    // ajax({
+    //     url: 'datas.php',
+    //     type: 'get',
+    //     data: 'userid=abc1001',
+    //     succeed: function (str){
+    //         var json = JSON.parse(str);
+    //         n = json.name;
+    //         ajax({
+    //             url: 'datas.php',
+    //             type: 'get',
+    //             data: 'userid=' + json.id,
+    //             succeed: function (str){
+    //                 var json = JSON.parse(str);
+    //                 c = json.idcode;
+    //                 ajax({
+    //                     url: 'datas.php',
+    //                     type: 'get',
+    //                     data: 'userid=' + json.id,
+    //                     succeed: function (str){
+    //                         var json = JSON.parse(str);
+    //                         a = json.address;
+    //                         con.innerText = `姓名：${n}，身份证：${c}，住址：${a}`;
+    //                     }
+    //                 });
+    //             }
+    //         });
+    //     }
+    // });
+
+
+    // promiseAjax({
+    //     url: 'datas2.php',
+    //     type: 'get',
+    //     data: 'userid=abc1001'
+    // })
+    // .then(function (str){
+    //     var json = JSON.parse(str);
+    //     n = json.name;
+    //     return promiseAjax({
+    //         url: 'datas.php',
+    //         type: 'get',
+    //         data: 'userid=' + json.id
+    //     })
+    // },function (err){
+    //     console.log(err);
+    //     throw new Error('出错拉！');
+    // })
+    // .then(function (str){
+    //     var json = JSON.parse(str);
+    //     c = json.idcode;
+    //     return promiseAjax({
+    //         url: 'datas.php',
+    //         type: 'get',
+    //         data: 'userid=' + json.id
+    //     })
+    // })
+    // .then(function (str){
+    //     var json = JSON.parse(str);
+    //     a = json.address;
+    //     con.innerText = `姓名：${n}，身份证：${c}，住址：${a}`;
+    // });
+
+
+    var res1 = promiseAjax({
+        url: 'datas.php',
+        type: 'get',
+        data: 'userid=abc1001'
+    });
+    var res2 = promiseAjax({
+        url: 'datas.php',
+        type: 'get',
+        data: 'userid=abc1002'
+    });
+    var res3 = promiseAjax({
+        url: 'datas.php',
+        type: 'get',
+        data: 'userid=abc1003'
+    });
+    Promise.all([res1,res2,res3])
+    .then(function (arr){
+        // console.log(arr);
+        var n = JSON.parse(arr[0]).name;
+        var c = JSON.parse(arr[1]).idcode;
+        var a = JSON.parse(arr[2]).address;
+        con.innerText = `姓名：${n}，身份证：${c}，住址：${a}`;
+    })
+
+}
+
+
+</script>
+</body>
+</html>

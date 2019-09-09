@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+</head>
+<body>
+<input type="text" class="ipt">
+<button class="btn">查询</button>
+<h1 class="con"></h1>
+
+
+<script src="jquery-1.8.3.js"></script>
+<script>
+$('.btn').click(function (){
+
+    $.ajax({
+        url: 'http://tcc.taobao.com/cc/json/mobile_tel_segment.htm',
+        type: 'get',
+        data: {tel:$('.ipt').val()},
+        dataType: 'jsonp',
+        timeout: 4000,
+        // cache: false,//  是否读取缓存
+        jsonp: 'callback',
+        // jsonpCallback: 'myCallback',
+        success: function (json){
+            $('.con').text(json.carrier);
+        },
+        error: function (err){
+            alert('请求失败');
+        }
+    });
+
+
+})
+
+
+
+</script>
+</body>
+</html>

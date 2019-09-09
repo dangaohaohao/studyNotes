@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+<script>
+
+// function* myGenerator(){
+//     yield 'hello';
+//     yield 'world';
+//     return 'results';
+// }
+// var iterator = myGenerator();//生成迭代器对象
+// console.log(iterator);//myGenerator {<suspended>} 遍历器对象  迭代器对象
+// console.log( iterator.next() );//{value: "hello", done: false}
+// console.log( iterator.next() );//{value: "world", done: false}
+// console.log( iterator.next() );//{value: "results", done: true}
+// console.log( iterator.next() );//{value: undefined, done: true}
+
+
+var arr = ['a1','a2','a3','a4'];
+// console.log(arr);
+// var iterator = arr[Symbol.iterator]();//生成迭代器对象
+// console.log(iterator);//Array Iterator {}
+// console.log(iterator.next());//{value: "a1", done: false}
+// console.log(iterator.next());//{value: "a2", done: false}
+// console.log(iterator.next());//{value: "a3", done: false}
+// console.log(iterator.next());//{value: "a4", done: false}
+// console.log(...arr);
+
+
+// var str = 'abcd';
+// var iterator = str[Symbol.iterator]();
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+
+
+var obj = {name:'xm',age:24,sex:'男'};
+// console.log(obj);
+// for (var val of obj){
+//     console.log(val);
+// }
+
+function* objIterator(){
+    var keys = Object.keys(this);//["name","age","sex"]
+    for (var key of keys){
+        // yield key;
+        yield this[key];
+        // yield [key,this[key]];
+    }
+}
+// obj[Symbol.iterator] = objIterator;
+// var iterator = obj[Symbol.iterator]();
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+
+// for (var [key,val] of obj){
+//     console.log('key:'+key +', value:'+val);
+// }
+// console.log(...obj);
+
+
+var obj2 = {
+    0:'b1',
+    1:'b2',
+    2:'b3',
+    length:3
+};
+obj2[Symbol.iterator] = objIterator;
+console.log(...obj2);
+
+var arr = Array.from(obj2);
+// console.log(arr);
+arr.push('abc');
+console.log(arr);
+
+
+</script>
+</body>
+</html>

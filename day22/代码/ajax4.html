@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+</head>
+<body>
+<button class="btn">请求数据</button>
+<h1 class="con"></h1>
+
+<script src="jquery-1.8.3.js"></script>
+<script>
+$('.btn').click(function (){
+
+    // $.ajax({
+    //     url: 'data/test1.txt',
+    //     type: 'get',
+    //     data: 'abc=123',//{abc:456}
+    //     dataType: 'text',
+    //     cache: false,//  是否读取缓存
+    //     success: function (d){
+    //         $('.con').text(d);
+    //     },
+    //     error: function (err){
+    //         console.log(err.status);
+    //     }
+    // });
+
+    $.get('data/test1.txt',function (d){
+        $('.con').text(d);
+    },'text');
+
+
+})
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.register{
+    width: 800px;
+    margin: 50px auto 0;
+}
+.row span{
+    color: red;
+    display: none;
+}
+
+</style>
+</head>
+<body>
+
+<form class="register" action="https://www.baidu.com/" method="get">
+    <div class="row">
+        账号：<input type="text" class="username" name="username">
+        <span>账号为8到18个字符，可以包含数字、字母、下划线</span>
+    </div>
+    <div class="row">
+        密码：<input type="password" class="password" name="password">
+        <span>密码为8到16个字符，可以包含数字、字母（不区分大小写）</span>
+    </div>
+    <div class="row">
+        手机：<input type="text" class="phone" name="phone">
+        <span>亲，这个号码找不到你哟！</span>
+    </div>
+    <div class="row">
+        邮箱：<input type="text" class="email" name="email">
+        <span>你这个是火星的邮箱吧！</span>
+    </div>
+    <div class="row">
+        昵称：<input type="text" class="nickname" name="nickname">
+        <span>这个昵称不符合你高大威武的形象！</span>
+    </div>
+    <div class="row">
+        性别：<input type="text" class="sex" name="sex">
+        <span>你从泰国回来的吧！</span>
+    </div>
+    <input type="submit" value="注册">
+</form>
+
+
+<script>
+var form = document.querySelector('.register');
+var ipts = document.querySelectorAll('.row input');
+var tips = document.querySelectorAll('.row span');
+var arr = [];//保存是否可提交的状态
+var reg1 = /^\w{8,18}$/g;
+var reg2 = /^[0-9a-zA-Z]{8,16}$/g;
+var reg3 = /^(1|(\+861))[3-9]\d{9}$/g;
+var reg4 = /^\w{4,18}@[0-9a-zA-Z]{1,10}(\.[a-z]{2,3}){1,3}$/g;
+var reg5 = /^.{2,16}$/g;
+var reg6 = /^(女|男)$/g;
+var regArr = [reg1,reg2,reg3,reg4,reg5,reg6];
+
+for (var i = 0; i < ipts.length; i++){
+    verify(i,regArr[i]);
+}
+
+function verify(x,reg){
+    ipts[x].onblur = function (){// 账号
+        reg.lastIndex = 0;
+        var val = this.value.replace(/\s+/g,'');
+        if (reg.test(val)) {
+            arr[x] = 1;
+            tips[x].style.display = 'none';
+        } else {
+            arr[x] = 0;
+            tips[x].style.display = 'inline-block';
+        }
+    }
+}
+
+form.onsubmit = function (){
+
+    if (ipts[0].value == '' || ipts[1].value == '' || ipts[2].value == '' || ipts[3].value == '' || ipts[4].value == '' || ipts[5].value == '') {
+        alert('输入不能为空');
+        return false;
+    }
+
+    for (var i = 0; i < arr.length; i++){
+        if (arr[i] == 0) {
+            alert('请正确输入');
+            return false;
+        }
+    }
+}
+
+    
+</script>
+</body>
+</html>

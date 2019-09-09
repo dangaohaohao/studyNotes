@@ -1,0 +1,263 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<title>贪吃蛇</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding: 0;
+		}
+		#box{
+			height: 400px;
+			width: 600px;
+			margin:50px auto;
+			border:1px solid #ccc;
+			position: relative;
+		}
+		.snake{
+			height: 18px;
+			width: 18px;
+			background: red;
+			position: absolute;
+			border:1px solid #ccc;
+			top: 0;
+			left: 0;
+		}
+		.con{
+			height: 20px;
+			width: 20px;
+			background: green;
+			position: absolute;
+			top: 60px;
+			left: 80px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div class="snake"></div>
+		<p class="con"></p>
+	</div>
+</body>
+<script type="text/javascript">
+	var box=document.getElementById('box');
+	var snake=box.getElementsByClassName('snake');
+	var l=0,t=0,time=null;
+	var s=false,x=false,z=false,y=true;	
+	function test () {
+		//获取box各个方向的距离
+		var l1=snake[0].offsetLeft;
+		var r1=snake[0].offsetLeft+snake[0].offsetWidth;
+		var t1=snake[0].offsetTop;
+		var b1=snake[0].offsetTop+snake[0].offsetHeight;
+		//获取con各个方向的距离
+		var con=box.getElementsByClassName('con')[0];
+		var l2=con.offsetLeft;
+		var r2=con.offsetLeft+con.offsetWidth;
+		var t2=con.offsetTop;
+		var b2=con.offsetTop+con.offsetHeight;
+		var a,b,c,d;
+		var f1;
+		if (z&&l1<=r2&&!(r1<=l2||t1>=b2||b1<=t2)) {
+			a=true;
+		} else{
+			a=false
+		};
+		if (y&&r1>=l2&&!(l1>=r2||t1>=b2||b1<=t2)) {
+			b=true;
+		} else{
+			b=false
+		};
+		if (s&&t1<=b2&&!(l1>=r2||r1<=l2||b1<=t2)) {
+			c=true;
+		} else{
+			c=false
+		};
+		if (x&&b1>=t2&&!(l1>=r2||r1<=l2||t1>=b2)) {
+			d=true;
+		} else{
+			d=false
+		};
+		return(a||b||c||d);
+	};
+	//创建食物
+		function creat () {
+			var flag=false;
+			do{
+				var left=parseInt(Math.random()*30)*20;
+				var top=parseInt(Math.random()*20)*20;
+				for (var i = 0; i < snake.length; i++) {
+					if (snake[i].offsetLeft==left&&snake[i].offsetTop==top) {
+						flag=true;
+						break;
+				 	} else{
+				 		flag=false;
+				 	}
+				};
+			}while(flag);
+			var newp=document.createElement('p');
+			newp.className='con';
+			newp.style.left=left+'px';
+			newp.style.top=top+'px';
+			box.appendChild(newp);
+		}
+		//判断游戏结束
+		function gameOver (zuo,shang) {
+			if (zuo<0||zuo>=600||shang<0||shang>=400) {
+				clearInterval(time);
+				alert('game over!点击确定后按“F5”重新开始游戏');
+				f1=false;
+			};
+			for (var i = 1; i < snake.length; i++) {
+				if(snake[i].offsetLeft==zuo&&snake[i].offsetTop==shang){
+					clearInterval(time);
+					alert('game over!');
+					f1=false;
+				};
+			};
+		}
+		function insert (obj1,obj2,left,top) {
+			obj1.style.top=top+'px';
+			obj1.style.left=left+'px';
+			obj2.insertBefore(obj1,snake[0]);
+		}
+		function remove (obj,name,num) {
+			var con=obj.getElementsByClassName(name)[num];
+			obj.removeChild(con);
+		}
+		function getlong (obj,obj1,name,left,top,num) {
+			f1=true;
+			gameOver(left,top);
+			if (f1) {
+			insert (obj1,obj,left,top);
+			remove (obj,name,num);
+			creat();
+			};
+		}
+		function move (obj,obj1,name,left,top,num,name1) {
+			f1=true;
+			gameOver(left,top);
+			if (f1) {
+				insert (obj1,obj,left,top);
+				obj.removeChild(name1[name1.length-1]);
+			};
+		}
+		time=setInterval(function  () {
+			var Nsnake=document.createElement('div');
+			Nsnake.className='snake';
+			var ll=snake[0].offsetLeft;
+			var tt=snake[0].offsetTop;
+			var flag=true;
+			if(x){
+				if(test()){
+				tt+=20;
+				getlong (box,Nsnake,'con',ll,tt,0);
+				}else{
+				tt+=20;
+				move (box,Nsnake,'con',ll,tt,0,snake);
+				}
+			}
+			if(y){
+				if(test()){
+				ll+=20;
+				getlong (box,Nsnake,'con',ll,tt,0);
+				}else{
+				ll=ll+20;
+				move (box,Nsnake,'con',ll,tt,0,snake);
+				}
+			}
+			if(s){
+				if(test()){
+				tt-=20;
+				getlong (box,Nsnake,'con',ll,tt,0);
+				}else{
+				tt-=20;
+				move (box,Nsnake,'con',ll,tt,0,snake);
+			}
+			}
+			if(z){
+				if(test()){
+				ll-=20;
+				getlong (box,Nsnake,'con',ll,tt,0);
+				}else{
+				ll-=20;
+				move (box,Nsnake,'con',ll,tt,0,snake);
+			}
+			}
+		},150)
+	document.onkeydown=function  (ev) {
+			var e=ev||window.event;
+			var time1,time2,tim3,time4;
+			function clear () {
+				clearTimeout(time1);
+				clearTimeout(time2);
+				clearTimeout(time3);
+				clearTimeout(time4);
+			}
+			switch(e.keyCode){
+				case 37:
+				if (y) {
+					z=false;
+					y=true;
+					s=false;
+					x=false;
+				} else{
+					time1=setTimeout(function  () {
+						z=true;
+						y=false;
+						s=false;
+						x=false;
+					},50)	
+				};
+				break;
+				case 38:
+				if (x) {
+					z=false;
+					y=false;
+					s=false;
+					x=true;
+				} else{
+					time2=setTimeout(function  () {
+						z=false;
+						y=false;
+						s=true;
+						x=false;
+						},50)
+				};
+				break;
+				case 39:
+				if (z) {
+					z=true;
+					y=false;
+					s=false;
+					x=false;
+				} else{
+					time3=setTimeout(function  () {
+						z=false;
+						y=true;
+						s=false;
+						x=false;
+						},50)
+				};
+				break;
+				case 40:
+				if (s) {
+					z=false;
+					y=false;
+					s=true;
+					x=false;
+				} else{
+					time4=setTimeout(function  () {
+						z=false;
+						y=false;
+						s=false;
+						x=true;
+						},50)
+				};
+				break;
+			}
+		}
+
+</script>
+</html>

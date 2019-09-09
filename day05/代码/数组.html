@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<script>
+// 创建数组
+// var arr1 = [];
+// var arr2 = new Array();
+// var arr3 = new Array(3);//[undefined,undefined,undefined]
+// var arr4 = new Array('a','b','c');
+// var arr5 = [1,2,3,4,5];
+// console.log(arr1);
+// console.log(arr2);
+// console.log(arr3);
+// console.log(arr3[0]);//undefined
+// console.log(arr3[1]);//undefined
+// console.log(arr3[2]);//undefined
+// console.log(arr4);
+// console.log(arr5);
+
+// // 访问数组元素
+// console.log(arr4[1]);//'b'
+// console.log(arr5[1]);//2
+
+
+// 设置值
+// var arr6 = [1,2,3,4,5,6];
+// var arr7 = [];
+// arr7[0] = 'aa';
+// arr7[1] = 'bb';
+// arr7[2] = 'cc';
+// console.log(arr7);
+
+// 特性
+// var arr8 = [];
+// arr8[4] = 'xxxx';
+// arr8[7] = 'yyyy';
+// console.log(arr8);//[undefined,undefined,undefined,undefined,'xxxx',undefined,undefined,'yyyy']
+// console.log(arr8.length);//返回数组的长度（数组的元素个数）
+
+
+// 常用的操作方法
+// var arr = [11,'aa','bb',33,78,'abc'];
+// console.log(arr);//[11, "aa", "bb", 33, 78, "abc"]
+
+// // var results = arr.push(55);
+// var results = arr.push(55,66);
+// console.log(arr);//[11, "aa", "bb", 33, 78, "abc", 55, 66]
+// console.log(results);//8
+
+// var results = arr.pop();
+// console.log(arr);
+// console.log(results);
+
+// var results = arr.unshift('yoyo');
+// console.log(arr);
+
+// var results = arr.shift();
+// console.log(arr);
+// console.log(results);//11
+
+// var results = arr.splice(3,2);//删除元素
+// console.log(arr);//[11,'aa','bb','abc']
+// console.log(results);//[33,78]
+
+// var results = arr.splice(2,0,'cc','dd');//新增元素
+// console.log(arr);//[11,'aa','cc','dd','bb',33,78,'abc'];
+// console.log(results);//[]
+
+// var results = arr.splice(4,1,77);//替换元素
+// console.log(arr);//[11,'aa','bb',33,77,'abc'];
+// console.log(results);//[78]
+
+// 倒转数组
+// var arr2 = [1,2,3,4,5];
+// console.log(arr2);
+// var results = arr2.reverse();
+// console.log(arr2);
+// console.log(results);
+
+
+// 拷贝数组
+// var arr3 = ['a','b','c','d','e','f'];
+// // var results = arr3.slice(1,4);
+// var results = arr3.slice(1,);
+// console.log(arr3);
+// console.log(results);//['b','c',''d]  ['b','c','d','e','f'];
+
+
+// 合并数组
+// var arr4 = ['a','b','c'];
+// var arr5 = [1,2,3];
+// var results = arr4.concat(arr5);
+// console.log(results);// ["a", "b", "c", 1, 2, 3]
+
+
+// 数组转字符串
+// var arr6 = ['a','b','c'];
+// var results = arr6.toString();
+// console.log(results);//'a,b,c'
+
+// var res1 = arr6.join();
+// console.log(res1);//'a,b,c'
+
+// var res2 = arr6.join('-');
+// console.log(res2);//'a-b-c'
+
+
+// 清空数组
+// var arr9 = [3,4,5,6,7];
+// console.log(arr9);
+
+// arr9 = [];//创建一个新的数组，重新赋值给变量arr9
+// console.log(arr9);
+
+// arr9.length = 0;
+// console.log(arr9);
+
+
+// 遍历数组
+var arr10 = [1,2,3,4,5];
+// arr10[0] = arr10[0] * 2;
+// arr10[1] = arr10[1] * 2;
+// arr10[2] = arr10[2] * 2;
+// arr10[3] = arr10[3] * 2;
+// arr10[4] = arr10[4] * 2;
+
+// for (var i = 0; i < arr10.length; i++){
+//     arr10[i] = arr10[i] * 2;
+// }
+
+// console.log(arr10);
+
+// for (var key in arr10){
+//     // console.log(key);// '0'  '1'  '2'  '3'  '4'  索引
+//     console.log( arr10[key] );// 1 2 3 4 5   值
+// }
+
+
+// 对象数组
+var gp1 = [
+    {name:'xw',age:18},
+    {name:'xh',age:18},
+    {name:'xq',age:18},
+    {name:'xj',age:18},
+    {name:'xk',age:18},
+    {name:'xc',age:18},
+    {name:'xv',age:18}
+]
+
+var gp2 = {
+    name:['xw','xh','xq','xj','xk','xc','xv'],
+    age:[12,24,15,16,17,18,19,21,22]
+}
+
+var gp3 = [123,'abc',function (){alert('yyyyy')},{}];
+gp3[2]();
+
+
+// 多维数组
+var arr11 = [
+    'abc',
+    123,
+    ['a','b','c'],
+    {name:'xiaocuo',age:20,fs:['xh','xf']},
+    [1,2,['rr','tt']]
+]
+console.log( arr11[2][2] );//'c'
+console.log( arr11[4][2][1] );//'tt'
+console.log(arr11[3].fs[1]);//'xf'
+
+
+</script>
+</body>
+</html>

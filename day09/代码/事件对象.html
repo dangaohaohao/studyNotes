@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.box1{
+    width: 500px;
+    height: 1330px;
+    background-color: #eee;
+    padding: 50px;
+}
+.box2{
+    width: 300px;
+    height: 130px;
+    background-color: pink;
+}
+
+</style>
+</head>
+<body>
+<div class="box1">
+    <div class="box2">box2</div>
+</div>
+
+
+<script>
+    
+// document.onclick = function test(e){
+//     console.log(e);//其他高版本浏览器
+//     // console.log( window.event );//IE678
+//     var ev = e || event;//兼容
+//     // var ev = e || window.event;//兼容
+//     // var ev = event || e;// 在地本版谷歌火狐等浏览器会报错(event is not defined)
+//     // var ev = window.event || e;//兼容
+
+//     console.log( 'clientX:' + ev.clientX + ' ,clientY:' + ev.clientY );
+//     console.log( 'pageX:' + ev.pageX + ' ,pageY:' + ev.pageY );
+//     console.log( 'offsetX:' + ev.offsetX + ' ,offsetY:' + ev.offsetY );
+// }
+
+// 浏览器的操作
+// test({clientX: 145, clientY: 251, type: 'click'});
+
+// IE678
+// test();
+
+
+
+// document.onmousedown = function (e){
+//     console.log(e);
+//     console.log(e.button);
+//     // console.log(e.which);//鼠标按键
+//     // if (e.button == 2) {
+//     //     alert('右击事件');
+//     // }
+// }
+
+
+document.onkeydown = function (e){
+    console.log(e);
+    // console.log(e.which);//键盘的按键码
+    // console.log(e.keyCode);//键盘的按键码
+
+    // 组合键  ctrl+c
+    // if (e.keyCode == 67 && e.keyCode == 17) {//无效
+    if (e.keyCode == 67 && e.ctrlKey) {//ctrl+c  有效
+        alert('进制赋值');
+    }
+}
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<button class="btn">请求数据</button>
+<h1 class="con"></h1>
+
+<script src="ajax.js"></script>
+<script>
+var btn = document.querySelector('.btn');
+var con = document.querySelector('.con');
+var n,c,a;
+btn.onclick = function (){
+
+    // setTimeout(function (){
+    //     console.log('异步任务1');
+    //     setTimeout(function (){
+    //         console.log('异步任务2');
+    //         setTimeout(function (){
+    //             console.log('异步任务3');
+    //         },1000);
+    //     },1000);
+    // },1000);
+    
+
+    ajax({
+        url: 'datas.php',
+        type: 'get',
+        data: 'userid=abc1001',
+        succeed: function (str){
+            var json = JSON.parse(str);
+            n = json.name;
+            ajax({
+                url: 'datas.php',
+                type: 'get',
+                data: 'userid=' + json.id,
+                succeed: function (str){
+                    var json = JSON.parse(str);
+                    c = json.idcode;
+                    ajax({
+                        url: 'datas.php',
+                        type: 'get',
+                        data: 'userid=' + json.id,
+                        succeed: function (str){
+                            var json = JSON.parse(str);
+                            a = json.address;
+                            con.innerText = `姓名：${n}，身份证：${c}，住址：${a}`;
+                        }
+                    });
+                }
+            });
+        }
+    });
+
+}
+
+
+</script>
+</body>
+</html>

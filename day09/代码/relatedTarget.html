@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+*{margin: 0;}
+#box1{
+    width: 500px;
+    height: 330px;
+    background-color: #eee;
+}
+#box2{
+    width: 300px;
+    height: 130px;
+    background-color: pink;
+}
+
+
+</style>
+</head>
+<body>
+
+<div id="box1">
+    box1
+    <div id="box2">box2</div>
+</div>
+
+<script>
+var box1 = document.getElementById('box1');
+var box2 = document.getElementById('box2');
+
+box1.onmouseover = function (e){
+    var ev =  e || window.event;
+    console.log(ev.relatedTarget);//鼠标从哪个元素过来的
+    var from=event.relatedTarget || event.fromElement;
+    // console.log(ev.target);
+}
+box1.onmouseout = function (e){
+    var ev =  e || window.event;
+    var to=event.relatedTarget||event.toElement;
+    // console.log(ev.relatedTarget);//鼠标去到哪个元素
+}
+
+
+
+</script>
+
+</body>
+</html>

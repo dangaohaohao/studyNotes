@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.box1{
+    width: 720px;
+    height: 500px;
+    background-color: #ccc;
+    padding: 50px 0 0 50px;
+    /* position: absolute; */
+}
+.box2{
+    width: 500px;
+    height: 300px;
+    background-color: pink;
+    padding: 50px 0 0 50px;
+    position: relative;
+}
+.box3{
+    width: 200px;
+    height: 100px;
+    padding: 10px;
+    border: 5px solid #000;
+    background-color: blue;
+}
+.box4{
+    width: 600px;
+    height: 500px;
+    background-color: #eee;
+}
+
+</style>
+</head>
+<body>
+
+<div class="box1">
+    <div class="box2">
+        <div class="box3">box3</div>
+    </div>
+</div>
+<div class="box4"></div>
+
+<script>
+var box1 = document.querySelector('.box1');
+var box2 = document.querySelector('.box2');
+var box3 = document.querySelector('.box3');
+
+// console.log( box3.offsetLeft );//元素到定义父级左侧的距离
+// console.log( box3.offsetTop );//元素到定义父级上侧的距离
+
+// console.log( getComputedStyle(box3,null).width );//200px
+
+// console.log( box3.offsetWidth );//获取元素自身宽度，包含边框
+// console.log( box3.offsetHeight );//获取元素自身高度，包含边框
+
+console.log( box3.clientLeft );
+console.log( box3.clientTop );
+console.log( box3.clientWidth );//220
+console.log( box3.clientHeight );//120
+
+console.log( box2.offsetWidth );//550
+console.log( box2.clientWidth );//550
+
+
+
+console.log( document.documentElement.clientWidth );//浏览器可视区的宽度(不是 html的宽)
+console.log( document.documentElement.clientHeight );//浏览器可视区的高度(不是 html的高)
+
+console.log( document.body.clientWidth );//body的宽
+console.log( document.body.clientHeight );//body的高
+
+
+console.log( document.documentElement.offsetWidth );
+console.log( document.documentElement.offsetHeight );
+
+</script>
+</body>
+</html>

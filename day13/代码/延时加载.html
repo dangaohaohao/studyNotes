@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.wrap{
+    width: 1200px;
+    margin: 0 auto;
+}
+h1{
+    text-align: center;
+}
+img{
+    width: 592px;
+    height: 320px;
+    /* display: none; */
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+    <h1>图片展示</h1>
+    <div class="con">
+        <!-- <img src="images/001.jpg" alt="">
+        <img src="images/002.jpg" alt="">
+        <img src="images/003.jpg" alt="">
+        <img src="images/004.jpg" alt="">
+        <img src="images/005.jpg" alt="">
+        <img src="images/006.jpg" alt="">
+        <img src="images/007.jpg" alt="">
+        <img src="images/008.jpg" alt=""> -->
+        <img abc="images/001.jpg" alt="">
+        <img abc="images/002.jpg" alt="">
+        <img abc="images/003.jpg" alt="">
+        <img abc="images/004.jpg" alt="">
+        <img abc="images/005.jpg" alt="">
+        <img abc="images/006.jpg" alt="">
+        <img abc="images/007.jpg" alt="">
+        <img abc="images/008.jpg" alt="">
+    </div>
+</div>
+<script>
+var imgs = document.querySelectorAll('.con img');
+var scrollT = document.documentElement.scrollTop||document.body.scrollTop;//页面滚动条上卷高度
+var windH = document.documentElement.clientHeight;//浏览器可视区高度
+// 获取元素到body左侧或顶部的距离（包含父级边框）
+function offset(dom){
+    var l = 0;
+    var t = 0;
+    var bdl = dom.clientLeft;//元素左边框宽度
+    var bdt = dom.clientTop;//元素上边框宽度
+    while(dom){
+        l = l + dom.offsetLeft + dom.clientLeft;
+        t = t + dom.offsetTop + dom.clientTop;
+        dom = dom.offsetParent;//指向最近的定位父级
+    }
+    return {left: l - bdl, top: t - bdt};
+}
+
+for (var i = 0; i < imgs.length; i++){
+    if (scrollT + windH > offset(imgs[i]).top) {
+        var imgSrc = imgs[i].getAttribute('abc');//图片路径
+        imgs[i].src = imgSrc;
+    }
+}
+
+window.onscroll = function (){
+    var scrollT = document.documentElement.scrollTop||document.body.scrollTop;//页面滚动条上卷高度
+    var windH = document.documentElement.clientHeight;//浏览器可视区高度
+    for (var i = 0; i < imgs.length; i++){
+        if (scrollT + windH > offset(imgs[i]).top) {
+            var imgSrc = imgs[i].getAttribute('abc');//图片路径
+            imgs[i].src = imgSrc;
+        }
+    }
+}
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>欢迎光临</h1>
+    <button>关闭</button>
+    <span>返回上一页</span>
+
+
+<script>
+
+var btn = document.querySelector('button');
+var span = document.querySelector('span');
+btn.onclick = function (){
+    // window.close();
+
+    window.resizeTo(800,200);
+}
+
+span.onclick = function (){
+    history.go(-1);//返回上一页
+}
+
+</script>
+</body>
+</html>

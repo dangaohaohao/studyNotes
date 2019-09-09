@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+*{margin: 0; padding: 0; list-style: none;}
+.wrap{
+    width: 1080px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.wrap ul{
+    float: left;
+    width: 250px;
+    margin: 0 10px;
+    background-color: #eee;
+    min-height: 1px;
+}
+.wrap ul li{
+    margin-bottom: 10px;
+}
+.wrap ul li img{
+    width: 250px;
+    display: block;
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+    <ul>
+        <!-- <li><img src="images/1.png" alt=""></li> -->
+    </ul>
+    <ul>
+        <!-- <li><img src="images/2.png" alt=""></li> -->
+    </ul>
+    <ul></ul>
+    <ul></ul>
+</div>
+
+<script>
+var uls = document.querySelectorAll('.wrap ul');
+
+function appendImg(){
+    var newLi = document.createElement('li');
+    // var num = Math.round(Math.random()*34)+1;// 1-35
+    var num = Math.ceil(Math.random()*35);// 1-35
+    newLi.innerHTML = '<img src="images/'+ num +'.png" alt="">';
+
+    // 找出高度最小的ul
+    var ul1 = uls[0].clientHeight;
+    var ul2 = uls[1].clientHeight;
+    var ul3 = uls[2].clientHeight;
+    var ul4 = uls[3].clientHeight;
+    var minH = Math.min(ul1,ul2,ul3,ul4);
+    for(var i = 0; i < uls.length; i++){
+        if (minH == uls[i].clientHeight) {
+            uls[i].appendChild(newLi);
+            break;
+        }
+    }
+}
+
+// 进入页面加载20张图片
+// for(var i = 0; i < 20; i++){
+//     appendImg();
+// }
+appendImg();
+
+window.onscroll = function (){
+    var pageH = document.documentElement.offsetHeight;
+    var windH = document.documentElement.clientHeight;
+    var scrollT = document.documentElement.scrollTop;
+    if (pageH - windH - scrollT < 500) {//滚动条距离底部小于500时，添加一批图片
+        for(var i = 0; i < 20; i++){
+            appendImg();
+        }
+    }
+}
+
+
+</script>
+</body>
+</html>

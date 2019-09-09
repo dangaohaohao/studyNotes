@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<script>
+// ready
+// $(document).ready(function (){
+//     // 页面dom结构渲染完执行
+//     // 
+// });
+// window.onload = function (){
+//     var box = document.querySelector('.box');
+// }
+
+</script>
+</head>
+<body>
+
+<div class="box">一个块</div>
+
+<script src="jquery-1.8.3/jquery-1.8.3.js"></script>
+<script>
+// $('.box') === jQuery('.box')  true
+// var $ = jQuery;
+// window.$ = window.jQuery = jQuery
+
+// ready
+$(document).ready(function (){
+    // 页面dom结构渲染完执行
+    console.log(11);
+});
+// ready简写
+$(function (){
+    // 页面dom结构渲染完执行
+    console.log(22);
+});
+$(function (){
+    // 页面dom结构渲染完执行
+    console.log(33);
+});
+
+window.onload = function (){// 页面dom、样式、脚本、图片等资源加载完成后执行
+    var box = document.querySelector('.box');
+    console.log('w1');
+}
+window.onload = function (){// 页面dom、样式、脚本、图片等资源加载完成后执行
+    var box = document.querySelector('.box');
+    console.log('w2');
+}
+
+// DOMContentLoaded  页面dom结构渲染完执行  IE 6 7 8不支持
+window.addEventListener('DOMContentLoaded',function (){
+    console.log('d1');
+},false);
+window.addEventListener('DOMContentLoaded',function (){
+    console.log('d2');
+},false);
+
+</script>
+</body>
+</html>

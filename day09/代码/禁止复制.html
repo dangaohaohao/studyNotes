@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<p>括号客户开具快回来了科技师范老客户历史记录福军宋括号客户开具快回来了科技师范老客户历史记录福军宋括号客户开具快回来了科技师范老客户历史记录福军宋括号客户开具快回来了科技师范老客户历史记录福军宋括号客户开具快回来了科技师范老客户历史记录福军宋括号客户开具快回来了科技师范老客户历史记录福军宋括号客户开具快回来了科技师范老客户历史记录福军宋</p>
+<a href="https://www.baidu.com/">百度</a>
+<form action="https://www.baidu.com/" method="GET">
+    <input type="text">
+    <input type="submit" value="提交">
+</form>
+
+<script>
+var link = document.querySelector('a');
+var fm = document.querySelector('form');
+
+link.onclick = function (e){
+    // e.preventDefault();//阻止默认行为
+    return false;//阻止默认行为 注意使用位置
+}
+fm.onsubmit = function (e){
+    // e.preventDefault();//阻止默认行为
+    return false;//阻止默认行为 注意使用位置
+}
+
+// 禁止复制
+document.onkeydown = function (e){
+    var ev = e || window.event;
+
+    if (ev.keyCode == 67 && ev.ctrlKey) {//ctrl+c
+        alert('禁止复制');
+        e.preventDefault();//阻止默认行为
+    }
+}
+document.onmousedown = function (e){
+    if (e.which == 3) {
+        alert('亲，这样也不行！');
+        e.preventDefault();//阻止默认行为
+    }
+    if (e.which == 1) {
+        // e.preventDefault();//阻止默认行为
+        event.preventDefault ? event.preventDefault() : (event.returnValue = false);
+        // if (e.preventDefault) {
+        //     e.preventDefault();//阻止默认行为
+        // } else {
+        //     e.returnValue = false;//阻止默认行为
+        // }
+    }
+}
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+html,body{
+    height: 3000px;
+    padding: 0;
+    margin: 0;
+}
+.con{
+    width: 400px;
+    height: 100px;
+    color: red;
+}
+.box1{
+    width: 600px;
+    height: 300px;
+    padding: 20px;
+    border: 10px solid #000;
+    background-color: #ccc;
+}
+.box2{
+    width: 400px;
+    height: 200px;
+    padding: 20px;
+    border: 10px solid #000;
+    background-color: pink;
+    position: relative;
+}
+.box3{
+    width: 200px;
+    height: 50px;
+    border: 10px solid #000;
+    background-color: blue;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+}
+</style>
+</head>
+<body>
+
+<div id="box">
+    <div class="box">
+        一个块
+        <span>span标签</span>
+    </div>
+    <h4>一个标题</h4>
+    <p class="con">一段内容</p>
+    <p>p标签</p>
+    <input type="text" value="123">
+</div>
+<!-- <div class="list"> -->
+    <ul class="list">
+        <li>11</li>
+        <li>22</li>
+        <li class="">33</li>
+        <li>44</li>
+        <li>55</li>
+    </ul>
+<!-- </div> -->
+<div class="box1">
+    <div class="box2">
+        <div class="box3"></div>
+    </div>
+</div>
+<script src="jquery-1.8.3/jquery-1.8.3.js"></script>
+<script>
+$(function (){
+    var num = 2;
+    
+    // var els = $('#box').children();
+    // console.log(els);//不包含span
+
+    // $('.list li')[2].css('color','red');//报错，$('.list li')[2]返回的是dom 对象
+
+    // $('.list li').eq(num).css('color','red');
+    // $('.list li:eq(num)').css('color','red');//无法识别变量
+    // $(`.list li:eq(${num})`).css('color','red');
+
+    // $('.list li').eq(2).next().css('color','blue');
+    // $('.list li').eq(2).prev().css('color','pink');
+
+    // parentNode
+    // $('.list li').eq(2).parent().css('border','1px solid red');
+
+    // $('.list li').eq(2).closest('body').css('border','1px solid red');
+
+    // $('#box').css('color','blue').find('.box').css('color','red').find('span').css('color','yellow').end().end().css('border','1px solid blue');
+
+    // $('#box h4').css('color','blue').siblings().css('color','#999');
+    // $('#box h4').css('color','blue').siblings('p').css('color','#999');
+
+    // if ($('.list li').eq(num).is('.li3')) {
+    //     alert('是这个');
+    // } else {
+    //     alert('不是这个');
+    // }
+
+    // $('.list li').eq(2).toggleClass('li3');//反转类名
+
+    // if ($('.list li').eq(num).hasClass('li3')) {
+    //     alert('有');
+    // } else {
+    //     alert('没有');
+    // }
+
+    // $('#box').attr('abc','123');
+    // $('#box').removeAttr('abc');
+    // console.log($('#box').attr('abc'));
+
+    // $('.box').html('<strong>秋意看见了</strong>');//设置
+    // console.log($('.box').html());//获取
+    // console.log($('.box').text());//获取
+
+    // console.log( $('#box input').val() );
+
+    // console.log( $('.con').css('width') );//获取样式设置 '400px'
+    // $('.box').css('color','red');
+    // $('.box').css({'color':'blue','background':'#ccc'});
+
+    // $('.box')[0].style.color = 'yellow';
+    // $('.box')[0].style.background = 'pink';
+    // $('.box')[0].style.cssText = 'color:red;background:green;';//IE678不支持
+    
+    // $('.con').width('600px');
+    // $('.con').width(800);
+    // console.log( $('.con').width() );// 400
+
+    // $(this)
+    // $(document)
+    // $(window)
+    // $('html')
+    // $('body')
+
+    $('h4').click(function (){
+        $(document).scrollTop(600);//设置
+        // $(window).scrollTop(600);//设置
+    })
+    // console.log( $('html').scrollTop() );//600
+    // console.log( $('body').scrollTop() );//0
+    // console.log( $(document).scrollTop() );//600
+    // console.log( $(window).scrollTop() );//600
+
+
+    // console.log($('.box3').offset());//{top: 458, left: 60}
+    // console.log($('.box3').offset().left);//60
+
+    // console.log( $('.box3').position() );//{top: 30, left: 30}
+    // console.log( $('.box3').position().top );//30
+
+    // $('.con').wrap('<div class="parent"></div>');
+
+    // console.log( $.trim('    123   abc     ') );//去掉前后的空格
+
+    var arr = ['a','b','c','d'];
+    $.each(arr, function (index,item){
+        console.log(index,item);
+    });
+    
+});
+
+// js中的方法：
+
+// 对象的方法
+var obj = {
+    name:'xm',
+    say: function (){
+        alert('大家好');
+    }
+};
+
+
+// 函数的方法
+var fn = function (){};
+fn.sayHi = function (){
+    alert('hi');
+}
+
+
+// 原型的方法
+function Cat(){}
+Cat.prototype.sayHi = function (){}
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.box{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    position: absolute;
+    left: 0px;
+    top: 50px;
+}
+span{
+    position: absolute;
+    left: 500px;
+    top: 0;
+    width: 1px;
+    height: 400px;
+    background-color: blue;
+}
+
+</style>
+</head>
+<body>
+<button class="btn">走你</button>
+<div class="box"></div>
+<span></span>
+
+<script>
+var btn = document.querySelector('.btn');
+var box = document.querySelector('.box');
+var timer;
+
+btn.onclick = function (){
+    move(box,500);
+}
+function move(dom,target){
+    clearInterval(timer);
+    timer = setInterval(function (){
+        var speed = (target - dom.offsetLeft) / 10;//持续变好的速度
+        // 浮点数计算，造成数据丢失，无法到达目的地
+        
+        // 剩余运动量 <= 每次运动的量5
+        if (Math.abs(dom.offsetLeft - target) <= Math.abs(speed)) {
+            clearInterval(timer);
+            dom.style.left = target + 'px';//手动设置终点
+        } else{
+            dom.style.left = dom.offsetLeft + speed + 'px';//每次的运动
+        }
+    },20);
+}
+
+</script>
+</body>
+</html>

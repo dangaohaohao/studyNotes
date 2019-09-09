@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="wrap">
+    账号：<input type="text" class="user"><br>
+    密码：<input type="text" class="pass"><br>
+    <button class="login">登录</button>
+    <button class="add">注册</button>
+</div>
+
+<script src="ajax.js"></script>
+<script>
+var user = document.querySelector('.user');
+var pass = document.querySelector('.pass');
+var login = document.querySelector('.login');
+var add = document.querySelector('.add');
+
+add.onclick = function (){
+    ajax({
+        url: 'addlogin1.php',
+        type: 'get',
+        data: 'act=add&user='+user.value+'&pass='+pass.value,
+        succeed: function (d){
+            var json = JSON.parse(d);
+            alert(json.msg);
+        },
+        failed: function (code){
+            alert('提交失败');
+        }
+    });
+}
+
+login.onclick = function (){
+    ajax({
+        url: 'addlogin1.php',
+        type: 'get',
+        data: 'act=login&user='+user.value+'&pass='+pass.value,
+        succeed: function (d){
+            var json = JSON.parse(d);
+            alert(json.msg);
+        },
+        failed: function (code){
+            alert('提交失败');
+        }
+    });
+}
+
+
+
+
+</script>
+</body>
+</html>

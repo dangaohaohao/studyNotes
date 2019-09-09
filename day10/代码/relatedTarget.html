@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	#box{
+		width: 200px;
+		height: 200px;
+		border: 1px solid #000;
+		position: relative;
+		margin: 50px auto 0;
+		overflow: hidden;
+	}
+	#box img{
+		width: 140px;
+		height: 140px;
+		position: absolute;
+		top: 10px;
+		left: 30px;
+	}
+	#box h3{
+		font-size: 24px;
+		width: 200px;
+		height: 36px;
+		line-height: 36px;
+		text-align: center;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		background: #ccc;
+	}
+</style>
+</head>
+<body>
+	<div id="box">
+		<img src="images/1.png" alt="">
+		<h3>特色美食</h3>
+	</div>
+
+<script>
+	var box=document.getElementById('box');
+	var img=box.getElementsByTagName('img')[0];
+	var timer=null,t=0;
+	box.onmouseover=function (ev){
+	// box.onmouseenter=function (ev){
+		var e = ev || window.event;
+		// console.log(e.relatedTarget);//火狐获取鼠标来自哪里
+		// console.log(e.fromElement);//IE获取鼠标来自哪里
+
+		var from = e.relatedTarget||e.fromElement;//鼠标来自哪里
+		// console.log(from);
+		while(from){//阻止动画反复执行
+			if (from == this) {
+				return false;
+			};
+			from = from.parentNode;
+		}
+
+		t=-150;
+		clearInterval(timer);
+		timer=setInterval(function (){
+			t+=2;
+			if (t>=10) {
+				clearInterval(timer);
+				t=10;
+			};
+			img.style.top=t+'px';
+		},5);
+	}
+</script>
+</body>
+</html>

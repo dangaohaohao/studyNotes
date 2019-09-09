@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+</head>
+<body>
+
+
+<script>
+document.cookie = 'user1=xiaoming';//设置
+document.cookie = 'user2=xiaohong';//设置
+document.cookie = 'user3=xiaofang';//设置
+document.cookie = 'user6=xiaohuang; domain=127.0.0.1';//设置
+document.cookie = 'user7='+escape('=123=%#abc');//设置
+
+// 设置有效期
+var d = new Date();
+d.setDate(d.getDate()+3);
+document.cookie = 'user1=xiaowang; expires='+d;//修改
+
+// 设置cookie
+function setCookie(key,value,day){
+    if (day) {
+        var d = new Date();
+        d.setDate(d.getDate()+day);
+        document.cookie = key + '=' + escape(value) + '; expires='+d;
+    } else {
+        document.cookie = key + '=' + escape(value);
+    }
+}
+setCookie('user4','xiaodong',7);
+setCookie('user5','xiaolan');
+
+console.log( document.cookie );// 'user2=xiaohong; user3=xiaofang; user1=xiaowang'
+
+var arr1 = document.cookie.split('; ');
+console.log(arr1);//["user2=xiaohong", "user3=xiaofang", "user1=xiaowang"]
+var arr2 = ("user1=xiaowang").split('=');//["user1","xiaowang"]
+
+if (arr2[0] == 'user1') {
+    console.log(arr2[1]);
+}
+
+// 获取cookie
+function getCookie(key){
+    var arr1 = document.cookie.split('; ');
+    for (var i = 0; i < arr1.length; i++){
+        var arr2 = arr1[i].split('=');//["user1","xiaowang"]
+        if (arr2[0] === key) {
+            return unescape(arr2[1]);
+        }
+    }
+    return null;
+}
+
+// dom.checked=true;
+
+console.log( getCookie('user2') );
+console.log( getCookie('user3') );
+console.log( getCookie('user7') );
+
+// 删除cookie
+function removeCookie(key){
+    setCookie(key,'123',-10);
+}
+removeCookie('user1');
+
+
+</script>
+</body>
+</html>

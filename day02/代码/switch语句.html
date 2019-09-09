@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+// switch 语句用于基于不同的条件来执行不同的动作。
+
+// var a = 2;
+// if (a == 1){
+//     alert(11);
+// } else if ( a == 2 ){
+//     alert(22);
+// } else if (a == 3){
+//     alert(33);
+// } else{
+//     alert('a为其他值');
+// }
+
+
+// var a = 2;
+// 没有break，代码会从符合条件的位置开始执行，并且继续执行后面的语句
+// switch(a){
+//     case 1:
+//         alert(11);
+//     case 2:
+//         alert(22);
+//     case 3:
+//         alert(33);
+//     default:
+//         alert('a为其他值');
+// }
+
+// switch(a){
+//     case 1:
+//         alert(11);
+//         break;
+//     case 2:
+//         alert(22);
+//         break;
+//     case 3:
+//         alert(33);
+//         break;
+//     default:
+//         alert('a为其他值');
+// }
+
+var a = 1;
+// switch(a){
+//     case 1:
+//     case 2:
+//     case 3:
+//         alert('值为123');
+//         break;
+//     case 4:
+//         alert(44);
+//     default:
+//         alert('a为其他值');
+// }
+
+if (a == 1 || a == 2 || a == 3){
+    alert('值为123');
+} else if (a == 4){
+    alert(44);
+} else {
+    alert('a为其他值');
+}
+
+</script>
+</body>
+</html>

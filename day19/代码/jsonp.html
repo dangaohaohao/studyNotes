@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<!-- <link rel="stylesheet" href=""> -->
+<style>
+*{margin: 0; padding: 0; list-style: none;}
+.wrap{
+    width: 500px;
+    margin: 50px auto 0;
+}
+.wrap .ipt{
+    width: 496px;
+    font-size: 16px;
+    line-height: 30px;
+}
+.wrap .list li{
+    font-size: 14px;
+    line-height: 30px;
+    background-color: #eee;
+    padding: 0 10px;
+}
+.wrap .list li:hover{
+    background-color: #ccc;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+    <input type="text" class="ipt">
+    <ul class="list">
+        <!-- <li>123</li>
+        <li>12306</li>
+        <li>12315</li> -->
+    </ul>
+</div>
+<!-- <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567076437118&di=4b186a131a2c56e6f7619d895c80634d&imgtype=0&src=http%3A%2F%2Farticle.fd.zol-img.com.cn%2Ft_s501x2000%2Fg5%2FM00%2F06%2F03%2FChMkJlZWy6GIJE_6AABrjEnzyFYAAFYDAMRNnsAAGuk248.jpg" alt=""> -->
+
+<!-- <script src=""></script> -->
+
+<script>
+var ipt = document.querySelector('.ipt');
+var list = document.querySelector('.list');
+var Script = null;
+
+ipt.onkeyup = function (){
+    if (!ipt.value) {
+        return;
+    }
+    if (Script) {
+        document.body.removeChild(Script);
+    }
+    Script = document.createElement('script');
+    Script.src = 'http://suggestion.baidu.com/su?wd='+ipt.value+'&cb=mycallback';
+    document.body.appendChild(Script);
+}
+function mycallback(json){
+    // console.log(typeof json);//object
+    list.innerHTML = '';
+    json.s.forEach(function (item){
+        list.innerHTML += '<li>'+item+'</li>';
+    });
+}
+
+
+</script>
+</body>
+</html>

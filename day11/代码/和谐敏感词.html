@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+#con,#box{
+    width: 500px;
+    height: 200px;
+    font-size: 16px;
+    border: 1px solid #000;
+}
+</style>
+</head>
+<body>
+<textarea name="" id="con"></textarea>
+<button id="btn">留言</button>
+<div id="box"></div>
+
+<script>
+var con = document.querySelector('#con');
+var btn = document.querySelector('#btn');
+var box = document.querySelector('#box');
+
+btn.onclick = function (){
+
+    var conTxt = con.value;
+
+    var reg = /马化腾|麻花藤|马华疼|腾讯|藤训|疼训/g;// 敏感词库（正则）
+
+    // conTxt = conTxt.replace(reg,'***');//固定替换
+    conTxt = conTxt.replace(reg,function (str){
+        var x = '';
+        for (var i = 0; i < str.length; i++){
+            x += '*';
+        }
+        return x;
+    });//动态替换
+
+    box.innerHTML = conTxt;
+}
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+
+练习：
+
+1.封装一个函数，通过类名获取元素（兼容谷歌、火狐、IE678）
+获取所有元素：document.all; || document.getElementsByTagName('*');
+function byClass(parent,classn){}
+
+2.贴标签（可自定义标签，点击贴上可选项，插入展示，删除功能）
+
+
+3.发布留言（点击发布，插入展示，删除功能，字数统计，发布限制200个字符）
+
+4.todolist
+
+5.聊天对话框
+

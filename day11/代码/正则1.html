@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+</head>
+<body>
+
+
+
+<script>
+
+// var str1 = 'asjdh2342/dijwww.baidu.com33ekjhshj;kkj';
+// var web = substr();//substrting()
+
+// 解析下面的字符串，取出所有数字：'13123456788333'
+// var str = '13slfjdsf123kjlkj456lk788kkk./iuyir333';
+// var arr = [];
+// for (var i = 0; i < str.length; i++){
+//     if (str[i] >= 0 && str[i] <= 9) {
+//         arr.push(str[i]);
+//     }
+// }
+// console.log( arr.join('') );
+
+// 正则
+// console.log( str.match(/\d+/g).join('') );//13123456788333
+
+
+// 创建正则对象
+// var reg1 = new RegExp('abc','g');//构造函数创建
+// var reg1 = new RegExp('abc','gi');
+// var reg1 = new RegExp('abc','gim');
+// var str1 = 'aBc123aabc456ABC789abbc';
+// var str2 = 'aBc123ABC789abbc';
+// test();//检索字符，是否有符合规则的子串，返回布尔值
+// console.log( reg1.test(str1) );//true
+// console.log( reg1.test(str2) );//false
+
+// var reg2 = /abc/gi;//普通方式创建
+// console.log(reg2.test(str2));//true
+
+
+
+// 区别1：
+var nm = 'jack';
+var val = '123jackdd+';
+
+// 普通方式中的正则必须是一个常量字符串
+// var reg3 = /nm/g;//不允许放变量，会被当成具体的字符
+// console.log( reg3.test(val) );//false
+
+// 构造函数中的正则可以是常量字符串或一个JS变量
+// var reg4 = new RegExp(nm,'g');
+// console.log( reg4.test(val) );//true
+
+// 区别2：
+// var reg5 = new RegExp('\\d+','g');//第一个\代表转义符  使用元字符需要转义
+// // console.log( reg5.test(val) );
+// console.log( val.match(reg5) );
+
+// var val2 = 'how are you';
+// var reg6 = new RegExp('\\bhow\\b','g');//第一个\代表转义符  使用元字符需要转义
+// var reg7 = /\bhow\b/g;//不需要转义
+
+
+
+// lastIndex:上一次匹配结束的位置
+// var str3 = 'abc123aBcdef456ttabCt789';
+// var reg3 = /abc/g;
+
+// reg3.lastIndex = 3;//设置从哪里开始
+
+// console.log( reg3.test(str3) );//false
+// console.log( reg3.lastIndex );//0
+
+// console.log( reg3.test(str3) );//true
+// console.log( reg3.lastIndex );//3
+
+// console.log( reg3.test(str3) );//false
+
+
+// var str4 = 'how are you';
+// var reg4 = /\bhow\b/g;
+// console.log( reg4.test(str4) );
+
+
+
+// var str5 = 'abc123\ndef456';
+// console.log(str5);
+
+
+// var str6 = 'abc她12345';
+// var reg6 = /\u她/g;//不能这样写规则
+// console.log(reg6.test(str6));//false
+
+// console.log( ('a').charCodeAt() );//97   十进制
+// console.log(String.fromCharCode(97));//'a'
+
+// console.log( ('她').charCodeAt() );//22905   十进制
+// console.log(String.fromCharCode(22905));//'她'
+
+// console.log((22905).toString(16));//5979  十六进制
+
+// var reg6 = /\u5979/g;
+// console.log(reg6.test(str6));true
+
+
+var str7 = 'aaba1122ttaaa678';
+// var reg7 = /a+/g;
+// var reg7 = /a{1,}/g;
+// var reg7 = /[a-z]+/g;
+// console.log( str7.match(reg7) );
+
+// var reg7 = /[a-z]$/g;
+// console.log(reg7.test(str7));//false
+
+// var reg7 = /^[a-z]|[a-z]$/g;
+// console.log(reg7.test(str7));//true
+
+
+var str8 = 'asj\\d655fl5877sfasff';//第一个\转义符，第二个\是它自己本身'\'
+// console.log(str8);//'asj\dfl5877sfasff'
+// console.log( str8.indexOf('d123') );//4
+// console.log( str8.search(reg8) );//4
+
+// var reg8 = /d\d+/g;
+// console.log( str8.search(reg8) );//4
+
+
+// var str9 = '1231aa8787a6557aaa9879a23';
+// var reg9 = /a+/g;
+// console.log( str9.split('a') );//["1231", "", "8787", "6557", "", "", "9879", "23"]
+// console.log( str9.split(reg9) );//[1231,8787,6557,9879,23]
+
+
+// console.log( reg9.exec(str9) );//['aa']
+// console.log( str9.match(reg9) );//['aa','a','aaa','a']
+
+
+
+// var num='13520006789';
+// var reg=/13[4-9]\d{8}/g;
+// console.log(reg.test(num));//true
+
+// reg.compile('13[0-3][0-9]{8}','g');//修改正则
+// console.log(reg.test(num));//false
+
+
+</script>
+</body>
+</html>

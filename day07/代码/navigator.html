@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1></h1>
+
+
+<script>
+
+// var txt = document.querySelector('h1');
+// txt.innerHTML = navigator.userAgent;//用户浏览器信息
+// txt.innerHTML = navigator.appVersion;//用户浏览器信息 火狐不能正常用
+
+var userAgent = navigator.userAgent.toLowerCase();//获取用户浏览器识别码并转成小写
+if (userAgent.indexOf('chrome') != -1) {
+    alert('是谷歌浏览器');
+} else if (userAgent.indexOf('firefox') != -1){
+    alert('是火狐浏览器');
+} else if (userAgent.indexOf('rv:11.0') != -1){
+    alert('是Edge(11)浏览器');
+} else if (userAgent.indexOf('msie 10') != -1){
+    alert('是IE10浏览器');
+} else if (userAgent.indexOf('msie 9') != -1){
+    alert('是IE9浏览器');
+}
+
+
+
+</script>
+</body>
+</html>

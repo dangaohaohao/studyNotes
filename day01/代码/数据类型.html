@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+// 数据类型:6种数据类型
+
+
+// 简单数据类型(基本数据类型)：5种
+
+// 字符串类型:string
+var str1 = "abc";
+var str2 = '123';
+// console.log(str1);
+
+// 数字类型:number
+var num1 = 111;
+var num2 = 222;
+var no1 = 333.12300;
+var no2 = 444.001;
+//  console.log(num1);
+//  console.log(no1);
+
+// 布尔值：boolean
+// 值只有：true 和 false 
+// console.log(true);
+
+// 未定义：undefined
+// 只有一个特殊值：undefined
+var user;//声明一个变量，未初始化，值即为undefined
+// console.log(user);//undefined
+
+// 空：null
+// 只有一个特殊值：null
+var user1 = null;
+
+
+// 复杂类型（引用类型）:1种
+// 对象类型：Object
+var obj = {};//大括号代表对象
+var arr = [];//中括号代表数组
+var fun = function (){};//函数
+// console.log(obj);
+// console.log(fun);
+
+
+var abc;
+console.log(typeof abc);//undefined
+
+abc = 123;
+console.log(typeof abc);//number
+
+abc = 'true';
+console.log(typeof abc);//string
+
+abc = true;
+console.log(typeof abc);//boolean
+
+abc = null;
+console.log(typeof abc);//object
+
+abc = [];
+console.log(typeof abc);//object
+
+abc = function (){};
+console.log(typeof abc);//function
+
+console.log(undefined == null);//true
+
+</script>
+</body>
+</html>

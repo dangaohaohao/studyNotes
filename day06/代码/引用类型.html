@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+
+// 对象 {}
+var obj1 = {};
+
+// 增
+obj1.abc = '123';
+obj1['age'] = 22;
+console.log(obj1.abc);
+
+// 删除  delete
+delete obj1.abc;
+console.log(obj1.abc);//undefined
+
+// 改
+obj1.age = 24;
+obj1['age'] = 25;
+
+// 查
+var a = 'age';
+console.log( obj1.age );
+console.log( obj1[a] );
+console.log( obj1['age'] );
+
+
+// 数组 [] 
+var arr1 = [1,2,3];
+// 增
+arr1[3] = 4;
+arr1.push(5);
+arr1.unshift(0);
+
+arr1.splice();
+
+// 删除
+arr1.splice();
+arr1.pop();
+arr1.shift();
+
+// 改
+arr1.splice();
+arr1[2] = 'b';
+
+// 查
+console.log( arr1[1] );
+
+
+
+</script>
+</body>
+</html>

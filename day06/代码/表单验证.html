@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="register">
+    账号：<input type="text" id="username">*<br>
+    密码：<input type="password" id="password">*<br>
+    手机：<input type="text" id="phonenum">*<br>
+    <button id="btn">注册</button>
+</div>
+
+
+<script>
+// 4.表单验证（判断输入不能为空，验证账号密码手机号）
+// 账号：只能包含数字、字母、下划线
+// 密码：长度为6到18个字符
+// 手机：必须为纯数字
+var username = document.querySelector('#username');
+var password = document.querySelector('#password');
+var phonenum = document.querySelector('#phonenum');
+var btn = document.querySelector('#btn');
+
+btn.onclick = function (){
+    var user = username.value;
+    var pass = password.value;
+    var phone = phonenum.value;
+
+    // 判断是否为空
+    if (user == '' || pass == '' || phone == '') {
+        alert('输入内容不能为空！');
+        return;
+    }
+
+    // 账号：只能包含数字、字母、下划线
+    for (var i in user){
+        var ascii = user[i].charCodeAt();//ASCII 编码
+        // 数字：48-57  字母：97-122
+        if (!(ascii>=48&&ascii<=57 || ascii>=97&&ascii<=122 || ascii>=65&&ascii<=90 || ascii==95)) {
+            alert('账号只能输入数字、字母、下划线！');
+            return;
+        }
+    }
+
+    // 密码：长度为6到18个字符
+    if (pass.length < 6 || pass.length > 18) {
+        alert('密码长度必须是6到18个字符');
+        return;
+    }
+
+    // 手机：必须为纯数字
+    if (isNaN(phone)) {// isNaN() -> Number() -> NaN
+        alert('请正确输入手机号！');
+        return;
+    }
+
+    alert('成功提交！');
+}
+
+</script>
+</body>
+</html>

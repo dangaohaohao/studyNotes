@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>认识Konva</title>
+</head>
+<body>
+<!--存放的舞台-->
+<div id="container"></div>
+
+<script src="js/konva.js"></script>
+<script>
+    // 1. 创建舞台
+    var stage = new Konva.Stage({
+        width:window.innerWidth,
+        height:window.innerHeight,
+        container: 'container'
+    });
+
+    // 2.创建层
+    var layer = new Konva.Layer({});
+    stage.add(layer);
+
+    // 3. 创建一个组
+    var group = new Konva.Group({
+        x: 0,
+        y: 0
+    });
+    layer.add(group);
+
+    // 4. 创建演员 --> 矩形
+    var rect = new Konva.Rect({
+        x: 200,
+        y: 200,
+        width: 200,
+        height: 100,
+        stroke: 'red',
+        strokeWidth: 10,
+        fill:'blue',
+        scaleX: 1.5,
+        scaleY: 1.5,
+        rotation:20,
+        id: 'rect',
+        draggable:true,
+        dash: [7, 3]
+    });
+    group.add(rect);
+
+    // 5. 绘制一个五角星 (star)
+    var star = new Konva.Star({
+        x: 500,
+        y: 500,
+        numPoints: 5,
+        innerRadius: 30,
+        outerRadius: 70,
+        fill: 'red',
+        stroke: 'gold',
+        strokeWidth: 5,
+        draggable:true
+    });
+    group.add(star);
+
+
+    // 6. 对层进行绘制
+    layer.draw();
+
+</script>
+</body>
+</html>

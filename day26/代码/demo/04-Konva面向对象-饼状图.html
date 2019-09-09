@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Konva面向对象-饼状图</title>
+</head>
+<body>
+<!--放置舞台-->
+<div id="container"></div>
+
+<script src="js/konva.js"></script>
+<script src="js/PieChart.js"></script>
+<script>
+    // 1.创建舞台
+    var stage = new Konva.Stage({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        container: 'container'
+    });
+
+    // 2. 创建层
+    var layer = new Konva.Layer({});
+    stage.add(layer);
+
+    // 3. 造数据
+    var dataArray = [
+        {name: '上海', value: .2, color:'red'},
+        {name: '北京', value: .1, color:'green'},
+        {name: '杭州', value: .3, color:'blue'},
+        {name: '深圳', value: .15, color:'yellow'},
+        {name: '广州', value: .05, color:'pink'},
+        {name: '无锡', value: .2, color:'orange'}
+    ];
+
+    // 4. 初始化饼状图
+    // 4.1 相关量
+    var x0 = stage.width() * 0.5, y0 = stage.height() * 0.5;
+    var innerRadius = 160, outerRadius = 180;
+    var pieChart = new PieChart({
+          x: x0,
+          y: y0,
+          innerRadius: innerRadius,
+          outerRadius: outerRadius,
+          outerCircleColor: 'lightgray',
+          outerCircleWidth: 6,
+          dataArray: dataArray
+    });
+    pieChart.render(layer);
+
+    // 5. 渲染层
+    layer.draw();
+
+    // 6. 添加舞台的点击事件
+    stage.on('contentClick', function () {
+         pieChart.playAnimation();
+    });
+</script>
+</body>
+</html>

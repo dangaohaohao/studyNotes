@@ -1,0 +1,48 @@
+基本选择器：
+$(“#test”)选取id为test的元素---单个元素
+$(“.test”)选取所有class为test的元素---集合元素
+$(“p”)选取所有的<p>元素---集合元素
+$(“*”)选取所有的元素---集合元素
+$(“div,span,p.myClass”)选取所有<div>，<span>和拥有class为myClass的<p>标签的一级组元素---集合元素
+
+层次选择器：
+$(“div  span”)选取<div>里的所有的<span>(可以选到子和孙所有元素)元素---集合元素
+$(“div>span”)选取<div>元素下元素名是<span>的子元素---集合元素
+$(“.one+div”)选取class为one的下一个<div>同辈元素---集合元素
+$(“#two~div”)选取id为two的元素后面的所有<div>同辈元素---集合元素
+
+基本过滤选择器：
+$(“div:first”)选取所有<div>元素中第1个<div>元素---单个元素
+$(“div:last”)选取所有<div>元素中最后一个<div>元素---单个元素
+$(“input:not(.myClass)”)选取class不是myClass的<input>元素---集合元素
+$(“input:even”)选取索引(索引从0开始,0算为偶数)是偶数的<input>元素---集合元素
+$(“input:odd”)选取索引(索引从0开始)是奇数的<input>元素---集合元素
+$(“input:eq(1)”)选取索引(索引从0开始)等于1的<input>元素---单个元素
+$(“input:gt(1)”)选取索引(索引从0开始)大于1的<input>元素---集合元素
+$(“input:it(1)”)选取索引(索引从0开始)小于1的<input>元素---集合元素
+
+内容过滤选择器：
+$(‘div:contains(“测试”)’)选取包含文本“测试”的<div>元素---集合元素
+$(“div:empty”)选取不包含子元素和文本的<div>空元素---集合元素
+$(“div:has(p)”)选取含有<p>元素的<div>元素---集合元素
+$(“div:parent”)选取拥有子元素或文本元素的<div>元素---集合元素
+
+属性过滤选择器：
+$(“div[id]”)选取拥有属性id的div元素---集合元素
+$(“div[title=test]”)选取属性title为“test”的<div>元素---集合元素
+$(“div[title!=test]”)选取属性title不等于“test”的<div>元素---集合元素
+$(“div[title^=test]”)选取属性title以“test”开始的<div>元素---集合元素
+$(“div[title$=test]”)选取属性title以“test”结束的<div>元素---集合元素
+$(“div[title*=test]”)选取属性title含有“test”的<div>元素---单个元素
+$(“div[id][title$=‘test’]”)选取拥有属性id,并且属性title以”test”结束的<div>元素---集合元素
+
+子元素过滤选择器：
+$(“div:nth-child(1)”) 选取所有div中，是其父标签的第一个子标签的div元素---集合元素
+
+【比较 $(“div:eq(0)”)选取第一个div元素】
+$(“ul li:first-child”)选取每个<ul>中第一个<li>元素---集合元素
+【比较
+$(“div:first”)选择所有div标签中的第一个元素】
+$(“ul li:last-child”)选取每个<ul>中最后一个<li>元素---集合元素
+【比较$(“div:last”）选择所有div标签中的最后一个元素】
+$(“ul li:only-child”)在<ul>中选取是惟一子元素的<li>元素---集合元素

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div class="box">对方公司法</div>
+
+<script>
+var box = document.querySelector('.box');
+// box.onclick = function (){
+//     alert(123);
+// }
+
+// box.onclick = ()=>{
+//     alert(123);
+// }
+
+
+function show(){
+    alert('show');
+}
+
+// show()=>{//非法的
+
+// }
+
+// setTimeout(()=>{
+//     alert(456);
+// },1000);
+
+// var res1 = function (){
+//     return 'abc';
+// }
+
+// var res2 = () => {
+//     return '1234';
+// }
+
+// var res3 = () => '1234';
+// console.log( res3() );
+
+// var res4 = val => val;
+// console.log( res4(123) );
+
+// var res5 = (a,b) => a+b;
+// console.log( res5(2,3) );
+
+// var res6 = () => console.log(123);
+// res6();
+
+// var res7 = () => {
+//     console.log(123);
+//     console.log(456);
+// }
+
+
+// 箭头函数内部没有this，继承外部的this
+// var name = 'xh';
+// var obj = {
+//     name: 'xm',
+//     say: function (){
+//         alert(this.name);
+//     }
+// }
+// obj.say();
+
+
+// var name = 'xh';
+// // this->window
+// var obj = {
+//     // this?
+//     name: 'xm',
+//     say: () => {
+//         alert(this.name);//'xh'
+//     }
+// }
+// obj.say();
+
+
+
+// box.onclick = function (){
+//     setTimeout(function (){
+//         console.log(this);
+//     },1000);
+// }
+
+
+// box.onclick = function (){
+//     // this->box
+//     setTimeout(()=>{
+//         console.log(this);//box
+//     },1000);
+// }
+
+
+
+// 箭头函数不能使用new调用
+// function Cat(){
+
+// }
+// var Cat = function (){}
+// var cat1 = new Cat();
+// console.log(cat1);//Object
+
+// var Dog = () => {};
+// var dog1 = new Dog();//Dog is not a constructor
+
+
+// 箭头函数内部的this不能改变
+// var obj1 = {name:'xiaodong',age:26};
+// box.onclick = function (){
+//     // this->box
+//     setTimeout(()=>{
+//         console.log(this);//box
+//     }.bind(obj1),1000);//报错
+// }
+
+
+
+// 箭头函数没有arguments对象
+// function fn(){
+//     console.log( arguments[0] );
+//     console.log( arguments[1] );
+// }
+// fn(2,3);
+
+// var fn2 = () => {
+//     console.log( arguments[0] );//arguments is not defined
+//     console.log( arguments[1] );
+// }
+// fn2(4,5);
+
+
+</script>
+</body>
+</html>

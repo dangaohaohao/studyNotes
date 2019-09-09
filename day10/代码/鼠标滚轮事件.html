@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<script>
+var str = navigator.userAgent.toLowerCase();//获取用户浏览器识别码，并转成小写
+if (str.indexOf('firefox') != -1) {//火狐浏览器
+    document.addEventListener('DOMMouseScroll',function (e){// 火狐
+        console.log( e.detail );// 前推  -3  后拉  3
+    },false);
+} else {//非火狐浏览器
+    document.onmousewheel = function (ev){// 谷歌  IE
+        var e = ev || window.event;
+        console.log( e.wheelDelta );// 前推  120    后拉 -120
+    }
+}
+
+
+
+// 不能这样判断
+// console.log( document.onclick );
+// console.log( document.onmousewheel );
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+body{
+	height: 5000px;
+}
+.box{
+	width: 60px;
+	height: 100px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	background: blue;
+}
+
+</style>
+</head>
+<body>
+
+<div class="box"></div>
+
+<script>
+var box = document.querySelector('.box');
+var timer = null;
+window.onscroll=function(){
+    var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+    move(box,Math.round((document.documentElement.clientHeight-box.offsetHeight)/2+scrollTop))
+}
+function move(dom,target){
+    clearInterval(timer);
+    timer = setInterval(function (){
+        var speed = (target - dom.offsetTop) / 10;//持续变好的速度
+
+        // 浮点数计算，造成数据丢失，无法到达目的地  => 取整
+        speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+        
+        // 剩余运动量 <= 每次运动的量5
+        if (Math.abs(dom.offsetTop - target) <= Math.abs(speed)) {
+            clearInterval(timer);
+            dom.style.top = target + 'px';//手动设置终点
+        } else{
+            dom.style.top = dom.offsetTop + speed + 'px';//每次的运动
+        }
+    },20);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>贴标签</title>
+<style>
+.myTag{
+    width: 600px;
+    padding: 10px 10px 0;
+    border: 1px solid #ccc;
+    min-height: 50px;
+    overflow: hidden;
+}
+.myTag span{
+    float: left;
+    line-height: 40px;
+    padding: 6px 10px;
+    background-color: yellowgreen;
+    margin: 0 10px 10px 0;
+}
+.myTag span em{
+    color: red;
+    cursor: pointer;
+}
+.default{
+    width: 600px;
+    padding: 10px 10px 0;
+    border: 1px solid #ccc;
+    overflow: hidden;
+}
+.default p{
+    float: left;
+    line-height: 40px;
+    padding: 6px 10px;
+    background-color: pink;
+    margin: 0 10px 10px 0;
+    cursor: pointer;
+}
+
+</style>
+</head>
+<body>
+我的标签：
+<div class="myTag">
+    <!-- <span>风流倜傥1<em>X</em></span>
+    <span>风流倜傥2<em>X</em></span>
+    <span>风流倜傥3<em>X</em></span>
+    <span>风流倜傥3<em>X</em></span>
+    <span>风流倜傥3<em>X</em></span>
+    <span>风流倜傥3<em>X</em></span>
+    <span>风流倜傥3<em>X</em></span> -->
+</div>
+<div class="default">
+    <p>风流倜傥</p>
+    <p>闷骚</p>
+    <p>内骚型</p>
+    <p>外骚型</p>
+    <p>技术宅</p>
+    <p>死肥子</p>
+</div>
+<input type="text" class="ipt">
+<button class="btn">贴上</button>
+
+<script>
+var myTag = document.querySelector('.myTag');
+var tags = document.querySelectorAll('.default p');
+var btn = document.querySelector('.btn');
+var ipt = document.querySelector('.ipt');
+
+function doSomeThing(txt){
+    var span = document.createElement('span');
+    span.innerHTML = txt + '<em>X</em>';
+    myTag.appendChild(span);
+
+    var ems = document.querySelectorAll('.myTag em');
+    for (var v = 0; v < ems.length; v++){
+        ems[v].onclick = function (){
+            this.parentNode.parentNode.removeChild(this.parentNode)
+        }
+    }
+}
+
+for (var i = 0; i < tags.length; i++){
+    tags[i].onclick = function (){
+        doSomeThing(this.innerHTML);
+    }
+}
+
+btn.onclick = function (){
+    doSomeThing(ipt.value);
+}
+    
+</script>
+</body>
+</html>

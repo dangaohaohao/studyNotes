@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.box1{
+    width: 500px;
+    height: 330px;
+    background-color: #eee;
+}
+.box2{
+    width: 300px;
+    height: 130px;
+    background-color: pink;
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="box1">
+    box1
+    <div class="box2">box2</div>
+</div>
+
+<script>
+var doc = document;
+var bd = document.body;
+var box1 = bd.querySelector('.box1');
+var box2 = bd.querySelector('.box2');
+
+// 事件冒泡
+doc.onclick = function (){
+    alert('document被点击');
+}
+bd.onclick = function (){
+    alert('body被点击');
+}
+box1.onclick = function (e){
+    e.stopPropagation();
+    alert('box1被点击');
+}
+box2.onclick = function (ev){
+    var e = ev || window.event;
+    // 阻止事件传播
+    if (e.stopPropagation) {
+        e.stopPropagation();//阻止事件捕获
+    } else {
+        e.cancelBubble = true;//阻止事件冒泡
+    }
+    alert('box2被点击');
+}
+
+
+// 事件捕获
+// doc.addEventListener('click',function (ev){
+//     // var e = ev || window.event;
+//     // // 阻止事件传播
+//     // if (e.stopPropagation) {
+//     //     e.stopPropagation();//阻止事件捕获
+//     // } else {
+//     //     e.cancelBubble = true;//阻止事件冒泡
+//     // }
+//     alert('document被点击');
+// },true);//true捕获
+// bd.addEventListener('click',function (){
+//     alert('body被点击');
+// },true);
+// box1.addEventListener('click',function (ev){
+//     var e = ev || window.event;
+//     // 阻止事件传播
+//     if (e.stopPropagation) {
+//         e.stopPropagation();//阻止事件捕获
+//     } else {
+//         e.cancelBubble = true;//阻止事件冒泡
+//     }
+//     alert('box1被点击');
+// },true);
+// box2.addEventListener('click',function (){
+//     alert('box2被点击');
+// },true);
+
+
+</script>
+</body>
+</html>

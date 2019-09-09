@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+<script>
+// 创建
+var str1 = 'Hello';//string
+var str2 = "World";
+var str3 = new String('Hello');//object
+
+// console.log( str1 );//'hello'
+// console.log( str3 );//String {"hello"}
+
+// console.log(str1 + ' ' + str2);//字符串拼接
+// console.log(str3 + ' ' + str2);//字符串拼接
+
+// console.log( str1.length );//5
+// console.log( str3.length );//5
+
+// console.log( str1[0] );//h
+// console.log( str3[0] );//h
+
+// 在正常使用时：str1和str3没有区别
+
+// console.log( str1.toLowerCase() );//hello
+// console.log( str3.toLowerCase() );//hello
+
+// console.log( str1.toUpperCase() );//HELLO
+// console.log( str3.toUpperCase() );//HELLO
+
+str1.len = 5;
+str3.len = 5;
+str1.fn = function (){
+    alert('str1');
+}
+str3.fn = function (){
+    alert('str3');
+}
+
+// console.log(str1.len);//undefined
+// console.log(str3.len);//5
+// str3.fn();//正常执行
+// str1.fn();//str1.fn is not a function
+
+
+
+
+/* // 基本包装类型: string  number  boolean
+// 在需要的时候会被临时包装成一个对象
+// console.log( str1.length );
+// console.log( str1.toLowerCase() );
+
+var str4 = 'Hello';//string
+var res = str4.toLowerCase();
+console.log( res );
+// 当上面的代码执行的时候，系统自动完成以下工作：
+// 1.找到对应的类，并创建这个类的一个对象（值相同）
+// var _str4 = new String('hello');
+// 2.调用对象的方法
+// var res = _str4.toLowerCase();
+// 3.销毁临时对象
+// _str4 = null; */
+
+
+
+var str5 = 'abc123def123';
+
+// 第一出现的索引
+console.log( str5.indexOf('123') );//3
+console.log( str5.indexOf('456') );//没有，返回 -1
+// if (str5.indexOf('456') != -1) {
+//     alert('有');
+// }
+// if (str5.indexOf('456') == -1) {
+//     alert('没有');
+// }
+
+// 最后一次出现的索引
+console.log( str5.lastIndexOf('123') );//9
+
+console.log( str5.slice(6,9) );//'def'
+console.log( str5.slice(6,) );//'def123'
+console.log( str5.slice() );//'abc123def123'
+
+var str5 = 'abc123def123';
+
+console.log( str5.split() );//["abc123def123"]
+console.log( str5.split('') );//["a", "b", "c", "1", "2", "3", "d", "e", "f", "1", "2", "3"]
+console.log( str5.split('123') );//['abc','def','']
+
+console.log( str5.substr(3,6) );//'123def'
+console.log( str5.substring(3,9) );//'123def'
+
+var str6 = 'hello';
+var str7 = 'world';
+
+console.log( str5.concat(str6,str7) );//'abc123def123helloworld'
+console.log( str5 + str6 + str7 );//'abc123def123helloworld'
+
+console.log( str7.charAt(4) );//'d'
+console.log( str7[4] );//'d'
+
+console.log( str7.charCodeAt(0) );// ASCII 119  编码
+console.log( String.fromCharCode(119) );//'w'   解码
+console.log( String.fromCharCode(65) );//'A'   解码
+
+console.log( str6.replace('h','H') );// 'Hello'   替换
+console.log( str6.replace('h','h123') );// 'h123ello'   增加
+console.log( str6.replace('h','') );// 'ello'   删除
+var str8 = str6.replace('ll',function (str){
+    // console.log(str);// 'll'
+    return '**';
+});
+console.log( str8 );
+
+
+// 遍历字符串
+var str9 = 'abcdefg';
+// for(var i = 0; i < str9.length; i++){
+//     console.log( str9[i] );
+// }
+
+// for(var key in str9){
+//     // console.log(key);
+//     console.log(str9[key]);
+// }
+
+
+// 0 1
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>闭包</title>
+
+</head>
+<body>
+
+<button class="btn">按钮</button>
+<ul>
+    <li>第一行</li>
+    <li>第二行</li>
+    <li>第三行</li>
+    <li>第四行</li>
+</ul>
+
+<script>
+
+// 变量及作用域
+// var a = 1;//全局变量
+// function test() {
+//     console.log(a);
+//     var b = 2;//局部变量
+//     function fn1() {
+//         alert();
+//     }
+// }
+// test();
+// console.log(b);
+// fn1();
+
+
+
+// 词法作用域
+// var abc = 1;
+// function f1() {
+//   console.log(abc);
+// }
+// function f2() {
+//   var abc = 2;
+//   f1();
+// }
+// f2();
+
+
+// 类似动态作用域
+// function show() {
+//     console.log(this);
+// }
+// show();
+// document.querySeletor(".btn").onclick = function () {
+//     console.log(this);
+//     show();
+// }
+// document.querySelector(".btn").onclick = show;
+// var timer=setTimeout(show,1000);
+
+
+// 作用域链
+// function compare(value1,value2){
+//     if(value1 < value2){
+//         return -1;
+//     } else if( value1 > value2 ) {
+//         return 1;
+//     } else {
+//         return 0;
+//     }
+// }
+// var result = compare(5, 10);
+
+// 全局执行环境是最外围的一个执行环境，在Web浏览器中，全局执行环境的变量对象是window对象。
+// 当JavaScript解释器初始化执行代码时，它首先默认进入全局执行环境。
+// 局部执行环境的变量对象，则只在函数执行的过程中存在。
+// 当函数被调用的时候，会创建一个特殊的对象–活动对象。
+// 这个对象中包含形参和arguments对象。活动对象之后会作为局部执行环境的变量对象来使用。
+// 换句话说，活动对象除了变量和函数声明之外，它还存储了形参和arguments对象。
+
+// EC(Execution Context) 执行环境（执行上下文）
+// VO(Variable Object) 变量对象
+// AO(Activation Object) 活动对象
+// scope chain 作用域链
+
+// EC建立分为两个阶段：进入执行上下文（创建阶段）和执行阶段（激活/执行代码）。
+// 创建阶段解释器扫描传递给函数的参数或arguments，本地函数声明和本地变量声明，并创建EC对象。扫描的结果将完成VO对象的创建。
+// 内部的执行顺序如下：
+// 1、查找调用函数的代码。
+// 2、执行函数代码之前，先创建执行上下文。 
+// 3、进入创建阶段：
+//     初始化作用域链
+//     创建变量对象
+//     创建arguments对象，检查上下文，初始化参数名称和值并创建引用的复制
+//     扫描上下文的函数声明
+//     扫面上下文的变量声明
+//     求出上下文内部“this”的值
+// 4、激活/代码执行阶段：
+// 在当前上下文上解释/运行函数代码，并随着代码一行行执行指派变量的值。
+
+// 1.创建EC
+// 每个EC对应一个VO
+// 进入执行上下文时，VO的初始化过程具体如下：
+// 函数的形参（当进入函数执行上下文时）—— 变量对象的一个属性，其属性名就是形参的名字，其值就是实参的值；对于没有传递的参数，其值为undefined；
+// 函数声明（FunctionDeclaration, FD） —— 变量对象的一个属性，其属性名和值都是函数对象创建出来的；如果变量对象已经包含了相同名字的属性，则替换它的值；
+// 变量声明（var，VariableDeclaration） —— 变量对象的一个属性，其属性名即为变量名，其值为undefined;如果变量名和已经声明的函数名或者函数的参数名相同，则不会影响已经存在的属性。 
+// 注意：该过程是有先后顺序的。
+// 2. 执行代码阶段时，VO中的一些属性的undefined值将会确定。
+
+// 在函数的执行上下文中，VO是不能直接访问的，我们访问的是AO，而不是VO。
+// AO是在进入函数的执行上下文时创建的
+
+// 示例
+// function fun(i) {
+//   var a = 'hello';
+//   var b = function fb() { };
+//   function c() { }
+// }
+// fun(123);
+
+// 当调用fun(123)时，创建EC，像下面这样：
+// funExecutionContext = {
+//   scopeChain: { ... },
+//   variableObject: {
+//     arguments: {
+//       0: 123,
+//       length: 1
+//     },
+//     i: 123,
+//     c: pointer to function c()
+//     a: undefined,
+//     b: undefined
+//   },
+//   this: { ... }
+// }
+
+// 执行流进入函数并且激活/代码执行阶段，看下函数执行完成后的样子：
+// funExecutionContext = {
+//   scopeChain: { ... },
+//   variableObject: {
+//     arguments: {
+//       0: 123,
+//       length: 1
+//     },
+//     i: 123,
+//     c: pointer to function c()
+//     a: ‘hello‘,
+//     b: pointer to function fb()
+//   },
+//   this: { ... }
+// }
+
+
+// if (true) {
+//   var a = 1;
+// } else {
+//   var b = 2;
+// }
+// alert(a);
+// alert(b);
+
+// 虽然这里永远不会被执行，但进入全局执行上下文时，变量对象中已经添加了属性b，值为undefined
+
+
+// 声明提升（Hoisting）解密
+// (function() {
+//     console.log(typeof foo); // 函数
+//     console.log(typeof bar); // undefined
+//     var foo = 'hello';
+//     var bar = function() { return 'world'; };
+//     function foo() { return 'hello'; }
+// }());
+// 在函数开始执行之前，foo已经在活动对象里面被定义了
+// 如果属性名已经在活动对象上存在，我们仅仅更新引用
+// 属性foo对函数foo的引用首先被创建在活动对象里，当解释到var foo时，foo属性名已经存在，所以代码什么都不做并继续执行。
+
+// 作用域和执行环境是两个完全不同的概念，我们试图给他俩分别一个明确的定义，发现很难，因为你很难定义一个概念“是什么”，
+// 但是我们可以搞清楚他们分别起什么作用。另一个令人迷惑的地方就是js中的this关键字。其实执行环境就是this的值。总的来说，
+// 作用域是相对于函数来讲的，因为ES5 里没有块级作用域，只有函数才能形成新的作用域。而且作用域在函数声明时就定义好了。
+// 作用域里声明的变量和函数，外部无法访问，注意，是外部。而执行环境在函数被调用时才生成。
+
+// 简而言之，作用域链，就是在当前作用域中如果没有该属性（局部变量）则向上一层作用域中寻找，一直到最上层，也就是window
+
+
+// Js具有自动垃圾回收机制。垃圾收集器会按照固定的时间间隔周期性的执行。
+// 现在各大浏览器通常采用的垃圾回收有两种方法：标记清除、引用计数
+
+// 标记清除
+// 当变量进入执行环境时，将这个变量标记为“进入环境”。当变量离开环境时，则将其标记为“离开环境”。标记“离开环境”的就销毁回收内存。
+
+// 引用计数
+// 跟踪记录每个值被引用的次数，当引用次数变成0时，就销毁回收内存
+
+// 由于js垃圾回收机制，f1每次执行完，变量n会被回收，所以值并没有被保存下来
+// function fn1(){
+//     var n = 5;
+//     n++;
+//     return n;
+// }
+// console.log( fn1() );
+// console.log( fn1() );
+
+
+
+// 出于种种原因，我们有时候需要得到函数内的局部变量，如何从外部读取局部变量？
+// 闭包的应用
+
+// function fn1(){//闭包
+//     var n = 5;
+//     function fn2() {
+//         n++;
+//         return n;
+//     }
+//     return fn2;
+// }
+// var fn = fn1();
+// console.log( fn() );
+// console.log( fn() );
+// console.log( fn() );
+
+
+// var scope = "global scope";
+// function checkscope(){
+//     var scope = "local scope";
+//     function f(){
+//         return scope;
+//     }
+//     return f;
+// }
+// console.log( checkscope()() );
+
+
+// 模块化
+// 一个模块应该具有私有属性、私有方法和公有属性、公有方法。
+// 而闭包能很好的将模块的公有属性、方法暴露出来。
+// var myModule = (function (window, undefined) {
+//     var myname = "xiaocuo";
+//     var myage = 18;
+//     function sayHi() {
+//         alert('hi，大家好，我叫 ' + myname);
+//     }
+//     // return {myname,sayHi};
+//     return {myname: myname,sayHi:sayHi};
+// })(window);
+
+// console.log( myModule.myname );
+// myModule.sayHi();
+// "return"关键字将对象引用导出赋值给myModule，从而应用到闭包。
+
+
+// (function (window, undefined) {
+//     var myname = "xiaocuo";
+//     var myage = 18;
+//     function sayHi() {
+//         alert('hi，大家好，我叫 ' + myname);
+//     }
+//     window.myname = myname;
+//     window.sayHi = sayHi;
+// })(window);
+// console.log( myname );
+// sayHi();
+
+
+
+// var name = "The Window";
+// var object = {
+//     name : "My Object",
+//     getNameFunc : function(){
+//         return function fn(){
+//             return this.name;//"The Window"
+//         };
+//     }
+// };
+// alert(object.getNameFunc()());
+
+
+
+
+// var name = "The Window";
+// var object = {
+//     name : "My Object",
+//     getNameFunc : function(){
+//         var that = this;
+//         return function(){
+//             return that.name;
+//         };
+//     }
+// };
+// alert(object.getNameFunc()());
+
+
+
+
+// 事件监听 低版本ie会导致内存泄漏
+// window.onload = function outerFun(){//点击事件触发时，形成Closure (outerFun)
+//     var btn = document.querySelector(".btn");
+//     // DOM的监听事件是全局作用域的，所以，innerFun相当于在outerFun外部调用
+//     btn.onclick = function innerFun(){
+//         // 事件处理函数隐式引用（this->btn）
+//         //    btn.style.color = 'red';//保持对局部变量btn的引用
+//            this.style.color = 'red';//保持对局部变量btn的引用
+//     }
+// }
+
+
+
+// var lis = document.querySelectorAll("li");
+// for (var i = 0; i < lis.length; i++) {
+//     lis[i].onclick = function () {
+//         console.log(i);
+//         this.style.backgroundColor = 'pink';
+//     }
+// }
+
+
+
+// var lis = document.querySelectorAll("li");
+// for (var i = 0; i < lis.length; i++) {
+//     (function test(n) {
+//         // var  n
+//         lis[n].onclick = function () {
+//             console.log(n);
+//             this.style.backgroundColor = 'pink';
+//         }
+//     })(i);
+// }
+
+
+
+// 闭包就像现实生活中的兴奋剂，让你获得眼前巨大好处的同时，也为你的长远健康种下了祸根。
+
+</script>
+</body>
+</html>

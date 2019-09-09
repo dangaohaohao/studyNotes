@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+
+var arr = [3,8,12,41,32,17,4,26];
+console.log(arr);
+// var bucket = [];
+// // bucket[3] = 'water';
+// // bucket[8] = 'water';
+// // bucket[12] = 'water';
+// // bucket[41] = 'water';
+// // bucket[32] = 'water';
+// // bucket[17] = 'water';
+// // bucket[4] = 'water';
+// // bucket[26] = 'water';
+
+// for (var i = 0; i < arr.length; i++){
+//     var item = arr[i];
+//     bucket[item] = 'water';
+// }
+
+// // console.log(bucket);
+
+// arr.length = 0;
+// for (var index in bucket){
+//     arr.push(parseInt(index));
+// }
+// console.log(arr);
+
+
+// var arr1 = [];
+// arr1[4] = 'abc';
+// arr1[12] = 'abc';
+// console.log(arr1);
+
+// for (var index in arr1){
+//     console.log(index);// 4  12
+// }
+
+
+
+function bucketSort(arr){
+    var bucket = [];
+    for (var i = 0; i < arr.length; i++){
+        var item = arr[i];
+        bucket[item] = 'water';
+    }
+    arr.length = 0;
+    for (var index in bucket){
+        arr.push(parseInt(index));
+    }
+    return arr;
+}
+
+console.log( bucketSort(arr) );
+
+
+</script>
+</body>
+</html>

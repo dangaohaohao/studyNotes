@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas面向对象-封装矩形</title>
+</head>
+<!--
+        this.x  = option.x === 0 ? 0 : option.x || 100;
+        this.y  = option.y === 0 ? 0 : option.y || 100;
+        this.width = option.width === 0 ? 0 : option.width || 100;
+        this.height = option.height === 0 ? 0 : option.height || 100;
+        // 描边
+        this.stroke = option.stroke || 'black';
+        this.strokeWidth = option.strokeWidth || 5;
+        // 填充
+        this.fill = option.fill || 'gray';
+        // 旋转
+        this.angle = option.angle || 0;
+        // 缩放
+        this.scaleX = option.scaleX || 1;
+        this.scaleY = option.scaleY || 1;
+        // 位移
+        this.translateX = option.translateX || 0;
+        this.translateY = option.translateY || 0;
+-->
+<body style="padding: 100px;">
+  <canvas id="canvas" width="900" height="600" style="border:1px solid #000"></canvas>
+
+<script src="js/XMGRect.js"></script>
+<script>
+     // 1. 获取标签
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+
+    // 2. 实例化矩形对象
+    var rect = new XMGRect({
+        x: 100,
+        y: 100,
+        width: 200,
+        height: 100,
+        stroke: 'red',
+        strokeWidth: 8,
+        fill:'blue',
+        scaleX: 1.5,
+        scaleY: 1.5,
+        angle: 20
+    });
+    rect.render(ctx);
+
+</script>
+</body>
+</html>

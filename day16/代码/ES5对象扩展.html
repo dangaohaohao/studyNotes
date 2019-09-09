@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<script>
+var obj1 = {
+    name: 'xm',
+    age : 23,
+    sex : '男',
+    say : function (){
+        alert('大家好');
+    }
+}
+
+// 返回指定对象的所可枚举属性组成的数组 Object.keys(object)
+// for(var key in obj1){
+//     console.log(key);// 'name'  'age'  'sex'  'say'
+// }
+// console.log( Object.keys(obj1) );//["name", "age", "sex", "say"]
+
+// var obj2 = {
+//     7: 'aa',
+//     2: 'ff',
+//     5: 'ee',
+//     15: 'tt',
+//     length: 4
+// }
+// for (var key in obj2){
+//     console.log(key); // '2' '5' '7' '15' 'length'
+// }
+// console.log( Object.keys(obj2) );//["2", "5", "7", "15", "length"]
+
+
+
+// 返回指定对象的所有自身属性组成的数组（包括不可枚举属性）
+// Object.getOwnPropertyNames(object)
+// console.log( Object.getOwnPropertyNames(obj1) );//["name", "age", "sex", "say"]
+
+
+// 创建新对象并指定其原型，返回新对象
+// Object.create(prototype, [descriptors])
+// var obj3 = {a: 123, b: 456};
+// var obj4 = Object.create(null);//空对象，没有属性和原型链接
+// var obj5 = Object.create(obj3);//空对象，没有属性,有原型obj3
+// var obj6 = Object.create(obj3,{c:{value:789,writable: true}});
+// obj6.c = '888';
+// console.log(obj6.c);
+
+
+// 返回对象的原型
+// Object.getPrototypeOf(object)
+// var obj3 = {a: 123, b: 456};
+// var obj5 = Object.create(obj3);
+// console.log( Object.getPrototypeOf(obj3) );//Object.prototype
+// console.log( Object.getPrototypeOf(obj5) );//{a: 123, b: 456}
+
+
+// 直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回这个对象
+// Object.defineProperty(object, property, descriptor)
+var obj7 = {
+    name: 'xm',
+    age: 23
+}
+// obj7.sex = '男';
+// console.log(obj7);
+// Object.defineProperty(obj7,'sex',{
+//     // 是否可配置（删除，修改，枚举）
+//     configurable: true,//默认为false
+//     // 是否可枚举
+//     enumerable: true,//默认为false
+//     // 是否可修改
+//     writable: false,//默认为false
+//     value: '男'
+// });
+// obj7.sex = '女1';
+// console.log(obj7);
+// // delete obj7.sex;
+// console.log(obj7.sex);//undefined
+// console.log( Object.keys(obj7) );
+
+
+// Object.defineProperty(obj7,'sex',{
+//     // 是否可配置（删除，修改，枚举）
+//     configurable: false,//默认为false
+//     // 是否可枚举
+//     enumerable: true,//默认为false
+//     // 是否可修改
+//     writable: true,//默认为false
+// });
+// obj7.sex = '女2';
+// console.log(obj7.sex);
+
+
+// 对象访问器 属性 Getter 和 Setter
+// var obj8 = {
+//     name: 'xh',
+//     age: 23
+// }
+// obj8.age = 24;//存值 调用setter
+// console.log( obj8.age );//取值 调用getter
+
+// var obj9 = {
+//     name: 'xh',
+//     n: 23,//中间介质的变量
+//     set age(value){
+//         this.n = value;
+//         console.log('setter调用');
+//     },
+//     get age(){
+//         console.log('getter调用');
+//         return this.n;
+//     }
+// }
+// obj9.age = 25;//setter调用
+// console.log(obj9.age);//getter调用
+
+
+// var obj10 = {
+//     name: 'xh',
+//     // age: 26
+//     _age: 23,//中间介质的变量
+//     set age(value){
+//         this._age = value;
+//         console.log('setter调用');
+//     },
+//     get age(){
+//         console.log('getter调用');
+//         this._age += '岁';
+//         return this._age;
+//     }
+// }
+// // obj10.age = 25;//setter调用
+// console.log(obj10.age);//getter调用
+
+
+// var obj11 = Object.defineProperty({},'age',{
+//     configurable: true,
+//     enumerable: true,
+//     // writable: true,
+//     // value: 23
+//     get: function (){
+//         console.log('getter');
+//         return this._age;
+//     },
+//     set: function (val){
+//         console.log('setter');
+//         this._age = val;
+//     }
+// });
+// obj11.age = 26;//赋值
+// console.log( obj11.age );//取值
+
+
+// 添加或更改多个对象属性
+// Object.defineProperties(object, descriptors)
+var obj12 = Object.defineProperties({},{
+    abc: {
+        configurable: true,
+        enumerable: false,
+        writable: true,
+        value: '123'
+    },
+    def: {
+        configurable: true,
+        enumerable: true,
+        writable: false,
+        value: '456'
+    }
+});
+console.log(obj12.abc);
+console.log(obj12.def);
+
+var obj13 = {};
+obj13.abc = 777;//默认configurable: true,  enumerable: true,  writable: true, value: 777
+obj13.def = 888;//默认configurable: true,  enumerable: true,  writable: true, value: 888
+
+
+// 返回对象的属性的描述符
+// Object.getOwnPropertyDescriptor(object, property)
+var attrObj1 = Object.getOwnPropertyDescriptor(obj13, 'abc');
+console.log( attrObj1 );
+
+var a = 123456;
+var attrObj2 = Object.getOwnPropertyDescriptor(window, 'a');
+console.log( attrObj2 );
+delete window.a;//不能删除
+console.log(window.a);
+
+b = 456789;
+var attrObj3 = Object.getOwnPropertyDescriptor(window, 'b');
+console.log( attrObj3 );
+delete window.b;//被删除
+console.log(window.b);//undefined
+
+// 显式声明变量和隐式声明变量的区别？
+// 1.在函数中，显式声明变量为局部变量，隐式声明变量为全局变量
+// 2.显式声明变量默认不可删除（configurable: false），隐式声明变量可以删除（configurable: true）
+// 3.隐式声明变量在严格模式中禁止使用
+
+
+
+
+</script>
+</body>
+</html>

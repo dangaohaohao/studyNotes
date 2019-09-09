@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="text" class="ipt">
+<button class="btn">验证</button>
+<div class="box"></div>
+<script>
+var ipt = document.querySelector('.ipt');
+var btn = document.querySelector('.btn');
+var box = document.querySelector('.box');
+
+btn.onclick = function (){
+    // reg.lastIndex = 0;
+    var val = ipt.value;
+    val = val.replace(/\s+/g,'');//去掉空格
+
+    // 手机号  1 (3|4|5|6|7|8|9) [0-9]{9}
+    // var reg = /^1[3-9][0-9]{9}$/g;
+
+    // 扣扣号  {5-11}位   第一个数不为0
+    // var reg = /^[1-9]\d{4,10}$/g;
+
+    // 邮箱
+    // (数字、字母、下划线){4,24}@[数字、字母]{1,10}(点、字母{2,3}){1,3}
+    // var reg = /^\w{4,24}@[0-9a-zA-Z]{1,10}(\.[a-z]{2,3}){1,3}$/g;
+
+    // 身份证：15(纯数字) 或 18 ,18位纯数字，也有前17位数纯数字，最后一位校验码（数字，字母，x|X）
+    // var reg = /(^[1-9]\d{14}$)|(^[1-9][0-9]{16}(x|X|\d)$)/g;
+    
+    
+
+    if (reg.test(val)) {
+        alert('格式正确');
+    } else {
+        alert('格式错误');
+    }
+    // alert(reg.lastIndex);
+}
+
+
+// 密码验证，密码长度为 8-20 位,必须同时包含英文字母和数字，英文字母区分大小写，可以包含!、@、#、%、&、?、~、^、*、$特殊字符
+var verifyPass = function (val){
+  var str1_format1 = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#%&?~^*$])[\da-zA-Z!@#%&?~^*$]{8,20}$/;  //数字，字母，字符
+  var str1_format2 = /^(?=.*\d)(?=.*[a-zA-Z])[\da-zA-Z]{8,20}$/;  //数字，字母
+  if (!str1_format1.test(val) && !str1_format2.test(val)) {
+    return { bool: false, msg: '密码长度为 8-20 位，必须同时包含英文字母和数字，英文字母区分大小写，可以包含!、@、#、%、&、?、~、^、*、$特殊字符' }
+  }
+  return { bool: true, msg: '密码格式正确' }
+}
+
+
+
+// XSS攻击:输入过滤，输出转义
+
+// var str = '<html lang="en">'+
+//     '<head>'+
+//     '</head>'+
+//     '<body>'+
+//         '一UI环境科技科技'+
+//     '</body>'+
+//     '</html>';
+// // box.innerHTML = str;
+
+
+// box.innerText = str;//输出转义
+// var str = '&lt;html lang="en"&gt;'+
+//     '<head>'+
+//     '</head>'+
+//     '<body>'+
+//         '一UI环境科技科技'+
+//     '</body>'+
+//     '</html>';
+</script>
+</body>
+</html>

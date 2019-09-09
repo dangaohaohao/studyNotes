@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<button id="btn">清除</button>
+
+<script>
+
+// localStorage.setItem('user1','xiaoming');//设置 
+// localStorage.setItem('user2','xiaofang');//设置 
+// localStorage.setItem('user2','xiaowang');//修改
+// localStorage.setItem('user3','xiaohong');//设置 
+
+// console.log( localStorage.getItem('user1') );//xiaoming
+// console.log( localStorage.getItem('user4') );//null
+
+// console.log( localStorage.key(0) );//'user1'
+// console.log( localStorage.length );//3
+
+// for(var i = 0; i < localStorage.length; i++){
+//     console.log( localStorage.getItem( localStorage.key(i) ) );
+// }
+
+// btn.onclick = function (){
+//     // localStorage.clear();//清除所有数据
+//     localStorage.removeItem('user2');
+// }
+
+var obj = {name:'xm',age:18,sex:'女',friends:['xh','xf','xw']};
+
+// localStorage.setItem('user',obj);
+// console.log( obj.toString() ); //'[object Object]'
+// console.log( localStorage.getItem('user') );//'[object Object]'
+// console.log( localStorage.getItem('user').name );//undefined
+
+
+var jsonStr = JSON.stringify(obj);
+localStorage.setItem('user',jsonStr);
+
+var obj2 = localStorage.getItem('user');
+console.log(typeof obj2);//string
+
+obj2 = JSON.parse(obj2);
+console.log( obj2.name );
+
+</script>
+</body>
+</html>

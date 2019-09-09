@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<script>
+// 运算符：简单说，参与计算的数，有几个，就叫几元运算符
+
+// 一元运算符：
+var num = 10;
+// num = num + 1;
+// num += 1;
+
+// ++num;
+// num++;
+// num--;
+// --num;
+
+// ++ 递增运算符  递增1
+// -- 递减运算符  递减1
+// console.log( num++ );//10
+// console.log(num);
+//  console.log( ++num );//11
+
+// 逗号运算符 ,
+var num1 = 1,
+    num2 = 2,
+    num3 = 3,
+    num4 = 4;
+
+var str1, str2, str3;
+
+// var i = 4, v;
+// v = i++;
+// i = ++i;
+// alert(v);//4 
+// alert(i);//6
+
+// var k = 0;
+// console.log( k++ + ++k + k * 2 + k++ );// 1   5   8   4
+// //           0   +  2  + 2 * 2 + 2  =  8
+// console.log(k);//3
+
+
+// 二元运算符：
+// +  -  *  /  %
+// 1 + 2
+// 1 - 2
+// 1 * 2
+// 1 / 2
+// 1 % 2
+
+// >  <   >=   <=   ==   ===  !=  !==   =   +=  -=  *=  /=  %=
+
+// =      赋值
+// ==     等于（近似等于）
+// ===    全等于（绝对等于）
+
+// console.log( 1 == 1 );//true
+// console.log( 1 == '1' );//true
+
+// console.log( 1 === '1' );//false
+// console.log( 1 === 1 );//true
+
+// console.log( {} === {} );//false
+
+
+var num = 10;
+// num = num + 5;
+num += 5;
+// num -= 5; -> num = num - 5;
+
+// console.log(num);//15
+
+
+// console.log( '10' >= '9' );//false
+// console.log( '10' >= '19' );//false
+// console.log( 'abc' < 'adf' );//true
+
+// console.log( '14' >= 13 );//true
+
+// console.log( '11a' >= 13 );//非正常比较 都返回false
+
+
+
+// 三元运算符：三目运算符
+// ? 运算符 
+// boolean ? express1 : express2;
+// if (){} else {}  简写
+
+// 4 > 5 ? alert('aa') : alert('bb');
+
+var a = 2;
+var b = 3;
+// var num = a > b ? 10 : 20;
+// console.log(num);//20
+// 优点：代码少
+
+var num = a > b ? 10 : ( a == b ? 20 : 30);
+// console.log(num);//30
+// 缺点：不方便阅读和维护
+
+
+
+</script>
+</body>
+</html>

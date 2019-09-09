@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>正常写法</title>
+<style>
+*{margin: 0; padding: 0;}
+.tab{
+    width: 880px;
+    margin: 50px auto 0;
+}
+.header{
+    overflow: hidden;
+}
+.header h3{
+    font-size: 16px;
+    color: #333;
+    float: left;
+    width: 220px;
+    line-height: 40px;
+    background-color: #eee;
+    text-align: center;
+    cursor: pointer;
+}
+.content .box{
+    padding-top: 20px;
+    overflow: hidden;
+    display: none;
+}
+.content .box img{
+    width: 200px;
+    height: 260px;
+    float: left;
+    margin: 0 10px;
+}
+
+.header .active{
+    background-color: #06A86E;
+    color: #fff;
+}
+.content .show{
+    display: block;
+}
+</style>
+</head>
+<body>
+<div class="tab">
+    <div class="header">
+        <h3 index="0" class="active">喜剧</h3>
+        <h3 index="1">剧情</h3>
+        <h3 index="2">动作</h3>
+        <h3 index="3">青春偶像</h3>
+    </div>
+    <div class="content">
+        <div class="box show">
+            <img src="images/01.jpg" alt="">
+            <img src="images/01.jpg" alt="">
+            <img src="images/01.jpg" alt="">
+            <img src="images/01.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/02.jpg" alt="">
+            <img src="images/02.jpg" alt="">
+            <img src="images/02.jpg" alt="">
+            <img src="images/02.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/03.jpg" alt="">
+            <img src="images/03.jpg" alt="">
+            <img src="images/03.jpg" alt="">
+            <img src="images/03.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/04.jpg" alt="">
+            <img src="images/04.jpg" alt="">
+            <img src="images/04.jpg" alt="">
+            <img src="images/04.jpg" alt="">
+        </div>
+    </div>
+</div>
+
+<script>
+// var aH3 = document.querySelectorAll('.header h3');
+// var aBox = document.querySelectorAll('.box');
+// var prevIndex = 0;//记录上次选中的下标
+
+// for (var i = 0; i < aH3.length; i++){
+//     aH3[i].onclick = function (){
+//         var index = this.getAttribute('index');
+//         aH3[prevIndex].className = '';
+//         aBox[prevIndex].className = 'box';
+//         aH3[index].className = 'active';
+//         aBox[index].className = 'box show';
+//         prevIndex = index;//更新上一次的下标
+//     }
+// }
+
+
+// 事件委托
+var header = document.querySelector('.header');
+var aH3 = document.querySelectorAll('.header h3');
+var aBox = document.querySelectorAll('.box');
+var prevIndex = 0;//记录上次选中的下标
+header.onclick = function (e){
+    if (e.target.nodeName == 'H3' && e.target.parentNode.className == 'header') {
+        var index = e.target.getAttribute('index');
+        e.target.className = 'active';
+        aH3[prevIndex].className = '';
+        aBox[index].className = 'box show';
+        aBox[prevIndex].className = 'box';
+        prevIndex = index;//更新上一次的下标
+    }
+}
+
+
+</script>
+</body>
+</html>

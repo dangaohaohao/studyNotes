@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+#box{
+    width: 400px;
+    height: 200px;
+    background-color: #ccc;
+}
+
+</style>
+</head>
+<body>
+<div id="box">
+    <a href="#">链接</a>
+    <span>span标签</span>
+    <p>p标签</p>
+    <em>em标签</em>
+    <var>var标签</var>
+</div>
+
+
+<script>
+var box = document.getElementById('box');
+var tags = box.children;
+// for (var i = 0; i < tags.length; i++){
+//     tags[i].onclick = function (){
+//         this.style.background = 'pink';
+//     }
+// }
+
+
+box.onclick = function (e){
+    var ev = e || window.event;
+    // console.log(this);//指向事件的调用对象
+    // console.log(ev.target);//指向事件目标（事件源）
+    // console.log(ev.srcElement);
+    var tg = ev.target || ev.srcElement;//兼容
+    ev.target.style.background = 'blue';
+}
+    
+</script>
+</body>
+</html>

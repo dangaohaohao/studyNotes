@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+*{margin: 0; padding: 0;}
+body{
+    background-color: #eee;
+}
+.wrap{
+    width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    overflow: hidden;
+}
+.wrap h2{
+    text-align: center;
+    padding: 20px 0;
+}
+.wrap .box{
+    float: left;
+    width: 240px;
+    margin: 0 0 20px 20px;
+}
+.wrap .box img{
+    width: 240px;
+}
+
+
+</style>
+</head>
+<body>
+<div class="wrap">
+    <h2>动态渲染页面</h2>
+    <!-- <div class="box">
+        <img src="https://img.zcool.cn/community/01126e5d503df4a8012187f47d567c.jpg@260w_195h_1c_1e_1o_100sh.jpg" alt="">
+        <h5>蒙牛·功夫好系列KV</h5>
+    </div>
+    <div class="box">
+        <img src="https://img.zcool.cn/community/01126e5d503df4a8012187f47d567c.jpg@260w_195h_1c_1e_1o_100sh.jpg" alt="">
+        <h5>蒙牛·功夫好系列KV</h5>
+    </div>
+    <div class="box">
+        <img src="https://img.zcool.cn/community/01126e5d503df4a8012187f47d567c.jpg@260w_195h_1c_1e_1o_100sh.jpg" alt="">
+        <h5>蒙牛·功夫好系列KV</h5>
+    </div>
+    <div class="box">
+        <img src="https://img.zcool.cn/community/01126e5d503df4a8012187f47d567c.jpg@260w_195h_1c_1e_1o_100sh.jpg" alt="">
+        <h5>蒙牛·功夫好系列KV</h5>
+    </div>
+    <div class="box">
+        <img src="https://img.zcool.cn/community/01126e5d503df4a8012187f47d567c.jpg@260w_195h_1c_1e_1o_100sh.jpg" alt="">
+        <h5>蒙牛·功夫好系列KV</h5>
+    </div>
+    <div class="box">
+        <img src="https://img.zcool.cn/community/01126e5d503df4a8012187f47d567c.jpg@260w_195h_1c_1e_1o_100sh.jpg" alt="">
+        <h5>蒙牛·功夫好系列KV</h5>
+    </div> -->
+</div>
+
+
+<script>
+// 动态渲染页面(高频次重复、内容改变)
+// json严格格式：{"key":"value"}
+// 前端:其实就是js里的对象
+// 后端:后端发送给前端的"字符串"数据
+
+// json数组
+var json = [
+    {
+        imgUrl: 'https://img.zcool.cn/community/01963e5d4d4bd4a8012187f41c34b9.jpg@260w_195h_1c_1e_1o_100sh.jpg',
+        title: '【萌芽熊】买个西瓜嘛'
+    },
+    {
+        imgUrl: 'https://img.zcool.cn/community/01c8985d4d2d7ca80120695cb394bd.jpg@260w_195h_1c_1e_1o_100sh.jpg',
+        title: 'FluStars'
+    },
+    {
+        imgUrl: 'https://img.zcool.cn/community/01b27f5d4d25eda80120695c085f19.jpg@260w_195h_1c_1e_1o_100sh.jpg',
+        title: '集美天成装饰丨ABD案例'
+    },
+    {
+        imgUrl: 'https://img.zcool.cn/community/0175525d4d8eb7a80120695c9b2cdf.jpg@260w_195h_1c_1e_1o_100sh.jpg',
+        title: 'MEIZU 16xs 外观短片'
+    },
+    {
+        imgUrl: 'https://img.zcool.cn/community/013bc25d4ce32aa8012187f4791456.jpg@260w_195h_1c_1e_1o_100sh.jpg',
+        title: '塞外风云'
+    },
+    {
+        imgUrl: 'https://img.zcool.cn/community/012a355d48dba0a8012187f40e163b.jpg',
+        title: '古风人像摄影'
+    }
+];
+
+var wrap = document.querySelector('.wrap');
+
+for (var i = 0; i < json.length; i++){
+    wrap.innerHTML += '<div class="box"><img src="'+json[i].imgUrl+'" alt=""><h5>'+json[i].title+'</h5></div>';
+}
+
+// var tmp1 = '<div class="box">'+
+//             '<img src="" alt="">'+
+//             '<h5></h5>'+
+//         '</div>';
+// var tmp2 = '<div class="box"><img src="" alt=""><h5></h5></div>';
+
+
+// for (var i = 0; i < 100; i++){
+//     wrap.innerHTML += '<div class="box"><img src="https://img.zcool.cn/community/012a355d48dba0a8012187f40e163b.jpg" alt=""><h5>古风人像摄影</h5></div>';
+// }
+</script>
+</body>
+</html>

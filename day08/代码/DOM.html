@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+</head>
+<body>
+<body>
+
+<div id="box1">我是box1</div>
+<div id="box2">我是<span>span标签</span><!-- 这是一个块 --></div>
+<div id="box3">
+    <span>11</span>
+    <!-- 插入一个节点 -->
+    <span>22</span>
+    <span>33</span>
+</div>
+<div id="box4" index="123" data-a="一些数据">
+    <a href="https://www.baidu.com/">链接</a>
+    <img src="image/jt1.png" alt="jt">
+    <p class="txt" title="一个段落">科技计划科技活动烧开后放</p>
+</div>
+
+<!-- <div id="con1">
+    <div class="box">
+        <div></div>
+    </div>
+    <div class="box">
+        <div></div>
+    </div>
+    <div class="box">
+
+    </div>
+    <div class="box">
+
+    </div>
+</div>
+
+<ul id="list">
+    <li>
+        <div>
+            <span></span>
+            <p></p>
+        </div>
+    </li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul> -->
+
+
+<script>
+var doc = document;//文档节点
+var box2 = document.getElementById('box2');//元素节点
+var txt = box2.firstChild;//文本节点
+var attr = box2.getAttributeNode('id');//属性节点
+var com = box2.lastChild;//注释节点
+
+// console.log( doc );
+// console.log( box2 );
+// console.log( txt );
+// console.log( attr );
+// console.log( com );
+
+// console.log( doc.nodeType );//9
+// console.log( box2.nodeType );//1
+// console.log( txt.nodeType );//3
+// console.log( attr.nodeType );//2
+// console.log( com.nodeType );//8
+
+// console.log( doc.nodeName );//#document
+// console.log( box2.nodeName );//'DIV'
+// console.log( txt.nodeName );//#text
+// console.log( attr.nodeName );//id
+// console.log( com.nodeName );//#comment
+
+// console.log( doc.nodeValue );//null
+// console.log( box2.nodeValue );//undefined 或 null
+// console.log( txt.nodeValue );//文本内容
+// console.log( attr.nodeValue );//属性值
+// console.log( com.nodeValue );//注释内容
+
+// 获取元素的值：表单元素 value   非表单元素：innerHTML  innerText
+
+
+// 获取元素（查）
+// document.getElementById
+// document.getElementsByTagName
+// document.getElementsByClassName
+// document.querySelector
+// document.querySelectorAll
+
+
+// var span2 = document.getElementsByTagName('span')[1];
+// console.log( span2.parentNode );//box3
+// console.log( span2.parentNode.parentNode );//body
+// console.log( span2.parentNode.parentNode.parentNode );//html
+// console.log( span2.parentNode.parentNode.parentNode.parentNode );//document
+// span2.parentNode.className = 'red'
+
+
+// var doc = document;
+// var body = document.body;
+// var html1 = document.html;//错误的获取方式
+// var html2 = document.documentElement;//html
+// console.log( doc );
+// console.log( body );
+// console.log( html1 );//undefined
+// console.log( html2 );//html
+
+
+
+// var box3 = document.getElementById('box3');
+// var spans = box3.getElementsByTagName('span');
+// var spans = box3.children;
+// var childs = box3.childNodes;//IE678与其他高版本浏览器返回个数不一样
+// console.log( spans.length );
+// console.log( childs.length );
+
+// console.log( spans[1].nextSibling );//返回文本节点
+// console.log( spans[1].previousSibling );//返回文本节点
+// console.log( box3.firstChild );//IE678返回元素节点
+// console.log( box3.lastChild );//返回文本节点
+
+// console.log( spans[1].nextElementSibling );
+// console.log( spans[1].previousElementSibling );
+// console.log( box3.firstElementChild );
+// console.log( box3.lastElementChild );
+
+// 增
+var newDiv = document.createElement('div');//创建一个div
+
+// var txt = document.createTextNode('新创建的 div');
+// newDiv.appendChild(txt);//本文本节点插入新创建的div里
+newDiv.innerText = '新创建的 div';
+
+// document.body.appendChild(newDiv);//新创建的div插入body末尾
+var box3 = document.getElementById('box3');
+var spans = box3.children;
+box3.insertBefore(newDiv,spans[1]);//在第二个 span之前插入一个节点newDiv
+
+// 删除
+var newdiv = box3.children[1];
+newdiv.parentNode.removeChild(newdiv);
+
+// 替换
+box3.replaceChild(newDiv,spans[1]);
+
+
+
+box3.onclick = function (){
+    alert(123);
+}
+
+// 复制节点
+// var clone_box = box3.cloneNode(false);//浅复制
+var clone_box = box3.cloneNode(true);//深复制 不会复制节点的事件
+// console.log(clone_box);
+document.body.appendChild(clone_box);
+
+
+// 属性操作
+// <div id="box4" index="123" data-a="一些数据">
+//     <a href="https://www.baidu.com/">链接</a>
+//     <img src="image/jt1.png" alt="jt">
+//     <p class="txt" title="一个段落">科技计划科技活动烧开后放</p>
+// </div>
+
+var box4 = document.querySelector('#box4');
+var link = box4.querySelector('a');
+var img = box4.querySelector('img');
+var ps = box4.querySelector('p');
+// 获取默认属性
+console.log( box4.id );//box4
+console.log( link.href );//
+console.log( img.src );//
+console.log( img.alt );//
+console.log(ps.className);
+console.log(ps.title);
+
+// 获取自定义属性
+console.log(box4.index);//undefined
+console.log(box4['data-a']);//undefined
+
+console.log( box4.getAttribute('id') );//box4
+console.log( box4.getAttribute('index') );//123
+console.log( box4.getAttribute('data-a') );//一些数据
+
+// 设置
+// box4.setAttribute('index','456');
+// box4.setAttribute('data-a','12345678');
+
+// 删除
+// box4.removeAttribute('index');
+// box4.removeAttribute('id');
+
+// 获取属性节点
+// console.log( box4.getAttributeNode('id') );//id="box4"
+
+</script>
+
+</body>
+</html>

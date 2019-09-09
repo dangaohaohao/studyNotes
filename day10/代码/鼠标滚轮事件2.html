@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.box{
+    width: 200px;
+    height: 200px;
+    background-color: pink;
+}
+</style>
+</head>
+<body>
+
+<div class="box"></div>
+
+<script>
+
+var box = document.querySelector('.box');
+var str = navigator.userAgent.toLowerCase();//获取用户浏览器识别码，并转成小写
+if (str.indexOf('firefox') != -1) {//火狐浏览器
+    box.addEventListener('DOMMouseScroll',function (e){// 火狐
+        // console.log( e.detail );// 前推  -3  后拉  3
+        if (e.detail < 0) {// 前推 放大
+            box.style.width = box.offsetWidth + 20 + 'px';
+            box.style.height = box.offsetHeight + 20 + 'px';
+        } else {// 后拉  缩小
+            box.style.width = box.offsetWidth - 20 + 'px';
+            box.style.height = box.offsetHeight - 20 + 'px';
+        }
+    },false);
+} else {//非火狐浏览器
+    box.onmousewheel = function (ev){// 谷歌  IE
+        var e = ev || window.event;
+        // console.log( e.wheelDelta );// 前推  120    后拉 -120
+        if (e.wheelDelta > 0) {// 前推 放大
+            box.style.width = box.offsetWidth + 20 + 'px';
+            box.style.height = box.offsetHeight + 20 + 'px';
+        } else {// 后拉  缩小
+            box.style.width = box.offsetWidth - 20 + 'px';
+            box.style.height = box.offsetHeight - 20 + 'px';
+        }
+    }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+*{margin: 0; padding: 0;}
+.wrap{
+    width: 400px;
+    height: 297px;
+    border: 1px solid red;
+    margin: 50px auto 0;
+    position: relative;
+}
+.main{
+    width: 400px;
+    height: 297px;
+    overflow-x: scroll;
+}
+.imgs{
+    width: 6000px;
+    height: 280px;
+    overflow: hidden;
+}
+.imgs img{
+    float: left;
+    width: 400px;
+    height: 280px;
+}
+.num{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    overflow: hidden;
+    z-index: 9999;
+}
+.num span{
+    float: left;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #ccc;
+    text-align: center;
+    line-height: 22px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.left{
+    width: 24px;
+    height: 24px;
+    background: url(img/fx1.png) 0 0 no-repeat;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -12px;
+    z-index: 9999;
+    cursor: pointer;
+}
+.right{
+    width: 24px;
+    height: 24px;
+    background: url(img/fx2.png) 0 0 no-repeat;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -12px;
+    z-index: 9999;
+    cursor: pointer;
+}
+.num .show{
+    background: blue;
+    color: #fff;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+    <div class="main">
+        <div class="imgs">
+            <img src="img/05.png" alt="">
+            <img src="img/01.png" alt="">
+            <img src="img/02.png" alt="">
+            <img src="img/03.png" alt="">
+            <img src="img/04.png" alt="">
+            <img src="img/05.png" alt="">
+            <img src="img/01.png" alt="">
+        </div>
+    </div>
+    <p class="left"></p>
+    <p class="right"></p>
+    <div class="num">
+        <span class="show">1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+    </div>
+</div>
+
+<script>
+var main = document.querySelector('.main');
+var left = document.querySelector('.left');
+var right = document.querySelector('.right');
+var main = document.querySelector('.main');
+var imgs = document.querySelectorAll('.imgs img');
+var nums = document.querySelectorAll('.num span');
+var timer1,timer2;
+var imgIndex = 1;//图片的初始下标
+var numIndex = 0;//数字的初始下标
+var img1w = imgs[1].clientWidth;//一张图片的宽度
+
+main.scrollLeft = imgIndex * img1w;//滚动条初始位置
+
+autoMove();//进入页面执行
+
+// 1.自动播放
+function autoMove(){
+    timer1 = setInterval(function (){
+        imgIndex++;
+        if (imgIndex >= imgs.length) {//临界值
+            imgIndex = 2;
+            main.scrollLeft = img1w * (imgIndex-1);//滚动条回到前面的第一张图片位置
+        }
+        move();
+
+        nums[numIndex].className = '';//当前显示数字去除样式
+        numIndex++;
+        if (numIndex >= nums.length) {
+            numIndex = 0;
+        }
+        nums[numIndex].className = 'show';//下一个数字添加样式
+
+    },3000);
+}
+
+// 2.点击数字
+for(var i = 0; i < nums.length; i++){
+    nums[i].index = i;
+    nums[i].onclick = function (){
+        clearInterval(timer1);//停止自动动播放
+        nums[numIndex].className = '';//当前显示数字去除样式
+        numIndex = this.index;
+        nums[numIndex].className = 'show';//下一个数字添加样式
+
+        imgIndex = this.index + 1;
+        move();
+        autoMove();//自动播放
+    }
+}
+
+// 3.点击右边
+right.onclick = function (){
+    clearInterval(timer1);//停止自动动播放
+    imgIndex++;
+    if (imgIndex >= imgs.length) {//临界值
+        imgIndex = 2;
+        main.scrollLeft = img1w * (imgIndex-1);//滚动条回到前面的第一张图片位置
+    }
+    move();
+
+    nums[numIndex].className = '';//当前显示数字去除样式
+    numIndex++;
+    if (numIndex >= nums.length) {
+        numIndex = 0;
+    }
+    nums[numIndex].className = 'show';//下一个数字添加样式
+
+    autoMove();//自动播放
+}
+
+// 4.点击左边
+left.onclick = function (){
+    clearInterval(timer1);//停止自动动播放
+    imgIndex--;
+    if (imgIndex < 0) {//临界值
+        imgIndex = imgs.length-3;
+        main.scrollLeft = img1w * (imgIndex+1);//滚动条回到前面的第一张图片位置
+    }
+    move();
+
+    nums[numIndex].className = '';//当前显示数字去除样式
+    numIndex--;
+    if (numIndex < 0) {
+        numIndex = nums.length-1;
+    }
+    nums[numIndex].className = 'show';//下一个数字添加样式
+
+    autoMove();//自动播放
+}
+
+
+function move(){
+    var start = main.scrollLeft;//起始位置
+    var end = imgIndex * img1w;//终点位置
+    var minStep = 0;//最小步数
+    var maxStep = 20;//最大步数
+    var everyStep = (end - start) / maxStep;//每步所走的距离
+    clearInterval(timer2);
+    timer2 = setInterval(function (){
+        minStep++;
+        if (minStep >= maxStep) {
+            clearInterval(timer2);
+        }
+        start += everyStep;
+        main.scrollLeft = start;
+        // main.scrollLeft = main.scrollLeft + everyStep;
+    },15);
+}
+
+</script>
+</body>
+</html>

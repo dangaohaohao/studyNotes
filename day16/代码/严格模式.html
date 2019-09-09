@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+<script>
+// 全局
+// 'use strict';
+// console.log('全局严格模式运行');
+
+// function test(){
+//     'use strict';
+//     console.log('局部严格模式运行');
+// }
+
+// ES5严格模式的限制规范：
+
+// 1.变量声明必须使用var，否则报错
+// 'use strict';
+// var a = 123;
+// b = 456;//b is not defined
+// function fn(){
+//     var c = 789;//局部变量
+//     d = 888;//全局变量
+// }
+// fn();
+// console.log(c);// c is not defined
+// console.log(d);
+
+
+
+// 2.对不合理的操作显示报错，不再做静默失败处理
+// 'use strict';
+// NaN = 123;
+
+
+
+// 3.禁止对象属性重名（IE）
+// 'use strict';
+// var obj = {
+//     name: 'xm',
+//     name: 'xh'
+// }
+// console.log(obj.name);
+
+
+
+// 4.禁止函数参数重名
+// 'use strict';
+// function fn(a,a,b){
+//     console.log(a+a+b);
+// }
+// fn(1,2,3);
+
+
+
+// 5.禁止使用以0开头的八进制数字
+// ES6新的语法标准，八进制以0o来表示，与16进制的0x形成统一的语法格式
+// 'use strict';
+// var num1 = 017;
+// var num2 = 0o17;
+
+
+
+// 6.禁止使用with语句(正常模式也不推荐使用)
+
+
+// 7.强制为eval创建新作用域
+// eval() 函数计算 JavaScript 字符串，并把它作为脚本代码来执行。
+// 如果参数是一个表达式，eval() 函数将执行表达式。
+// 如果参数是Javascript语句，eval()将执行 Javascript 语句。
+// 严格模式为JavaScript程序创建了第三种作用域：eval作用域
+// 'use strict';
+// eval('alert(123)');
+// eval('var a = 123;');
+// alert(a);//a is not defined
+// eval('var a = 456; alert(a)');
+
+
+
+// 8.arguments不再追踪参数变化
+// 'use strict';
+// var x = 1
+// function fn1(x) {
+//     x = 2;
+//     console.log(arguments[0]);//4
+//     arguments[0] = 3;
+//     console.log(arguments[0]);//3
+//     alert(x);
+// }
+// fn1(4);
+
+
+
+
+// 9.禁止使用arguments.callee
+// // 在匿名的递归函数中
+// 'use strict';
+// var factorialArray = [1, 2, 3, 4, 5].map(function(n) {
+// return (n < 2) ? 1 : arguments.callee(n - 1) * n;
+// });
+// console.log(factorialArray);
+
+
+
+
+// 10.禁止this指向全局对象window，this变成undefined
+// 'use strict';
+// console.log(this);//window
+// function show(){
+//     console.log(this);//undefined
+// }
+// show();
+// setTimeout(function (){
+//     console.log(this);//window
+// },1000);
+
+
+// 11.函数必须声明在整个脚本或函数层面(不运行在代码块里面声明函数{})
+// function fn1(){
+//     alert(11);
+// }
+// function test(){
+//     console.log('test');
+//     function fn2(){
+//         alert(22)
+//     }
+// }
+
+// 'use strict';
+// var boo = false;
+// if (boo) {
+//     function fun(){
+//         alert('aaa');
+//     }
+// } else {
+//     function fun(){
+//         alert('bbb');
+//     }
+// }
+// fun();
+
+// for (var i = 0; i < 3; i++){
+//     function fun(){
+//         alert('ccc');
+//     }
+// }
+// fun();
+
+
+
+// 12.新增一些保留字，不能使用他们作为标识符命名
+// implements, interface, let, package, private, protected, public, static, yield
+
+
+
+</script>
+</body>
+</html>

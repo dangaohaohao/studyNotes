@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+</head>
+<body>
+<button class="btn">按钮</button>
+<div class="box">UI以后好看好看好看好看</div>
+
+<script src="jquery-1.8.3.js"></script>
+<script>
+var box = document.querySelector('.box');
+var $box = $('.box');
+
+
+$('.btn').click(function (e){
+    // console.log(e);
+    // console.log(e.target);//dom
+    // console.log(this);//dom
+
+    // $(e.target).css('color','red');//原生dom转成jq对象
+
+    // $(this)
+    // box.css('color','red');//报错
+    // $(box).css('color','red');//原生dom转成jq对象
+
+    // $box.style.color = 'blue';//报错
+    // $box[0].style.color = 'blue';//jq对象转原生对象
+    // $box.get(0).style.color = 'blue';//jq对象转原生对象
+
+})
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div class="box">一个坑</div>
+
+<script>
+
+// var xmName = 'xiaoming';
+// var xmSex = '男';
+// var xmAge = 22;
+// var xmSay = function (){
+//     alert('大家好，我叫' + xmName);
+// }
+
+// key:value
+var xm = {//对象字面量
+    age: 22,
+    sex: '男',
+    name: 'xiaoming',
+    sayHi: function (){
+        alert('大家好，我叫' + xm.name);
+    }
+};
+xm.friends = ['xh','xw','xd'];
+// console.log( xm.name );
+
+
+
+
+var xw = {//JSON数据格式
+    "age": 23,
+    "sex": "男",
+    "name": "xiaowang",
+    "isBiye": true,
+    "friends": {
+        'xh':{'name':'xh','age':18},
+        'xd':{'name':'xd','age':25},
+    },
+    "sayHi": function (){
+        alert('大家好，我叫' + xm.name);
+    }
+};
+// 对象.属性
+// console.log( xw.name );
+// xw.sayHi();
+
+// 对象[变量或属性字符串]
+var who = 'name';
+// console.log( xw[name] );//报错
+// console.log( xw['name'] );
+// console.log( xw[who] );
+// xw['sayHi']();
+// console.log( xw['na' + 'me'] );
+
+// 遍历对象:for in 遍历的是对象的属性（key）
+// for (var key in xw){
+//     // console.log(key);// 'name'       'age'
+//     console.log(xw[key]);// 'xiaowang'   23
+// }
+
+
+// 动态给对象添加属性方法
+var obj1 = {};
+obj1.name = 'xh';
+obj1.age = 20;
+obj1.sex = '女';
+obj1.sayHi = function (){
+    alert('大家好');
+}
+// console.log( obj1.age );
+// obj1.sayHi();
+
+
+// 使用构造函数创建对象
+var obj2 = new Object();
+obj2.name = 'xd';
+obj2.age = 24;
+
+
+
+// 所有对象类型可以动态添加属性和方法！
+// function fn(){}
+// fn.abc = 123;
+// fn.sayHi = function (){
+//     alert('大家好');
+// }
+// console.log( fn.abc );
+// fn.sayHi();
+
+// var arr = [1,2,3];
+// arr.abc = 456;
+// arr.say = function (){
+//     alert('大家好22');
+// }
+// console.log(arr.abc);
+// arr.say();
+
+// var box = document.querySelector('.box');
+// console.log(typeof box);//object
+// box.index = 2;
+// console.log(box.index);
+
+
+// 简单类型不可以动态添加属性和方法！
+var str = 'abc';
+var num = 123;
+str.yy = 'yoyo';
+num.say = function (){
+    alert('大家好33');
+}
+// console.log(str.yy);//undefined
+// num.say();//Uncaught TypeError: num.say is not a function
+
+
+</script>
+</body>
+</html>

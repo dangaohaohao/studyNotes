@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+*{margin: 0; padding: 0;}
+.wrap{
+    width: 772px;
+    height: 153px;
+    border: 1px solid red;
+    overflow: auto;
+    margin: 50px auto 0;
+}
+.main{
+    width: 5000px;
+    overflow: hidden;
+}
+.main img{
+    width: 193px;
+    height: 136px;
+    float: left;
+}
+.con1,.con2{
+    float: left;
+}
+.box{
+    text-align: center;
+}
+.box button{
+    font-size: 24px;
+    padding: 2px 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+    <div class="main">
+        <div class="con1">
+            <img src="images/01.jpg" alt="">
+            <img src="images/02.jpg" alt="">
+            <img src="images/03.jpg" alt="">
+            <img src="images/04.jpg" alt="">
+            <img src="images/05.jpg" alt="">
+        </div>
+        <div class="con2"></div>
+    </div>
+</div>
+<div class="box">
+    <button class="btn1">&lt;</button>
+    <button class="btn2">&gt;</button>
+</div>
+
+<script>
+var wrap = document.querySelector('.wrap');
+var con1 = document.querySelector('.con1');
+var con2 = document.querySelector('.con2');
+var btn1 = document.querySelector('.btn1');
+var btn2 = document.querySelector('.btn2');
+
+var imgWidth = con1.children[0].clientWidth;//一张图片的宽度
+con2.innerHTML = con1.innerHTML;//复制图片
+var maxWidth = con1.clientWidth;//一组图片的宽度
+var timer,timer2,flag = true;
+
+function moveLeft(){
+    clearInterval(timer);
+    clearTimeout(timer2);
+    timer = setInterval(function (){
+        wrap.scrollLeft++;
+        if (wrap.scrollLeft >= maxWidth) {
+            wrap.scrollLeft = 0;
+        }
+        if ((wrap.scrollLeft % imgWidth) == 0) {
+            clearInterval(timer);
+            timer2 = setTimeout(moveLeft,2000);
+        }
+    },10);
+}
+function moveRight(){
+    clearInterval(timer);
+    clearTimeout(timer2);
+    timer = setInterval(function (){
+        wrap.scrollLeft--;
+        if (wrap.scrollLeft <= 0) {
+            wrap.scrollLeft = maxWidth;
+        }
+        if ((wrap.scrollLeft % imgWidth) == 0) {
+            clearInterval(timer);
+            timer2 = setTimeout(moveRight,2000);
+        }
+    },10);
+}
+
+moveLeft();//进入页面执行
+
+wrap.onmouseover = function (){
+    clearInterval(timer);
+    clearTimeout(timer2);
+}
+wrap.onmouseout = function (){
+    if (flag) {
+        moveLeft();
+    } else {
+        moveRight();
+    }
+}
+
+btn1.onclick = function (){
+    flag = true;
+    moveLeft();
+}
+btn2.onclick = function (){
+    flag = false;
+    moveRight();
+}
+
+
+</script>
+</body>
+</html>

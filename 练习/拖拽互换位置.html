@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.wrap{
+    width: 960px;
+    height: 580px;
+    border: 1px solid #ccc;
+    margin: 20px auto;
+    padding: 20px;
+}
+.row {
+    overflow: hidden;
+}
+.parent {
+    width: 300px;
+    height: 180px;
+    float: left;
+    margin: 0 10px 20px;
+    box-shadow: 3px 0 6px #999;
+}
+.box {
+    width: 300px;
+    height: 180px;
+    line-height: 180px;
+    text-align: center;
+    font-size: 100px;
+    background-color: #eee;
+    cursor: move;
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+    <div class="row">
+        <div class="parent"><div class="box">A</div></div>
+        <div class="parent"><div class="box">B</div></div>
+        <div class="parent"><div class="box">C</div></div>
+    </div>
+    <div class="row">
+        <div class="parent"><div class="box">D</div></div>
+        <div class="parent"><div class="box">E</div></div>
+        <div class="parent"><div class="box">F</div></div>
+    </div>
+    <div class="row">
+        <div class="parent"><div class="box">G</div></div>
+        <div class="parent"><div class="box">H</div></div>
+        <div class="parent"><div class="box">I</div></div>
+    </div>
+</div>
+
+<script>
+//获取随机整数
+function randomInt(min,max) {
+    return Math.round(Math.random()*(max-min))+min;
+}
+
+// 随机颜色
+function randomColor() {
+    var col = '#';
+    var strArr = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];//0-15
+    for (var i = 0; i < 6; i++){
+        col += strArr[randomInt(0,15)];
+    }
+    return col;
+}
+
+var arrPos = [];//保存所有box的当前坐标
+
+var boxs = document.querySelectorAll('.box');
+for(var i = 0; i < boxs.length; i++){
+    boxs[i].style.backgroundColor = randomColor();//添加随机颜色
+
+    var obj = {x:boxs[i].offsetLeft, y:boxs[i].offsetTop}
+    // arrPos[i] = obj;
+    arrPos.push(obj);
+
+    boxs[i].onmousedown = function (ev) {
+        var e = ev || window.event;
+        e.preventDefault();
+        var toleft = e.offsetX;
+        var totop = e.offsetY;
+        this.style.position = 'absolute';
+        this.onmousemove = function (ev) {
+            var e = ev || window.event;
+            var left = e.clientX - toleft;
+            var top = e.clientY - totop;
+            this.style.left = left + 'px';
+            this.style.top = top + 'px';
+        }
+        this.onmouseup = function () {
+            // this.onmousemove = null;
+            for (var i = 0; i < arrPos.length; i++){
+                console.log(arrPos[0]);
+                var numX = Math.abs(this.offsetLeft - arrPos[i].x);
+                var numY = Math.abs(this.offsetTop - arrPos[i].y);
+                if (numX <= 20 && numY <= 20) {
+                    // 互换颜色
+                    var bgc = this.style.backgroundColor;
+                    this.style.backgroundColor = boxs[i].style.backgroundColor;
+                    boxs[i].style.backgroundColor = bgc;
+
+                    // 互换文字
+                    var txt = this.innerHTML;
+                    this.innerHTML = boxs[i].innerHTML;
+                    boxs[i].innerHTML = txt;
+                }
+            }
+            
+            this.style.position = '';//取消定位，归位
+        }
+    }
+}
+
+
+
+
+</script> 
+    
+</body>
+</html>

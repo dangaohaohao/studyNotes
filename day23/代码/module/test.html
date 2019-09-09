@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+</head>
+<body>
+<div class="box">一是大多数</div>
+
+<!-- <script type="module" src="./test.js"></script> -->
+<script type="module">
+// ES5
+// var mymodule = (function (){
+//     var n = 'xm';
+//     var a = 33;
+//     var say = function (){
+//         alert('大家好,我叫' + n);
+//     }
+//     return {
+//         name: n,
+//         sayHi: say
+//     };
+// })();
+// console.log( mymodule.name );
+// console.log( mymodule.a );
+// mymodule.sayHi();
+
+// commonJS  -> 服务端  nodejs 
+
+// AMD -> require.js  浏览器  （依赖前置）
+
+// CMD -> sea.js  玉伯  浏览器 （依赖就近）
+
+// 输出（导出）    输入（导入）
+
+// ES6  module  浏览器和服务器通用
+
+
+import {fn3} from './module1.js';
+fn3('hello world');
+
+    
+</script>
+</body>
+</html>

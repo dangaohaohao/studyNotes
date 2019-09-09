@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>小游戏</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+	#wrap{
+		width: 1000px;
+		height: 620px;
+		border: 1px solid red;
+		margin:10px auto 0;
+		position: relative;
+	}
+	#box1{
+		width: 20px;
+		height: 20px;
+		background: #000;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+	.box2{
+		width: 20px;
+		height: 20px;
+		background: red;
+		position: absolute;
+		left: 150px;
+		top: 80px;
+	}
+	#fen{
+		font-size: 30px;
+		color: red;
+		position: absolute;
+		left: 10px;
+		top: 20px;
+	}
+	#btn{
+		font-size: 24px;
+		padding:5px;
+		font-size: 20px;
+		position: absolute;
+		left: 10px;
+		top: 70px;
+	}
+</style>
+</head>
+<body>
+<div id="wrap">
+	<div id="box1"></div>
+	<p class="box2"></p>
+</div>
+<div id="fen">速度：<span id="sp">1</span></div>
+<button id="btn">开始游戏</button>
+<script>
+var wrap=document.getElementById('wrap');
+var box1=document.getElementById('box1');
+var sp=document.getElementById('sp');
+var btn=document.getElementById('btn');
+var time=null,speed=1;//初始速度
+var s=false,x=false,z=false,y=false;//标记运动方向
+function Test(){//碰撞检测
+	// box1各个方向的距离
+	var l1=box1.offsetLeft;
+	var r1=box1.offsetLeft+box1.clientWidth;
+	var t1=box1.offsetTop;
+	var b1=box1.offsetTop+box1.clientHeight;
+	// box2各个方向的距离
+	var box2=wrap.getElementsByTagName('p')[0];
+	var l2=box2.offsetLeft;
+	var r2=box2.offsetLeft+box2.clientWidth;
+	var t2=box2.offsetTop;
+	var b2=box2.offsetTop+box2.clientHeight;
+	if (l1>r2||r1<l2||t1>b2||b1<t2) {//没碰上
+		box2.style.background='red';
+	} else{// 碰撞
+		wrap.removeChild(box2);
+		var food=document.createElement('p');
+		food.className='box2';
+		var l=parseInt(Math.random()*1001);//0-1000
+		var t=parseInt(Math.random()*601);//0-600
+		food.style.left=l+'px';
+		food.style.top=t+'px';
+		wrap.appendChild(food);
+		speed++;
+		sp.innerHTML=speed;
+	};
+}
+function GameOver(){
+	if (box1.offsetLeft<0) {
+		alert('GameOver');
+		clearInterval(time);
+	};
+	if (box1.offsetLeft>wrap.clientWidth-box1.clientWidth) {
+		alert('GameOver');
+		clearInterval(time);
+	};
+	if (box1.offsetTop<0) {
+		alert('GameOver');
+		clearInterval(time);
+	};
+	if (box1.offsetTop>wrap.clientHeight-box1.clientHeight) {
+		alert('GameOver');
+		clearInterval(time);
+	};
+}
+function Move(){
+	clearInterval(time);
+	time=setInterval(function (){
+		if (s) {
+			box1.style.top=box1.offsetTop-speed+'px';
+			Test();
+			GameOver();
+		};
+		if (x) {
+			box1.style.top=box1.offsetTop+speed+'px';
+			Test();
+			GameOver();
+		};
+		if (z) {
+			box1.style.left=box1.offsetLeft-speed+'px';
+			Test();
+			GameOver();
+		};
+		if (y) {
+			box1.style.left=box1.offsetLeft+speed+'px';
+			Test();
+			GameOver();
+		};
+	},20);
+}
+// Move();
+document.onkeydown=function (ev){
+	var e=ev||window.event;
+	switch(e.keyCode){
+		case 37://左
+			z=true;
+			y=false;
+			s=false;
+			x=false;
+			break;
+		case 38://上
+			z=false;
+			y=false;
+			s=true;
+			x=false;
+			break;
+		case 39://右
+			z=false;
+			y=true;
+			s=false;
+			x=false;
+			break;
+		case 40://下
+			z=false;
+			y=false;
+			s=false;
+			x=true;
+			break;
+	}
+}
+btn.onclick=function (){
+	z=false;
+	y=true;//开始方向
+	s=false;
+	x=false;
+	box1.style.left='0px';
+	box1.style.top='0px';
+	speed=1;
+	sp.innerHTML=speed;
+	Move();
+}
+</script>
+</body>
+</html>

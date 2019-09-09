@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<ul class="list">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+</ul>
+
+
+<script>
+
+// 变量及作用域
+// var a = 123;
+// function test(){
+//     var b = 456;
+// }
+// test();
+// console.log(a);
+// console.log(b);
+
+
+// 闭包
+// function outer(){
+//     var a = 1;
+//     function inner(){
+//         console.log(a);
+//     }
+//     inner();
+//     return a;
+// }
+// var val = outer();
+// val++;
+// console.log(val);//2
+// outer();
+
+
+// function test(){
+//     var n = 1;
+//     n++;
+//     console.log(n);
+// }
+// test();//2
+// test();//2
+// test();//2
+
+
+function outer(){//闭包
+    var a = 1;
+    function inner(){
+        a++;
+        console.log(a);
+    }
+    return inner;
+}
+// function outer(){//闭包
+//     var a = 1;
+//     return function (){
+//         a++;
+//         console.log(123);
+//     }
+// }
+// var myModule = (function (){
+//     var a = 1;
+//     function inner(){
+//         a++;
+//         console.log(123);
+//     }
+//     return {
+//         attr: a,
+//         fn: inner
+//     }
+// })();
+
+var val = outer();
+val();//2
+// val();//3
+// val();//4
+// val();//5
+
+
+
+
+// 词法作用域（静态作用域）词法作用域关注函数在何处声明
+
+// var abc = 123;
+// function fn1(){
+//     console.log(abc);//123
+// }
+// function fn2(){
+//     var abc = 456;
+//     fn1();
+// }
+// fn2();
+
+
+// 类似动态作用域(this)，动态作用域关注函数从何处调用
+// function show(){
+//     console.log(this);
+// }
+// show();//window
+// box.onclick = show;//box
+
+
+
+// 作用域链
+// var yy = 'yoyo';
+// function fn(a,b){
+//     // this -> window
+//     var str = 'aaaa';
+//     console.log(yy);
+//     function fn2(){
+//         console.log(str);
+//         console.log(yy);
+//     }
+//     fn2();
+// }
+// fn(3,7);
+
+// EC(Execution Context) 执行环境（执行上下文）
+// VO(Variable Object) 变量对象
+// AO(Activation Object) 活动对象
+// scope chain 作用域链
+// 默认进入全局执行上下文
+
+// 1.EC创建阶段：
+// globalEC = {
+//     'scope chain': [window],
+//     'VO': {
+//         fn: pointor to function fn(a,b){},
+//         yy: undefined
+//     },
+//     this: window
+// }
+
+// 2.代码执行阶段
+// globalEC = {
+//     'scope chain': [window],
+//     'VO': {
+//         fn: pointor to function fn(a,b){},
+//         yy: undefined  -> 'yoyo'
+//     },
+//     this: window
+// }
+
+
+// fn(3,7)执行时，创建fnEC对象：
+// fnEC = {
+//     'scope chain': [fnEC.AO,globalEC.VO],
+//     AO: {
+//         arguments: {
+//             0: 3,
+//             1: 7,
+//             length: 2
+//         },
+//         a: 3,
+//         b: 7,
+//         fn2: pointor to function fn2(){},
+//         str: undefiend
+//     },
+//     this: window
+// }
+
+// 执行阶段：
+// fnEC = {
+//     'scope chain': [fnEC.AO,window],
+//     AO: {
+//         arguments: {
+//             0: 3,
+//             1: 7,
+//             length: 2
+//         },
+//         a: 3,
+//         b: 7,
+//         fn2: pointor to function fn2(){},
+//         str: undefiend  ->  'aaaa'
+//     },
+//     this: window
+// }
+
+
+
+// if (true) {
+//   var a = 1;
+// } else {
+//   var b = 2;
+// }
+// alert(a);//1
+// alert(b);//undefined
+
+
+
+// 闭包的使用：
+
+// window.onload = function outerFun(){//点击事件触发时，形成Closure (outerFun)
+//     var btn = document.querySelector(".btn");
+//     // DOM的监听事件是全局作用域的，所以，innerFun相当于在outerFun外部调用
+//     btn.onclick = function innerFun(){
+//         // 事件处理函数隐式引用（this->btn）
+//         //    btn.style.color = 'red';//保持对局部变量btn的引用
+//            this.style.color = 'red';//保持对局部变量btn的引用
+//     }
+// }
+
+
+
+// var myModule = (function (window, undefined) {
+//     var myname = "xiaocuo";
+//     var myage = 18;
+//     function sayHi() {
+//         alert('hi，大家好，我叫 ' + myname);
+//     }
+//     // return {myname,sayHi};
+//     return {myname: myname,sayHi:sayHi};
+// })(window);
+// console.log(myModule.myname);
+
+
+
+var lis = document.querySelectorAll('li');
+for (var i = 0; i < lis.length; i++){
+    (function (x){
+        lis[x].onclick = function (){
+            alert(x);
+        }
+    })(i);
+}
+
+
+</script>
+</body>
+</html>

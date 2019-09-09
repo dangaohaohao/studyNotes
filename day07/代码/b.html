@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<h1>支付成功！</h1>
+<p><span>5</span>秒后返回上一页<button>立即返回</button></p>
+
+<script>
+var btn = document.querySelector('button');
+var span = document.querySelector('span');
+
+btn.onclick = function (){
+    history.back();
+}
+
+var n = 5;
+setInterval(function (){
+    n--;
+    span.innerText = n;
+    if (n <= 0) {
+        history.go(-1);
+    }
+},1000);
+
+</script>
+</body>
+</html>

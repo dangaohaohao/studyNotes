@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<script>
+// function (){ //报错
+
+// }
+// console.log(123);
+
+function fn(){}
+// fn();
+// fn();
+
+
+// 立即执行函数
+(function (){//同事a
+    var a = 123;
+    console.log(a);
+})();
+
+(function (){//同事b
+    var a = 456;
+    console.log(a);
+}());
+
+// 模块化
+// var myModule = (function (){
+//     var name = 'xiaocuo';
+//     var age = 30;
+//     function test(){
+//         alert(123);
+//     }
+//     return {
+//         abc: name,
+//         fun: test
+//     }
+// })();
+
+// // myModule.fun();
+// // console.log( myModule.abc );
+// console.log(myModule.age);
+// console.log(age);
+
+!function (){
+    console.log('123456789');
+}();
++function (){
+    console.log(11122222);
+}();
+-function (){
+    console.log(444444444);
+}();
+~function (a,b){//传参
+    console.log(a + b);
+}(1111,2222);//3333
+
+// 1.作用域
+// 2.命名污染
+// 3.模块化
+
+
+</script>
+</body>
+</html>

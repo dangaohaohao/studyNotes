@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+*{margin: 0; padding: 0;}
+.wrap{
+    width: 400px;
+    height: 280px;
+    margin: 50px auto 0;
+    border: 1px solid red;
+    position: relative;
+}
+.imgs{
+    width: 400px;
+    height: 280px;
+    position: relative;
+}
+.imgs img{
+    width: 400px;
+    height: 280px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    opacity: 0.1;
+}
+.num{
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    overflow: hidden;
+    z-index: 9999;
+}
+.num span{
+    float: left;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #ccc;
+    text-align: center;
+    line-height: 22px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.left{
+    width: 24px;
+    height: 24px;
+    background: url(img/fx1.png) 0 0 no-repeat;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -12px;
+    z-index: 9999;
+    cursor: pointer;
+}
+.right{
+    width: 24px;
+    height: 24px;
+    background: url(img/fx2.png) 0 0 no-repeat;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -12px;
+    z-index: 9999;
+    cursor: pointer;
+}
+.num .show{
+    background: blue;
+    color: #fff;
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+    <div class="imgs">
+        <img style="z-index: 10;" src="img/01.png" alt="">
+        <img src="img/02.png" alt="">
+        <img src="img/03.png" alt="">
+        <img src="img/04.png" alt="">
+        <img src="img/05.png" alt="">
+    </div>
+    <p class="left"></p>
+    <p class="right"></p>
+    <div class="num">
+        <span class="show">1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+    </div>
+</div>
+
+<script>
+var imgs = document.querySelectorAll('.imgs img');
+var nums = document.querySelectorAll('.num span');
+var left = document.querySelector('.left');
+var right = document.querySelector('.right');
+var index = 0;//当前显示图片的下标
+var timer,timer2;
+
+move(imgs[index],100);//进入页面执行 显示第一张图
+autoMove();//自动播放
+
+// 1.自动播放
+function autoMove(){
+    timer2 = setInterval(function (){
+        imgs[index].style.zIndex = 1;//当前图片下沉
+        imgs[index].style.opacity = 0.1;//当前图片透明度恢复为初始值
+        nums[index].className = '';//当前数字去掉样式
+
+        index++;
+        if (index >= imgs.length) {
+            index = 0;
+        }
+        nums[index].className = 'show';//下一个数字添加样式
+        imgs[index].style.zIndex = 10;//下一张图片上浮
+        move(imgs[index],100);//下一张图片透明增加到100
+    },3000);
+}
+
+
+// 2.点击数字切换图片
+for (var i = 0; i < nums.length; i++){
+    nums[i].n = i;
+    nums[i].onclick = function (){
+        clearInterval(timer2);//停止自动播放
+        imgs[index].style.zIndex = 1;//当前图片下沉
+        imgs[index].style.opacity = 0.1;//当前图片透明度恢复为初始值
+        nums[index].className = '';//当前数字去掉样式
+
+        index = this.n;//同步下标
+
+        nums[index].className = 'show';//下一个数字添加样式
+        imgs[index].style.zIndex = 10;//下一张图片上浮
+        move(imgs[index],100);//下一张图片透明增加到100
+        autoMove();//自动播放
+    }
+}
+
+// 3.点击右边
+right.onclick = function (){
+    clearInterval(timer2);//停止自动播放
+    imgs[index].style.zIndex = 1;//当前图片下沉
+    imgs[index].style.opacity = 0.1;//当前图片透明度恢复为初始值
+    nums[index].className = '';//当前数字去掉样式
+
+    index++;
+    if (index >= imgs.length) {
+        index = 0;
+    }
+
+    nums[index].className = 'show';//下一个数字添加样式
+    imgs[index].style.zIndex = 10;//下一张图片上浮
+    move(imgs[index],100);//下一张图片透明增加到100
+    autoMove();//自动播放
+}
+
+// 4.点击左边
+left.onclick = function (){
+    clearInterval(timer2);//停止自动播放
+    imgs[index].style.zIndex = 1;//当前图片下沉
+    imgs[index].style.opacity = 0.1;//当前图片透明度恢复为初始值
+    nums[index].className = '';//当前数字去掉样式
+
+    index--;
+    if (index < 0) {
+        index = imgs.length-1;
+    }
+
+    nums[index].className = 'show';//下一个数字添加样式
+    imgs[index].style.zIndex = 10;//下一张图片上浮
+    move(imgs[index],100);//下一张图片透明增加到100
+    autoMove();//自动播放
+}
+
+
+function move(dom,target){
+    var opa = 10;//透明度初始值
+    clearInterval(timer);
+    timer = setInterval(function (){
+        if (opa > target) {//判断运动方向
+            var speed = -5;//透明度减小
+        } else {
+            var speed = 5;//透明度增加
+        }
+        // 剩余运动量 <= 每次运动的量5
+        if (Math.abs(opa - target) <= Math.abs(speed)) {
+            clearInterval(timer);
+            dom.style.opacity = target / 100;//手动设置终点
+        } else{
+            opa += speed;
+            dom.style.opacity = opa / 100;//每次的运动
+        }
+    },40);
+}
+</script>
+</body>
+</html>

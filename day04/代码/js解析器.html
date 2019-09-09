@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>解析器</title>
+</head>
+<body>
+
+
+<script>
+
+/* 解析器
+1.预解析代码:找 var function 参数  -> 存到仓库（EC={}）
+global scope:
+    a: undefined  ->  1
+    test: function () {
+        alert(a);
+        var a = 2;
+        alert(a);
+    }
+    test scope:
+        a: undefined -> 2
+
+2.逐行执行代码
+a = 1;
+test();
+
+alert(a);
+a = 2;
+alert(a);
+ */
+// var a = 1;
+// function test() {
+//     alert(a);//undefined
+//     var a = 2;
+//     alert(a);//2
+// }
+// test();
+
+
+
+/* 解析器
+1.预解析代码:找 var function 参数  -> 存到仓库（EC={}）
+global scope:
+    fn: undefined -> function fn() {}  ->  10
+
+2.逐行执行代码
+alert(typeof fn);
+fn = 10
+alert(typeof fn);
+ */
+// alert(typeof fn);//function
+// var fn = 10;
+// function fn() {}
+// alert(typeof fn);//number
+
+
+
+
+// alert(a);// function a(){alert(3);} 
+// var a=1;
+// alert(a);// 1
+// function a(){alert(2);}
+// alert(a);// 1
+// var a=3;
+// alert(a);// 3
+// function a(){alert(3);}
+// alert(a);// 3
+
+
+
+
+// var a=1;
+// function fn(){
+//     alert(a);//1 
+//     a=2;
+// }
+// fn();
+// alert(a);//2
+
+
+
+/* 解析器
+1.预解析代码:找 var function 参数  -> 存到仓库（EC={}）
+global scope:
+    a: undefined -> 1
+    fn: function fn(a){
+        alert(a);//undefined 1
+        a=2;
+    }
+    fn scope:
+        a: undefined -> 2
+
+2.逐行执行代码
+a=1;
+fn();
+
+alert(a);
+a=2;
+
+alert(a);
+ */
+// var a=1;
+// function fn(a){
+//     alert(a);//undefined
+//     a=2;
+// }
+// fn();
+// alert(a);//1
+
+
+
+
+// var a=1;
+// function fn(a){
+//     alert(a);//1 
+//     a=2;
+// }
+// fn(a);
+// alert(a);//1
+
+
+
+
+// console.log(num);//undefined
+// var num = 24;
+// console.log(num);//24
+// func(100 , 200); 
+// function func(num1 , num2) {
+// 	var total = num1 + num2;
+// 	console.log(total);//300
+// }
+
+
+
+
+// fn();//2
+// function fn() {console.log(1);}       
+// fn();//2
+// var fn = 10;       
+// fn();//报错
+// function fn() {console.log(2);}       
+// fn();
+
+
+    
+
+// var a = 1;
+// fn();
+// function fn(){
+// 	a = a + 1;
+// 	console.log(a);
+// 	return a;
+// }
+// fn();
+// console.log( fn() + 1 );
+
+// 2   3    4   5
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<button class="btn">请求数据</button>
+<div class="con"></div>
+
+<script>
+var btn = document.querySelector('.btn');
+var con = document.querySelector('.con');
+
+btn.onclick = function (){
+
+    // 1.创建XMLHttpRequest对象(买手机)
+    if (window.XMLHttpRequest) {
+        var xhr = new XMLHttpRequest();//非IE5 6
+    } else {
+        var xhr = new ActiveXObject(Microsoft.XMLHTTP);//IE5 6
+    }
+
+    // 2.打开与服务器的连接(拨号)
+    xhr.open('get','test.php?user=xiaocuo',true);
+
+    // 3.发送到服务器(按下拨号键)
+    xhr.send(null);
+
+    // 4.等待服务器的响应(有可能关机，不在服务区，无人接听，有人接听)
+    xhr.onreadystatechange = function (){
+        if (xhr.readyState == 4) {//请求已完成
+            if (xhr.status == 200) {//OK 请求成功
+                // console.log(typeof xhr.responseText);//string
+                var json = JSON.parse(xhr.responseText);
+                // console.log(typeof json);//object
+                if (json.err == 'true') {
+                    con.innerHTML = json.msg;
+                } else {
+                    con.innerHTML = 'name: '+json.name+', age: '+json.age+',sex: '+json.sex;
+                }
+            } else {
+                alert(xhr.status);
+            }
+        }
+    }
+
+}
+
+
+
+
+</script>
+</body>
+</html>

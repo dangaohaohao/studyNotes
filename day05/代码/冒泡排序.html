@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<script>
+
+var arr = [75,101,110,59,80,85,38,200];
+// 0  1
+// 1  2
+// 2  3
+// 3  4
+// 4  5
+// 5  6
+// 6  7
+
+// for (var i = 0; i < arr.length-1; i++){
+//     if (arr[i] > arr[i+1]) {
+//         // 换位
+//         var tmp = arr[i];
+//         arr[i] = arr[i+1];
+//         arr[i+1] = tmp;
+//     }
+// }
+
+// for (var i = 0; i < arr.length-2; i++){
+//     if (arr[i] > arr[i+1]) {
+//         // 换位
+//         var tmp = arr[i];
+//         arr[i] = arr[i+1];
+//         arr[i+1] = tmp;
+//     }
+// }
+
+// for (var i = 0; i < arr.length-3; i++){
+//     if (arr[i] > arr[i+1]) {
+//         // 换位
+//         var tmp = arr[i];
+//         arr[i] = arr[i+1];
+//         arr[i+1] = tmp;
+//     }
+// }
+
+// for (var i = 0; i < arr.length-4; i++){
+//     if (arr[i] > arr[i+1]) {
+//         // 换位
+//         var tmp = arr[i];
+//         arr[i] = arr[i+1];
+//         arr[i+1] = tmp;
+//     }
+// }
+
+// for (var i = 0; i < arr.length-5; i++){
+//     if (arr[i] > arr[i+1]) {
+//         // 换位
+//         var tmp = arr[i];
+//         arr[i] = arr[i+1];
+//         arr[i+1] = tmp;
+//     }
+// }
+
+// for (var i = 0; i < arr.length-6; i++){
+//     if (arr[i] > arr[i+1]) {
+//         // 换位
+//         var tmp = arr[i];
+//         arr[i] = arr[i+1];
+//         arr[i+1] = tmp;
+//     }
+// }
+
+// for (var i = 0; i < arr.length-7; i++){
+//     if (arr[i] > arr[i+1]) {
+//         // 换位
+//         var tmp = arr[i];
+//         arr[i] = arr[i+1];
+//         arr[i+1] = tmp;
+//     }
+// }
+
+for (var n = 0; n < arr.length-1; n++){//比较轮数
+    for (var i = 0; i < arr.length-(n+1); i++){//每轮比较的次数
+        if (arr[i] > arr[i+1]) {
+            // 换位
+            var tmp = arr[i];
+            arr[i] = arr[i+1];
+            arr[i+1] = tmp;
+        }
+    }
+}
+
+
+console.log( arr );
+
+
+
+
+</script>
+</body>
+</html>

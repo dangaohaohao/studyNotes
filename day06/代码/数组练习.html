@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<script>
+
+// 编写函数has(arr , 60) 判断数组中是否存在60这个元素，返回布尔类型
+var arr1 = [3,14,'abc',77];
+function has(arr,item) {
+    for (var i = 0, len = arr.length; i < len; i++){
+        if (arr[i] == item) {
+            return true;
+        }
+    }
+    return false;
+}
+// console.log( has(arr1,'abcd') );
+
+
+// 编写函数norepeat(arr) 将数组的重复元素去掉，并返回新的数组
+var arr2 = [12,4,12,7,34,2,4,12,76];
+// var arr1 = [12,4,7,34,2,76];//得到这个数组
+function norepeat(arr) {
+    var newArr = [];
+    for (var i = 0, len = arr.length; i < len; i++){
+        if (!has(newArr,arr[i])) {
+            // newArr.push(arr[i]);
+            newArr[newArr.length] = arr[i];
+        }
+    }
+    return newArr;
+}
+// console.log( norepeat(arr2) );//[12,4,7,34,2,76]
+
+
+function norepeat2(arr) {
+    arr.sort(function (a,b) {
+        return a-b;
+    });
+    var newArr = [];
+    for (var i = 0, len = arr.length; i < len; i++){
+        if (arr[i] != arr[i+1]) {
+            newArr.push(arr[i]);
+        }
+    }
+    return newArr;
+}
+console.log( norepeat2(arr2) );
+</script>
+</body>
+</html>

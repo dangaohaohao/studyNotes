@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+<script>
+// 创建Symbol
+var s1 = Symbol();
+var s2 = Symbol('age');
+// console.log(s1);
+// console.log(s2);
+// console.log(typeof s2);//symbol
+
+var obj1 = {
+    name: 'xiaocuo',
+    age: 18,
+    [s2]: 23,
+    // [Symbol()]: '女',
+    [s1]: '女'
+}
+// console.log(obj1);
+// console.log(obj1[s2]);//18
+// console.log(obj1[Symbol()]);//访问不到
+// console.log(obj1[s1]);//'女'
+// obj1[s1] = '男';
+// console.log(obj1[s1]);
+
+// for (var key in obj1){
+//     console.log(key);// name  age
+// }
+
+// console.log(Object.getOwnPropertyDescriptor(obj1,[s1]));
+
+// console.log( Object.getOwnPropertySymbols(obj1) );//[Symbol(age), Symbol()]
+
+// var s3 = Symbol('name');
+// var s4 = Symbol('name');
+// console.log(s3 === s4);//false
+
+// var obj2 = {
+//     age: 17,
+//     [s3]: 'xh'
+// }
+// console.log( obj2[s3] );//xh
+// console.log( obj2[s4] );//undefined
+
+
+// var s5 = Symbol.for('name');
+// var s6 = Symbol.for('name');
+// console.log(s5);
+// console.log(s6);
+// console.log(s5 === s6);//true
+
+// var obj2 = {
+//     age: 17,
+//     [s5]: 'xm'
+// }
+// console.log(obj2[s5]);
+// console.log(obj2[s6]);
+
+
+var s7 = Symbol.for('name1');
+var s8 = Symbol.for('name2');
+console.log( Symbol.keyFor(s7) );
+console.log( Symbol.keyFor(s8) );
+
+
+</script>
+</body>
+</html>

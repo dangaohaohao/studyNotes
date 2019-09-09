@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+*{margin: 0;}
+.box{
+    width: 130px;
+    height: 60px;
+    background-color: red;
+}
+.txt{
+    width: 150px;
+    height: 40px;
+    background-color: blue;
+    /* position: relative;
+    cursor: move; */
+}
+</style>
+</head>
+<body>
+<div class="box">一个歌手</div>
+<p class="txt">接口和空间</p>
+<p class="txt">立刻就立刻</p>
+
+<script src="jquery-1.8.3.js"></script>
+<script>
+
+// function Cat(){}
+// Cat.extend = Cat.prototype.extend = function (){
+//     console.log(this);
+// }
+// var cat1 = new Cat();
+// cat1.extend();//this -> Cat的实例
+// Cat.extend();//this -> f Cat (){} 
+// Cat.prototype.extend();//this -> Cat.prototype
+
+
+// var obj1 = {a:1,b:2};
+// var obj2 = {c:{d:4,e:5},f:6};
+
+// Object.assign(obj1,obj2);//合并对象
+// var obj3 = Object.assign({},obj2);//拷贝
+// console.log(obj1);
+// console.log(obj3);
+
+// 对象拷贝
+// $.extend(obj1,obj2);
+// var obj3 = $.extend({},obj2);
+// console.log(obj1);
+// console.log(obj3);
+
+
+// 全局方法
+// $.each(arr,function (){});
+// $.noConflict();
+// $.ajax();
+
+
+// var obj1 = {a:1,b:2};
+// var obj2 = {c:{d:4,e:5},f:6};
+
+// 为jQuery类添加属性方法
+// $.extend(obj1);//$.extend(jQuery,obj1);
+// console.log( $.a );
+// console.log( jQuery.b );
+// console.log( $('.box').a );//undefined
+
+
+// 为jQuery类添加属性方法
+// $.extend({
+//     fly: function (){
+//         alert('I can fly1');
+//     }
+// });
+// $.fly();
+// $('.box').fly();//fly is not a function
+
+
+// 给jq对象扩展方法
+// $.extend($.fn,{
+//     fly: function (){
+//         alert('I can fly2');
+//     }
+// });
+// $('.box').fly();
+
+
+// 给jq对象扩展方法
+// $.fn.extend({
+//     fly: function (){
+//         alert('I can fly3');
+//     }
+// });
+// $('.box').fly();
+
+
+// 给jq对象扩展一个拖拽方法
+// $.fn.extend({
+$.extend($.fn,{
+    drag: function (){
+        $(this).css({
+            'position':'absolute',
+            'cursor': 'move'
+        });
+        $(this).mousedown(function (e){
+            e.preventDefault();
+            var toLeft = e.clientX - $(this).offset().left;
+            var toTop = e.clientY - $(this).offset().top;
+            var $this = $(this);
+            $(document).bind('mousemove',function (e){
+                var l = e.clientX - toLeft;
+                var t = e.clientY - toTop;
+                $this.css({
+                    'left': l,
+                    'top': t
+                });
+            });
+            $(document).mouseup(function (){
+                $(this).unbind('mousemove');
+            });
+        });
+    }
+});
+$('.box').drag();
+$('.txt').drag();
+
+
+// 低版本IE5678 允许这么干
+// var undefined = 123;
+
+
+</script>
+</body>
+</html>

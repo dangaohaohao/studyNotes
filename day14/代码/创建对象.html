@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+<script>
+// var abc = 123;
+// var obj = {
+//     num: 456,
+//     fn2: function (){
+//         alert(789);
+//     }
+// }
+
+// console.log(abc);
+// console.log(num);
+// console.log(obj.num);
+// obj.fn2();
+
+// function fn1(){
+//     alert(123);
+// }
+
+// var f1 = fn1;
+// var f2 = obj.fn2;
+
+
+
+// 1.Object构造函数
+// var obj1 = new Object();//空对象
+// var obj1 = {};//空对象
+// console.log(obj1);
+// console.log(obj1.abc);//undefined
+// obj1.name = 'xm';// 给对象添加属性
+// obj1.age = 18;// 给对象添加属性
+// obj1.say = function (){// 给对象添加方法
+//     alert('大家好');
+// }
+// console.log(obj1);
+
+
+// var obj2 = new Object();//空对象
+// obj2.name = 'xh';// 给对象添加属性
+// obj2.age = 21;// 给对象添加属性
+// obj2.say = function (){// 给对象添加方法
+//     alert('大家好');
+// }
+
+
+// 2.对象字面量(json)
+// var obj3 = {
+//     name: 'xw',
+//     age: 23,
+//     say: function (){
+//         alert('大家好');
+//     }
+// }
+
+// var obj4 = {
+//     name: 'xd',
+//     age: 25,
+//     say: function (){
+//         alert('大家好');
+//     }
+// }
+
+
+// 3.工厂模式
+// function factory(){
+//     var obj = {};//原料
+
+//     obj.name = 'xiaoming';//加工
+//     obj.age = 24;//加工
+//     obj.say = function (){
+//         alert('大家好');//加工
+//     }
+
+//     return obj;// 出厂
+// }
+// var obj1 = factory();
+// var obj2 = factory();
+// console.log(obj1.name);
+// console.log(obj2.name);
+
+
+// function factory(n,a){
+//     var obj = {};//原料
+
+//     obj.name = n;//加工
+//     obj.age = a;//加工
+//     obj.say = function (){
+//         alert('大家好，我叫 ' + obj.name);//加工
+//     }
+
+//     return obj;// 出厂
+// }
+// var obj1 = factory('张三',26);
+// var obj2 = factory('李四',28);
+// console.log(obj1.name);
+// console.log(obj2.name);
+// // obj1.say();
+// // obj2.say();
+// console.log(obj1.say === obj2.say);//相同的方法会创建多个
+
+// var arr = [];
+// var fn = function (){};
+// // constructor:构造器（类）
+// console.log(arr.constructor);//Array
+// console.log(fn.constructor);//Function
+// console.log(obj1.constructor);//Object   类型识别
+
+
+// 4.构造函数
+// function test(){
+//     console.log(123);
+//     console.log(this);
+// }
+// var res = test();//调用普通   this-> window
+// var obj = new test();//作为构造函数调用  this -> obj
+// console.log(res);//undefined
+// console.log(obj);//test {}
+
+
+// function Cat(n,c){//构造函数（类）
+//     // 构造函数里面的this指向 实例对象(具体的一个对象)
+//     this.name = n;
+//     this.color = c;
+//     this.skill = function (){
+//         console.log(this);
+//         alert('卖萌');
+//     }
+//      console.log(this);
+// }
+// var cat1 = new Cat('小白','黑色');
+// var cat2 = new Cat('小花','白色');
+// console.log(cat1);// Cat {}  解决了类型识别
+// console.log(cat1.name);
+// cat1.skill();
+// cat2.skill();
+
+// console.log(cat1.skill == cat2.skill);//false
+
+
+// this指向
+// 1.指向this所在函数的调用者
+// 2.this指向事件的调用者
+// 3.构造函数里面的this指向 构造函数创建的对象
+// 4.this所在函数找不到调用者，指向window
+
+
+
+// function skill(){
+//     alert('卖萌');
+// }
+// function Cat(n,c){//构造函数（类）
+//     // 构造函数里面的this指向 实例对象(具体的一个对象)
+//     this.name = n;
+//     this.color = c;
+//     this.skill = skill;
+//      console.log(this);
+// }
+// var cat1 = new Cat('小白','黑色');
+// var cat2 = new Cat('小花','白色')
+
+// console.log(cat1.skill === cat2.skill);//true
+
+
+
+// 原型模式创建对象
+// function Cat(){}
+// Cat.prototype.name = '小白';
+// Cat.prototype.color = '黑色';
+// Cat.prototype.skill = function (){
+//     alert('卖萌');
+// }
+// var cat1 = new Cat();
+// var cat2 = new Cat();
+// var cat3 = new Cat();
+// console.log(cat1.name);
+// console.log(cat2.name);
+// // cat1.skill();
+// // cat2.skill();
+// console.log(cat1.skill === cat2.skill);//true
+
+
+// function Humen(){}
+// Humen.prototype.attr = '人类';
+// Humen.prototype.girlFriend = '马蓉';
+// Humen.prototype.sayHi = function (){
+//     // this -> 实例对象
+//     alert('大家好，我女朋友叫' + this.girlFriend);
+// }
+// var laowang = new Humen();
+// var laosong = new Humen();
+// laowang.sayHi();
+// laosong.sayHi();
+
+// 属性共享，某些时候会有很严重的问题
+
+
+
+// 混合模式
+function Cat(n,c){
+    this.name = n;
+    this.color = c;
+}
+Cat.prototype.skill = function (){
+    alert('卖萌');
+}
+var cat1 = new Cat('xb','red');
+var cat2 = new Cat('xh','black');
+console.log(cat1.name);
+console.log(cat2.name);
+console.log( cat1.skill === cat2.skill );//true
+
+</script>
+</body>
+</html>

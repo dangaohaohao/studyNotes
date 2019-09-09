@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<script>
+// var a = 10, b = 20, c = 30;
+
+// var arr = [10,20,30];
+
+// let [a,b,c] = arr;
+// let [a,b,c] = [10,20,30,40];
+
+// console.log(a);
+// console.log(b);
+// console.log(c);
+
+
+// var cat = '小包';
+// var dog = '消化';
+// var obj1 = {cat: cat, dog: dog};
+// var obj2 = {cat,dog};//key和value同名的时候可以这样简写
+// console.log(obj1);
+// console.log(obj2);
+
+
+// var obj3 = {dog: '消化', cat: '小包'};
+// let {cat,dog} = obj3;
+// console.log(cat);//'小包'
+// console.log(dog);//'消化'
+
+
+// function fn(name,age,sex){
+//     console.log(name);
+//     console.log(age);
+//     console.log(sex);
+// }
+// fn('xm',27,'女');
+// fn('xm','女',27);
+
+function fn({name,age,sex}){
+    console.log(name);
+    console.log(age);
+    console.log(sex);
+}
+fn({age:29, sex: '女', name:'xiaohong'});
+// var {name,age,sex} = {age:29, sex: '女', name:'xiaohong'};
+
+</script>
+</body>
+</html>

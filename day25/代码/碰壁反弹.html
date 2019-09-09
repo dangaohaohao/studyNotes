@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.cvs{
+    border: 1px solid blue;
+}
+</style>
+</head>
+<body>
+    
+<canvas class="cvs" width="600" height="260">亲，别再用古董浏览器了！</canvas>
+<button class="btn">清除</button>
+
+<script>
+var btn = document.querySelector('.btn');
+var cvs = document.querySelector('.cvs');//画纸
+var ctx = cvs.getContext('2d');//画笔
+
+// ctx.beginPath();
+// ctx.fillStyle = 'red';
+// ctx.fillRect(0,0,50,50);
+// ctx.closePath();
+// ctx.clearRect(0,0,cvs.width,cvs.height);
+// ctx.beginPath();
+// ctx.fillStyle = 'red';
+// ctx.fillRect(100,100,50,50);
+// ctx.closePath();
+
+var x = 0, y = 0, h = true, v = true;
+
+setInterval(function (){
+    ctx.clearRect(0,0,cvs.width,cvs.height);
+    
+    if (h) {//往右
+        x++;
+        if (x >= cvs.width - 50) {
+            h = false;
+        }
+    } else {
+        x--;
+        if (x <= 0) {
+            h = true;
+        }
+    }
+    if (v) {//往下
+        y++;
+        if (y >= cvs.height - 50) {
+            v = false;
+        }
+    } else {
+        y--;
+        if (y <= 0) {
+            v = true;
+        }
+    }
+    ctx.beginPath();
+    ctx.fillStyle = 'red';
+    ctx.fillRect(x,y,50,50);
+    ctx.closePath();
+
+},10);
+
+btn.onclick = function (){
+
+    // ctx.clearRect(0,0,cvs.width,cvs.height);//清除整个画布
+    ctx.clearRect(180,400,270,80);//清除局部区域
+
+}
+</script>
+</body>
+</html>

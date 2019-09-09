@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="box">box1</div>
+<div class="box">box2</div>
+<div class="box">box3</div>
+<div class="box">box4</div>
+<div class="box">box5</div>
+
+
+<script>
+// 练习：假设页面中有多个div，点击任意一个div，输出该div的下标(索引从0开始)
+var boxs = document.querySelectorAll('.box');
+// boxs[0].onclick = function (){
+//     console.log(0);
+// }
+// boxs[1].onclick = function (){
+//     console.log(1);
+// }
+// boxs[2].onclick = function (){
+//     console.log(2);
+// }
+// ...
+
+
+// 给所有的box 添加一个点击事件
+for (var i = 0, len = boxs.length; i < len; i++){
+    // console.log(i);//0 1 2 3 4
+    boxs[i].onclick = function (){
+        // console.log(i);//5
+        // console.log(this);//当前点击的元素
+        // 遍历：依次把数据取出来操作
+        for (var v = 0, len = boxs.length; v < len; v++){
+        // 通过遍历，找出当前点击的元素 ( 和this相等 )
+            if (boxs[v] == this){
+                console.log(v);
+            }
+        }
+    }
+}
+// console.log(i);//5
+
+</script>
+</body>
+</html>

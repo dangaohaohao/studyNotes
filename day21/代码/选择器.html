@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+</head>
+<body>
+
+<div id="box">
+    <div class="box">一个块</div>
+    <h4>一个标题</h4>
+    <p class="con">一段内容</p>
+</div>
+<ul class="list">
+    <li>11</li>
+    <li>22</li>
+    <li>33</li>
+    <li>44</li>
+    <li>55</li>
+</ul>
+
+<script src="jquery-1.8.3/jquery-1.8.3.js"></script>
+<script>
+$(function (){
+    // 选择器
+    // var $box = $('#box');
+    // $('#box').css('border','1px solid red');
+    // $('#box').click(function (){
+    //     alert('BMW');
+    // })
+    // $('#box h4').css('color','blue');
+    // $('.con').css('color','green');
+    // $('h4').css('background','#ccc');
+
+    // $('.list li:even').css('color','pink');
+    // $('.list li:odd').css('color','blue');
+
+
+    // jQuery.prototype.click = function (){}
+
+    $('.list li').click(function (){
+        // this -> dom 对象
+        // alert(this.innerText);
+        // alert(this.innerHTML);
+
+        // $(this) -> jQuery实例对象
+        // alert($(this).text());
+        // alert($(this).html());
+
+        // console.log(this);
+        // console.log($(this));
+        // console.log($(this)[0]);
+        // console.log($(this)[0] === this);//true
+
+    });
+
+});
+
+</script>
+</body>
+</html>

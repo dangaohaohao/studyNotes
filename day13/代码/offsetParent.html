@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>offsetParent</title>
+<style>
+*{margin: 0; padding: 0;}
+.box1{
+    width: 600px;
+    height: 400px;
+    border: 10px solid #000;
+    padding: 50px;
+    background-color: blue;
+    margin: 50px;
+    position: relative;
+}
+.box2{
+    width: 350px;
+    height: 200px;
+    border: 10px solid #000;
+    padding: 50px;
+    background-color: pink;
+    position: relative;
+}
+.box3{
+    width: 200px;
+    height: 100px;
+    border: 10px solid #000;
+    background-color: #ccc;
+}
+
+</style>
+</head>
+<body>
+<div class="box1">
+    <div class="box2">
+        <div class="box3"></div>
+    </div>
+</div>
+
+<script>
+// offsetParent:指向最近的定位父级
+var  box1 = document.querySelector('.box1');
+var  box2 = document.querySelector('.box2');
+var  box3 = document.querySelector('.box3');
+
+// console.log( box3.offsetLeft );//希望得到170
+var offsetL = box3.offsetLeft + box2.clientLeft +box2.offsetLeft + box1.clientLeft + box1.offsetLeft;
+console.log(offsetL);//170
+
+// 获取元素到body左侧或顶部的距离（包含父级边框）
+function offset(dom){
+    var l = 0;
+    var t = 0;
+    var bdl = dom.clientLeft;//元素左边框宽度
+    var bdt = dom.clientTop;//元素上边框宽度
+    while(dom){
+        l = l + dom.offsetLeft + dom.clientLeft;
+        t = t + dom.offsetTop + dom.clientTop;
+        dom = dom.offsetParent;//指向最近的定位父级
+    }
+    return {left: l - bdl, top: t - bdt};
+}
+console.log( offset(box3).left );//170
+
+</script>
+</body>
+</html>

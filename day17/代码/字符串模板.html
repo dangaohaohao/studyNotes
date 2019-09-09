@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div class="wrap">
+    <!-- <ul class="list">
+        <li><img src="images/01.png" alt=""></li>
+        <li><img src="images/01.png" alt=""></li>
+        <li><img src="images/01.png" alt=""></li>
+        <li><img src="images/01.png" alt=""></li>
+    </ul> -->
+</div>
+<script>
+var wrap = document.querySelector('.wrap');
+var imgUrl = 'images/01.png';
+var getUrl = function (){
+    return 'images/01.png';
+}
+// wrap.innerHTML = '<ul class="list">'+
+//         '<li><img src="'+imgUrl+'" alt=""></li>'+
+//         '<li><img src="'+imgUrl+'" alt=""></li>'+
+//         '<li><img src="'+imgUrl+'" alt=""></li>'+
+//         '<li><img src="'+imgUrl+'" alt=""></li>'+
+//     '</ul>';
+
+wrap.innerHTML = `<ul class="list">
+        <li><img src="${imgUrl}" alt=""></li>
+        <li><img src="${imgUrl}" alt=""></li>
+        <li><img src="${getUrl()}" alt=""></li>
+        <li><img src="${getUrl()}" alt=""></li>
+    </ul>`;
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.box{
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    position: absolute;
+    cursor: move;
+}
+</style>
+</head>
+<body>
+<button class="btn">回放</button>
+<div class="box"></div>
+
+<script>
+var box = document.querySelector('.box');
+var btn = document.querySelector('.btn');
+var arr = [],timer;
+
+btn.onclick = function (){
+    timer = setInterval(function (){
+        var obj = arr.pop();//删除数组最后一个元素，并返回删除的元素
+        if (arr.length <= 0) {
+            clearInterval(timer);
+        }
+        box.style.left = obj.x + 'px';
+        box.style.top = obj.y + 'px';
+    },2);
+}
+
+
+box.onmousedown = function (ev){
+    var e = ev || window.event;
+    var toLeft = e.clientX - box.offsetLeft;//点击位置到box左侧的距离
+    var toTop = e.clientY - box.offsetTop;//点击位置到box上侧的距离
+
+    document.onmousemove = function (ev){
+        var e = ev || window.event;
+        var mleft = e.clientX - toLeft;//box的定位值
+        var mtop = e.clientY - toTop;//box的定位值
+
+        // 临界值判断
+        if (mleft < 0) {
+            mleft = 0;
+        }
+        if (mleft > document.documentElement.clientWidth - box.clientWidth) {
+            mleft = document.documentElement.clientWidth - box.clientWidth;
+        }
+        if (mtop < 0) {
+            mtop = 0;
+        }
+        if (mtop > document.documentElement.clientHeight - box.clientHeight) {
+            mtop = document.documentElement.clientHeight - box.clientHeight;
+        }
+
+        arr.push({x:mleft,y:mtop});
+
+        // 赋值
+        box.style.left = mleft + 'px';
+        box.style.top = mtop + 'px';
+    }
+
+    document.onmouseup = function (){
+        // console.log(arr);
+        document.onmousemove = null;
+    }
+}
+    
+</script>
+</body>
+</html>

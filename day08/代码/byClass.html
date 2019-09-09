@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div class="box red">box1</div>
+<div id="wrap">
+    <div class="box">box2</div>
+    <div class="box blue">box3</div>
+    <div class="box">box4</div>
+</div>
+
+
+<script>
+
+function byClass1(classn){
+    var allTag = document.all || document.getElementsByTagName('*');
+    var arr = [];
+    for (var i = 0; i < allTag.length; i++){
+        // if (allTag[i].className == classn) {// 'box red'
+        if (allTag[i].className.indexOf(classn) != -1) {
+            arr.push(allTag[i]);
+        }
+    }
+    return arr;
+}
+// var boxs = byClass1('box');
+// console.log(boxs.length);
+// console.log(boxs);
+// boxs[0].style.color = 'red';
+
+
+function byClass2(parentId,classn){
+    var parent = document.getElementById(parentId);
+    var allTag = parent.all || parent.getElementsByTagName('*');
+    var arr = [];
+    for (var i = 0; i < allTag.length; i++){
+        // if (allTag[i].className == classn) {// 'box red'
+        if (allTag[i].className.indexOf(classn) != -1) {
+            arr.push(allTag[i]);
+        }
+    }
+    return arr;
+}
+var boxs = byClass2('wrap','box');
+console.log(boxs.length);
+
+
+</script>
+</body>
+</html>

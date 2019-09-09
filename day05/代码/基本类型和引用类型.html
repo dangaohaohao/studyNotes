@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+// 基本类型(简单类型)
+// undefined   null  number  string   boolean
+
+
+// 引用类型(复杂类型)
+// Object  ->  []   {}   function
+
+
+var a=1;
+function fn(a){
+    alert(a);//1 
+    a=2;
+}
+fn(a);//值传递
+alert(a);//1
+
+
+var arr = [1,2,3];
+function fn2(abc){
+    console.log(abc);//[1,2,3]
+    abc[1] = 8;
+}
+fn2(arr);//引用传递
+console.log(arr);//[1,8,3]
+
+
+// var a = 1;
+// var b = a;
+// b = 2;
+// console.log(a);//1
+// console.log(b);//2
+
+
+// var obj1 = {
+//     name: 'xw'
+// }
+// var obj2 = obj1;
+// obj2.name = 'xm';
+// console.log(obj1.name);//'xm'
+// console.log(obj2.name);//'xm'
+
+
+</script>
+</body>
+</html>

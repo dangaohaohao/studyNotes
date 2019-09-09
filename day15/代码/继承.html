@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div class="box">一个块</div>
+
+
+<script>
+// bind、call、apply 作用：改变this指向
+
+// bind : 用于改变匿名函数内部this指向
+// var box = document.querySelector('.box');
+// var obj = {abc: 123};
+// box.onclick = function (){
+//     var self = this;
+//     setTimeout(function (){
+//         console.log(this);//obj
+//         console.log(self);//box
+//     }.bind(obj),1000);
+// }
+
+
+// call、apply 作用: 改变带名函数内部的this指向，并调用执行该函数
+// var obj = {abc: 123};
+// function test(a,b,c){
+//     console.log(this);//obj
+//     console.log(a+b+c);//9
+// }
+// test();//window
+// test.call(obj,2,3,4);//传参方式不一样
+// test.apply(obj,[2,3,4]);//传参方式不一样
+
+
+// 继承：
+
+// 1.构造函数继承(对象冒充继承)
+// function Cat(n,c){
+//     this.name = n;
+//     this.color = c;
+//     this.eat = function (){
+//         console.log('鱼');
+//     }
+// }
+// Cat.prototype.skill = function (){
+//     alert('抓老鼠');
+// }
+
+// function Dog(f,n,c){
+//     this.food = f;
+//     Cat.call(this,n,c);
+// }
+// var cat1 = new Cat('小白','white');
+// var dog1 = new Dog('shi','大黄','white');
+// cat1.skill();
+// console.log(cat1.color);
+// console.log(dog1.food);
+// console.log(dog1.name);
+// dog1.eat();
+// dog1.skill();//dog1.skill is not a function
+// console.log(dog1.constructor);//Dog
+// 无法继承原型上的属性方法
+
+
+// 2.原型继承
+// function Cat(n,c){
+//     this.name = n;
+//     this.color = c;
+//     this.eat = function (){
+//         console.log('鱼');
+//     }
+//     // return {abc:123};//继承失败
+// }
+// Cat.prototype.skill = function (){
+//     alert('抓老鼠');
+// }
+
+// function Dog(f){
+//     this.food = f;
+// }
+// Dog.prototype = Cat.prototype;
+// Dog.prototype = new Cat();
+// Dog.prototype.constructor = Dog;// 手动指正构造器
+
+// var dog1 = new Dog('骨头');
+// dog1.skill();
+// console.log(dog1.name);//undefined
+// dog1.eat();
+// console.log(dog1.constructor);//Dog
+
+// 无法传参，无法区分对象属性
+
+
+// 3.混合继承
+// function Cat(n,c){
+//     this.name = n;
+//     this.color = c;
+//     this.eat = function (){
+//         console.log('鱼');
+//     }
+//     // return {abc:123};继承失败
+// }
+// Cat.prototype.skill = function (){
+//     alert('抓老鼠');
+// }
+
+// function Dog(f,n,c){
+//     this.food = f;
+//     Cat.call(this,n,c);//构造函数继承
+// }
+// // Dog.prototype = new Cat();//原型链继承
+// Dog.prototype = Object.create(Cat.prototype);//寄生继承
+
+// var dog1 = new Dog('鱼','二哈','red');
+// console.log(dog1.food);//鱼
+// console.log(dog1.name);//二哈
+// dog1.skill();//抓老鼠
+
+
+// Object.create 创建一个新空对象（连原型都没有）
+// var obj1 = {};
+// var obj2 = Object.create(null);
+// console.log(obj1);
+// console.log(obj2);
+
+// var obj4 = {
+//     name: '小明',
+//     age:23,
+//     say: function (){
+//         alert('大家好');
+//     }
+// }
+// var obj5 = Object.create(obj4);
+// console.log(obj5.__proto__);//obj4
+// console.log(obj5.name);
+// obj5.say();
+
+
+
+// 拷贝继承
+var parentObj = {
+  name: 'xm',
+  age: 25,
+  friends: ['xw', 'xh', 'xz'],
+  showName: function(){
+    alert(this.name);
+  }
+}
+// 创建需要继承的子对象
+var childObj = {};
+// 开始拷贝属性(浅拷贝)
+for( var i in parentObj ){
+  childObj[i] = parentObj[i];
+}
+// parentObj.friends.push('xf');
+// console.log(childObj);
+// console.log(parentObj);
+
+childObj.friends.push('girlfriend');
+console.log(childObj);
+console.log(parentObj);
+
+</script>
+</body>
+</html>

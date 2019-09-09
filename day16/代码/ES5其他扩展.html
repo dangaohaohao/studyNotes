@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.box{
+    width: 100px;
+    height: 100px;
+    background-color: #ccc;
+}
+.red{
+    color: red;
+}
+.blue{
+    background-color: blue;
+}
+.hide{
+    display: none;
+}
+</style>
+</head>
+<body>
+
+<button class="btn">按钮</button>
+<div class="box red">一个块</div>
+
+
+<script>
+// String.trim() 删除字符串两端的空白字符。
+// var str = "       Hello World!        ";
+// console.log( str.trim() ); // 'Hello World!'
+
+
+
+// Date.now() 返回自时间起点到当前的毫秒数
+// console.log( Date.now() );//1566802821635
+// var d = new Date();
+// console.log( d.getTime() );//1566802821635
+
+
+
+// bind(obj) 将函数内的this绑定为obj, 并将函数返回
+// var obj = {a:123,b:456};
+// setTimeout(function (){
+//     console.log(this);//obj
+// }.bind(obj),1000)
+
+// function show(){
+//     console.log(this);
+// }
+// // show.bind(obj)();
+// show.call(obj);
+
+
+
+// json方法
+var json1 = {"name":"xm","age":24,"sex":"男"};//严格的json格式需要加双引号 json对象
+// var json2 = '{"name":"xm","age":24,"sex":"男"}';
+var json2 = "{'name':'xh','age':25,'sex':'男'}";//json字符串
+
+// json字符串转json对象
+// var jsonObj = JSON.parse(json2);//json对象  必须是严格的json格式
+// console.log( jsonObj.name );
+
+// var jsonObj2 = eval('('+ json2 +')');
+// console.log( jsonObj2 );
+
+// json对象转成json字符串
+// var jsonStr = JSON.stringify(json1);
+// console.log(typeof jsonStr);//string
+
+
+
+// classList对象
+var btn = document.querySelector('.btn');
+var box = document.querySelector('.box');
+// box.classList.add('yellow');
+// box.classList.add('hide');
+btn.onclick = function (){
+
+    console.log( box.classList );//DOMTokenList(2) ["box", "red", value: "box red"...]
+    console.log( box.classList.length );//2 类名个数
+    console.log( box.classList.item(1) );//red 获取元素类名 传索引
+
+    // box.className = 'box red blue';
+    // box.classList.add('blue');
+    // box.classList.add('blue','yellow');
+
+    // box.classList.remove('yellow');
+    // box.classList.remove('yellow','red');
+
+    // if (box.classList.contains('hide')) {
+    //     box.style.display = 'none';
+    // } else {
+    //     box.style.display = 'block';
+    // }
+
+    box.classList.toggle('hide');
+}
+
+
+
+</script>
+</body>
+</html>

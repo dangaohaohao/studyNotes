@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+    </head>
+
+    <body>
+
+<form action="http://localhost/test/www-gp-01/day18/form.php" method="post">
+    账号：<input type="text" name="user"><br>
+    密码：<input type="text" name="pass"><br>
+    <input type="submit" value="登录">
+</form>
+
+<script>
+    // json数组
+    var json = '[{ "id": "2", "name": "xiaohong", "sex": "女", "age": "24", "phone": "13522221111" }, { "id": "3", "name": "xiaodong", "sex": "女", "age": "25", "phone": "13522221131" }, { "id": "6", "name": "xiaozhao", "sex": "女", "age": "21", "phone": "13577772222" }, { "id": "8", "name": "xiaozhao", "sex": "女", "age": "22", "phone": "13577772222" }]';
+    json = JSON.parse(json);
+    console.log(json);
+</script>
+
+    </body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="box">
+    <span>span标签</span>
+    <var>var标签</var>
+    <em>em标签</em>
+    <p>p标签</p>
+</div>
+<span>外面的span</span>
+<div>
+    <span>span3333</span>
+</div>
+
+<script>
+var box = document.querySelector('.box');
+var tags = box.children;
+document.body.onclick = function (ev){
+// box.onclick = function (ev){
+    var e =  ev || window.event;
+    // alert('body被点击');
+    var tg = e.target || e.srcElement;
+    // alert(tg.innerText);
+
+    if (tg.nodeName == 'SPAN' && tg.parentNode.className == 'box') {
+        tg.style.color = 'red';
+    }
+    if (tg.nodeName == 'VAR' && tg.parentNode.className == 'box') {
+        tg.style.color = 'blue';
+    }
+
+}
+
+// 正常写法：
+// var span = document.querySelector('span');
+// span.onclick = function (){
+//     this.style.color = 'red';
+// }
+
+// var va = document.querySelector('var');
+// va.onclick = function (){
+//     this.style.color = 'blue';
+// }
+
+// var em = document.querySelector('em');
+// em.onclick = function (){
+//     this.style.color = 'green';
+// }
+
+// var ps = document.querySelector('p');
+// ps.onclick = function (){
+//     this.style.color = 'yellow';
+// }
+
+// for (var i = 0; i < tags.length; i++){
+//     tags[i].onclick = function (){
+//         this.style.color = 'red';
+//     }
+// }
+
+
+
+
+</script>
+</body>
+</html>

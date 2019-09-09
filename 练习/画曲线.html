@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>画曲线</title>
+      <style>
+            div{
+                  position: absolute;
+                  width: 5px;
+                  height: 5px;
+                  background: #ddd;
+                  border-radius: 50%;
+            }
+            #ball{
+                  width: 10px;
+                  height: 10px;
+                  background: #000;
+                  position: absolute;
+                  left:  100px;
+                  top: 100px;
+            }
+      </style>
+</head>
+<body >
+
+      <div id="ball"></div>
+
+      <script>
+            var 
+            nLeft = 100,
+            nTop = 100,
+            timer = null,
+            r = 100,
+            deg = 0,
+            timer = setInterval(move , 50)
+
+            function move(){
+                  // 三角函数计算;
+                 deg = deg + 5;
+                 // nLeft = Math.cos(Math.PI / 180 * deg) * r + 100;
+                 nLeft = nLeft + 5;
+                 nTop = Math.sin(Math.PI / 180 * deg) * r  + 100;
+
+                 ball.style.left = nLeft + "px"; 
+                 ball.style.top = nTop + "px"; 
+
+                  // 留下小点点;
+                  var div = '<div style="left:'+ nLeft +'px;top:'+nTop+'px"></div>'
+                  // 内容放进body之中;
+                  // document.body === body
+                  document.body.innerHTML += div;
+            }
+
+
+      
+      </script>
+</body>
+</html>

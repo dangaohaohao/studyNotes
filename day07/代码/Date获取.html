@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1 class="time"></h1>
+
+<script>
+// 创建日期对象
+var d = new Date();
+
+// console.log(d);//Tue Aug 13 2019 09:31:03 GMT+0800 (中国标准时间)
+// console.log( d.getFullYear() );//年份2019
+// console.log( d.getMonth() );//月份 0-11
+// console.log( '现在是' + (d.getMonth()+1) + '月' );
+// console.log( d.getDate() );// 日期13
+// console.log( d.getHours() );//小时11    0-23
+// console.log( d.getUTCHours() );//小时3   UTC世界时
+// console.log( d.getMinutes() );//分钟46   0-59
+// console.log( d.getSeconds() );//秒23    0-59
+// console.log( d.getMilliseconds() );// 毫秒 0-999
+// console.log( d.getDay() );//0-6
+
+
+function getWeek(){
+    var d = new Date();
+    var num = d.getDay();//0-6
+    var arr = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+    return arr[num];
+}
+// console.log( getWeek() );
+
+
+console.log( d.getTime() );//返回1970.1.1到当前的总毫秒数 1565661537576  时间戳
+// console.log( d.toLocaleString() );//2019/8/13 上午10:00:35
+// console.log( d.toLocaleDateString() );//2019/8/13
+
+
+var time = document.querySelector('.time');
+
+setInterval(function (){
+    var d = new Date();
+    var year = d.getFullYear();
+    var month = d.getMonth()+1;
+    var date = d.getDate();
+    var hours = d.getHours();
+    var minutes = d.getMinutes();
+    var seconds = d.getSeconds();
+
+    hours = hours < 10 ? '0' + hours : hours;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+    time.innerHTML = year+'年'+month+'月'+date+'日 '+hours+'时'+minutes+'分'+seconds+'秒';
+},1000);
+
+
+
+</script>
+</body>
+</html>

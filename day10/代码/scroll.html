@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.wrap{
+    width: 400px;
+    height: 400px;
+    border: 1px solid #000;
+    /* overflow: hidden; */
+    overflow: auto;
+}
+.con{
+    width: 800px;
+    height: 800px;
+    font-size: 30px;
+    background-color: #ccc;
+}
+.box2{
+    height: 2000px;
+    width: 400px;
+    background-color: pink;
+}
+.totop{
+    width: 50px;
+    height: 100px;
+    background-color: #ccc;
+    position: fixed;
+    right: 0;
+    bottom: 10px;
+}
+</style>
+</head>
+<body>
+<button class="btn">按钮</button>
+<div class="wrap">
+    <div class="con">
+        建行卡还是看到回复康师傅数控技术垃圾分类圣诞节福利送积分，建行卡还是看到回复康师傅数控技术垃圾分类圣诞节福利送积分，建行卡还是看到回复康师傅数控技术垃圾分类圣诞节福利送积分，建行卡还是看到回复康师傅数控技术垃圾分类圣诞节福利送积分，建行卡还是看到回复康师傅数控技术垃圾分类圣诞节福利送积分，建行卡还是看到回复康师傅数控技术垃圾分类圣诞节福利送积分，建行卡还是看到回复康师傅数控技术垃圾分类圣诞节福利送积分，建行卡还是看到回复康师傅数控技术垃圾分类圣诞节福利送积分，建行卡还是看到回复康师傅数控技术垃圾分类圣诞节福利送积分，建行卡还是看到回复康师傅数控技术垃圾分类圣诞节福利送积分，建行卡还是看到回复康师傅数控技术垃圾分类圣诞节福利送积分，建行卡还是看到回复康师傅数控技术垃圾分类圣诞节福利送积分，
+    </div>
+</div>
+<div class="box2"></div>
+<div class="totop">返回顶部</div>
+
+<script>
+var btn = document.querySelector('.btn');
+var wrap = document.querySelector('.wrap');
+var totop = document.querySelector('.totop');
+
+
+
+btn.onclick = function (){
+    // wrap.scrollLeft = 100;//设置
+    // wrap.scrollTop = 100;//设置
+
+    // console.log( wrap.scrollLeft );//获取
+    // console.log( wrap.scrollTop );//获取
+
+    // console.log(wrap.scrollWidth);//con的宽
+    // console.log(wrap.scrollHeight);//con的高
+
+    var pageScroll1 = document.body.scrollTop;//早期谷歌
+    var pageScroll2 = document.documentElement.scrollTop;//火狐  IE
+
+    console.log( pageScroll1 );//0
+    console.log( pageScroll2 );//20
+}
+
+wrap.onscroll = function (){
+    // console.log(wrap.scrollLeft);
+    console.log(wrap.scrollTop);
+}
+
+
+
+// 返回顶部
+var timer;
+totop.onclick = function (){
+    // document.documentElement.scrollTop = 0;
+    var t = document.documentElement.scrollTop;
+    timer = setInterval(function (){
+        t -= 50;
+        if (t <= 0) {
+            clearInterval(timer);
+        }
+        document.documentElement.scrollTop = t;
+    },5);
+} 
+
+</script>
+</body>
+</html>

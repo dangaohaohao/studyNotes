@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.cvs{
+    background-color: #eee;
+}
+</style>
+</head>
+<body>
+<button class="style">2</button>
+<button class="style">4</button>
+<button class="style color">red</button>
+<button class="style color">blue</button>
+<canvas class="cvs" width="1200" height="550">亲，别再用古董浏览器了！</canvas>
+<button class="btn">清除</button>
+
+<script>
+var btn = document.querySelector('.btn');
+var style = document.querySelectorAll('.style');
+var cvs = document.querySelector('.cvs');//画纸
+var ctx = cvs.getContext('2d');//画笔
+var w = 2, color = 'red';
+
+cvs.onmousedown = function (e){
+    // 获取点击位置在画布中的坐标
+    var x = e.clientX - cvs.offsetLeft;
+    var y = e.clientY - cvs.offsetTop;
+    ctx.beginPath();
+    ctx.moveTo(x,y);
+    cvs.onmousemove = function (e){
+        // 移动之后的坐标
+        var x = e.clientX - cvs.offsetLeft;
+        var y = e.clientY - cvs.offsetTop;
+        ctx.lineTo(x,y);
+        ctx.lineWidth = w;
+        ctx.strokeStyle = color;
+        ctx.stroke();
+    }
+    cvs.onmouseup = function (){
+        cvs.onmousemove = null;
+        ctx.closePath();
+    }
+}
+btn.onclick = function (){
+    ctx.clearRect(0,0,cvs.width,cvs.height);
+}
+
+document.body.onclick = function (e){
+    if (e.target.className == 'style color') {
+        color = e.target.innerText;
+    }
+    if (e.target.className == 'style') {
+        w = e.target.innerText;
+    }
+}
+
+
+</script>
+</body>
+</html>

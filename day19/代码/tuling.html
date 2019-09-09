@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+*{margin: 0; padding: 0; list-style: none;}
+.wrap{
+    width: 500px;
+    height: 500px;
+    margin: 50px auto 0;
+    border: 1px solid #ccc;
+    position: relative;
+}
+.ipt{
+    width: 500px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+.list{
+    width: 500px;
+    height: 460px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+    background-color: #eee;
+    padding: 20px 0;
+    box-sizing: border-box;
+}
+.list li{
+    overflow: hidden;
+    margin-top: 10px;
+    padding: 0 10px;
+}
+.list .left span{
+    float: left;
+    background-color: #CDD7E2;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.list .right span{
+    float: right;
+    background-color: #95D6F7;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="wrap">
+    <input type="text" class="ipt">
+    <ul class="list">
+        <!-- <li class="left"><span>你好啊！</span></li> -->
+        <!-- <li class="right"><span>你好，我是机器人。。。</span></li> -->
+    </ul>
+</div>
+
+
+<script>
+function ajax(option) {
+    // 1.创建ajax对象
+    if (window.XMLHttpRequest) {
+        var xhr = new XMLHttpRequest();//非IE5 IE6
+    } else {
+        var xhr = new ActiveXObject('Microsoft.XMLHTTP');//IE5 IE6
+    }
+
+    if (option.method == 'get' || option.method == 'GET') {
+        // 2.连接服务器
+        xhr.open(option.method,option.url+'?'+option.datas+'&_='+new Date().getTime(),true);//解决get缓冲问题
+        // 3.将请求发送到服务器
+        xhr.send(null);//get请求
+    } else if (option.method == 'post' || option.method == 'POST'){
+        // 2.连接服务器
+        xhr.open(option.method,option.url,true);
+        xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        // 3.将请求发送到服务器
+        xhr.send(option.datas);//post请求
+    } else {
+        alert('暂时只支持get与post请求.');
+        return;
+    }
+
+    // 4.服务器响应情况
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {//请求完成
+            if (xhr.status == 200) {//ok 成功
+                option.succeed(xhr.responseText);
+            }else {
+                option.succeed(xhr.status);
+            }
+            
+        }
+    }
+}
+
+
+
+var ipt = document.querySelector('.ipt');
+var list = document.querySelector('.list');
+
+//创建左边消息
+function msgLeft(val) {
+    var msg = document.createElement('li');
+    msg.className = 'left';
+    msg.innerHTML = '<span>'+val+'</span>';
+    list.appendChild(msg);
+}
+//创建右边消息
+function msgRight(val) {
+    var msg = document.createElement('li');
+    msg.className = 'right';
+    msg.innerHTML = '<span>'+val+'</span>';
+    list.appendChild(msg);
+}
+ipt.onkeyup = function (e) {
+    // console.log(e.keyCode);//13 回车键
+    if (e.keyCode == 13) {
+        msgRight(ipt.value);
+        list.scrollTop = 10000000;
+        ajax({
+            url: 'http://www.tuling123.com/openapi/api',
+            method: 'get',
+            datas: 'key=4670f9d766704929b7983312808cdfa7&userid=xiaocuo&info='+ipt.value,
+            succeed: function (str) {
+                var json = JSON.parse(str);
+                msgLeft(json.text);
+                list.scrollTop = 10000000;
+            },
+            failed: function (msg) {
+                console.log(msg);
+            }
+        });
+        ipt.value = '';
+    }
+}
+
+
+    
+</script>
+</body>
+</html>

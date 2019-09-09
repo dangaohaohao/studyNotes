@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+*{margin: 0; padding: 0; list-style: none;}
+.wrap{
+    width: 500px;
+    margin: 50px auto 0;
+}
+.wrap .ipt{
+    width: 496px;
+    font-size: 16px;
+    line-height: 30px;
+}
+.wrap .list li{
+    font-size: 14px;
+    line-height: 30px;
+    background-color: #eee;
+    padding: 0 10px;
+}
+.wrap .list li:hover{
+    background-color: #ccc;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+    <input type="text" class="ipt">
+    <ul class="list">
+        <!-- <li>123</li>
+        <li>12306</li>
+        <li>12315</li> -->
+    </ul>
+</div>
+
+<script src="ajax.js"></script>
+<script>
+var ipt = document.querySelector('.ipt');
+var list = document.querySelector('.list');
+ipt.onkeyup = function (){
+    if (!ipt.value) {
+        list.innerHTML = '';
+        return;
+    }
+    ajax({
+        type: 'get',
+        url: 'http://localhost/test/www-gp-01/day19/baidu.php',
+        data: 'wd=' + ipt.value,
+        succeed: function (d){
+            // console.log(d);
+            var json = JSON.parse(d);
+            list.innerHTML = '';
+            json.s.forEach(function (item){
+                list.innerHTML += '<li>'+item+'</li>';
+            });
+        },
+        failed: function (code){
+            alert(code);
+        }
+    });
+}
+
+</script>
+
+</body>
+</html>

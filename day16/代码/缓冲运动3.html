@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.box{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    position: absolute;
+    left: 0px;
+    top: 50px;
+}
+span{
+    position: absolute;
+    left: 500px;
+    top: 0;
+    width: 1px;
+    height: 400px;
+    background-color: blue;
+}
+
+</style>
+</head>
+<body>
+<button class="btn">走你</button>
+<div class="box"></div>
+<span></span>
+
+<script>
+var btn = document.querySelector('.btn');
+var box = document.querySelector('.box');
+// var timer;
+
+
+// var num1 = 4.3;//ceil 5
+// var num2 = -4.3;// floor -5
+
+btn.onclick = function (){
+    move(box,{left:1000,top:500});
+    // move(box,{left:100,top:400});
+}
+function move(dom,target){
+    dom.timer = null;
+    clearInterval(dom.timer);
+    // 水平运动
+    dom.timer = setInterval(function (){
+        var speedx = (target.left - dom.offsetLeft) / 10;//持续变好的速度
+
+        // 浮点数计算，造成数据丢失，无法到达目的地  => 取整
+        speedx = speedx > 0 ? Math.ceil(speedx) : Math.floor(speedx);
+        
+        // 剩余运动量 <= 每次运动的量5
+        if (Math.abs(dom.offsetLeft - target.left) <= Math.abs(speedx)) {
+            clearInterval(dom.timer);
+            dom.style.left = target.left + 'px';//手动设置终点
+        } else{
+            dom.style.left = dom.offsetLeft + speedx + 'px';//每次的运动
+        }
+
+        // 垂直运动
+        var speedy = (target.top - dom.offsetTop) / 10;//持续变好的速度
+
+        // 浮点数计算，造成数据丢失，无法到达目的地  => 取整
+        speedy = speedy > 0 ? Math.ceil(speedy) : Math.floor(speedy);
+        
+        // 剩余运动量 <= 每次运动的量5
+        if (Math.abs(dom.offsetTop - target.top) <= Math.abs(speedy)) {
+            clearInterval(dom.timer);
+            dom.style.top = target.top + 'px';//手动设置终点
+            dom.parentNode.removeChild(dom);
+        } else{
+            dom.style.top = dom.offsetTop + speedy + 'px';//每次的运动
+        }
+    },20);
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+</head>
+<body>
+<div class="box"></div>
+
+<script>
+// ES5模块
+var loadModule = (function (){
+    var img1 = document.createElement('img');//显示的图片
+    var img2 = new Image();//用它去加载图片
+    var age = 30;//私有属性
+    img2.onload = function (){
+        img1.src = this.src;
+    }
+    return {
+        setSrc: function (dom,imgSrc){//公共属性
+            dom.appendChild(img1);
+            img1.src = 'loading.gif';
+            img2.src = imgSrc;
+        }
+    };
+})();
+// console.log(age);
+console.log(loadModule.a);
+
+var box = document.querySelector('.box');
+loadModule.setSrc(box,'http://pic31.nipic.com/20130801/11604791_100539834000_2.jpg');
+
+
+</script>
+</body>
+</html>

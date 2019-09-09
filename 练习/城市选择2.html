@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" href="reset.css">
+<style>
+	*{margin:0; padding:0; list-style:none;}
+	#head{height: 30px; line-height: 30px; background-color: #999; padding-left: 100px;}
+	#city{width: 120px; height: 30px; line-height: 30px; text-align: center; background: #999; position: relative;}
+	#city h2{font-size: 18px;}
+	#list{overflow: hidden; background: #ccc; padding: 5px;width: 400px; position: absolute; left: 0; top: 30px; display: none;}
+	#list li{float: left; width: 100px; height: 30px; line-height: 30px; text-align: center; font-size: 18px; cursor: pointer;}
+	#list li.show{background: #f00; color: #fff;}
+	#list li.hide{background: #ccc; color: #000;}
+	#list li.hover{background: #e3e3e3; color: red;}
+</style>
+</head>
+<body>
+<div id="head">
+	<div id="city">
+		<h2>位置：<span id="select">北京</span></h2>
+		<ul id="list">
+			<li class="show">北京</li>
+			<li>上海</li>
+			<li>广州</li>
+			<li>深圳</li>
+			<li>南京</li>
+			<li>武汉</li>
+			<li>天津</li>
+			<li>西安</li>
+			<li>厦门</li>
+			<li>福州</li>
+			<li>南宁</li>
+			<li>包头</li>
+			<li>上海南</li>
+			<li>广州</li>
+			<li>深圳</li>
+			<li>南京</li>
+			<li>武汉</li>
+			<li>天津</li>
+			<li>西安</li>
+			<li>厦门</li>
+			<li>福州</li>
+			<li>南宁</li>
+			<li>包头</li>
+		</ul>
+	</div>
+</div>
+</body>
+<script>
+	var city=document.getElementById('city');
+	var select=document.getElementById('select');
+	var list=document.getElementById('list');
+	var lis=list.children;
+	var a=0;
+	city.onmouseenter=function (){
+		this.style.background='#ccc';
+		list.style.display='block';
+	}
+	city.onmouseleave=function (){
+		this.style.background='#999';
+		list.style.display='none';
+	}
+	for (var i = 0; i < lis.length; i++) {
+		lis[i].index=i;
+		lis[i].onmouseenter=function (){
+			for (var i = 0; i < lis.length; i++) {
+				lis[i].className='hide';
+			}
+			this.className='hover';
+			lis[a].className='show';
+		}
+		lis[i].onmouseleave=function (){
+			this.className='hide';
+			lis[a].className='show';
+		}
+	}
+
+	document.onclick=function (ev){
+		var Event=ev||window.event;
+		var target=Event.target||Event.srcElement;
+		if (target.nodeName=='LI'&&target.parentNode.id=='list') {
+			select.innerHTML=target.innerHTML;
+			for (var i = 0; i < lis.length; i++) {
+				lis[i].className='hide';
+			}
+			list.style.display='none';
+			a=target.index;
+		};
+	}
+</script>
+</html>

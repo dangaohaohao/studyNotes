@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+</head>
+<body>
+
+<div class="box">一个块。。。</div>
+
+
+<script>
+var str;//undefined
+// var abc = 123;
+// console.log(abc);
+
+// function fnName(){
+//     //函数体 你要做的事情
+//     console.log('hello world');
+// }
+// fnName();//函数调用
+// console.log( fnName );//访问一个变量
+// console.log( fnName() );//打印函数的返回值 函数默认返回值为undefined
+
+
+// 小括号()在js中用途：
+// 1.提高优先级  2 + (3 > 4)
+// 2.把代码作为一个整体返回 
+// console.log(1,2,3);
+// console.log( (1,2,3) );//作为一个整体返回
+// 3.fnName();//函数调用（执行）
+
+
+// 1.函数声明(可以在任意位置)
+// fn1();//函数调用
+function fn1(){
+    console.log('函数声明');
+}
+// fn1();//函数调用
+// fn1();//函数调用
+// fn1();//函数调用
+
+// for (var i = 0; i < 10; i++){
+//     console.log('hello world');
+// }
+
+
+// 2.函数表达式(不能在定义之前调用)
+// fn2();//函数调用 函数.html:45 Uncaught TypeError: fn2 is not a function
+var fn2 = function (){
+    console.log('函数表达式');
+}
+// fn2();//函数调用
+
+
+// 3.匿名函数（不允许单独定义）
+// function (){//Uncaught SyntaxError: Function statements require a function name
+//     console.log('匿名函数');
+// }
+var box = document.querySelector('.box');
+box.onclick = function (){//事件处理函数（匿名函数）
+    alert('BMW');
+}
+
+
+// 函数的参数：让函数更灵活，属于函数的变量
+// 形参:形式参数，函数定义时的参数
+// 实参：实际参数，函数调用时传递的参数
+// function sum(a,b,c,d){//形参
+//     console.log(a);//2
+//     console.log(b);//4
+//     console.log(c);//undefined
+//     console.log(d);//undefined
+//     var sum = a + b;
+//     // var sum = 3 + 5;
+//     // var sum = 4 + 6;
+//     // var sum = 6 + 12;
+//     console.log(sum);
+// }
+// sum(7,16);//实参
+// sum(2,22);//实参
+// console.log(a);//不能访问
+// console.log(b);//不能访问
+
+// sum(2,4,6,7);//实参个数大于形参不会报错，对于函数运行结果没有影响
+// sum(2,4);//实参个数少于形参的时候，多余形参的值是undefined
+
+
+// function test(a,b){
+//     // arguments : 函数的实参副本对象（伪数组、类数组对象）
+//     console.log(arguments);
+//     console.log( arguments[2] );
+//     console.log( arguments[3] );
+//     // arguments.callee();不建议使用
+//     // console.log(a + b);
+// }
+// test(2,4,6,8);
+
+
+// 计算任意个数之和
+// function sum(a,b,c,d){
+//     var num = 0;
+//     for (var i = 0, len = arguments.length; i < len; i++){
+//         num += arguments[i];
+//     }
+//     console.log(num);
+// }
+// sum(2,5,6);//13
+// console.log(sum.length);//4
+
+
+// 根据传递的3个参数（2个数字，运算规则），执行对应的加减乘除运算
+function count(a,b,c){// c = '+'   '*'
+    //根据参数 实现对应的加减乘除运算
+
+}
+// count(5,3,'-');
+
+
+
+// 函数的返回值
+// function fun(){
+//     console.log('hello world');
+// }
+// var val = fun();
+// console.log( val );//undefined
+// console.log( fun() );//undefined
+
+var yy = '12123';
+function fun(){
+    console.log('hello world');
+    return 'xiaocuo';//你想要返回的结果
+}
+// var val = fun();
+// console.log( val );//'xiaocuo'
+// console.log( fun() );//'xiaocuo'
+
+
+// 1.可以在函数中返回一个值
+// 2.终止函数执行(return语句后面的代码将不执行！)
+function f1(){
+    console.log('第一件事');
+    console.log('第二件事');
+    // return '123456';
+    console.log('第三件事');
+    return '123456';
+}
+f1();
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.box{
+    background-color: #ccc;
+}
+</style>
+</head>
+<body>
+<button class="btn">按钮</button>
+<button class="add">添加</button>
+<div class="box">
+    一个div标签
+    <span>span标签</span>
+    <p>原来的</p>
+</div>
+
+<script src="jquery-1.8.3/jquery-1.8.3.js"></script>
+<script>
+
+$(function (){
+
+    // $('.box').click(function (){
+    //     alert(123);
+    // });
+
+    // $('.box').bind('click',function (){
+    //     alert(123);
+    // });
+
+    // $('.box').bind({
+    //     mouseenter: function (){
+    //         console.log('鼠标进入');
+    //     },
+    //     mouseleave: function (){
+    //         console.log('鼠标移除');
+    //     }
+    // });
+
+    // $('.box p').bind('click',function (){//未来元素无效
+    //     alert(123);
+    // });
+
+    // $('.box p').live('click',function (){//未来元素有效
+    //     alert(123);
+    // });
+
+    // $('.box').delegate('p','click',function (){
+    //     alert(456);
+    // })
+
+    $('.box').on('click','p',function (){
+        alert(789);
+    })
+
+
+    // 移除事件
+    $('.btn').click(function (){
+        // $('.box').unbind('click');
+        // $('.box p').die('click');
+        // $('.box').undelegate('p','click');
+        $('.box').off('click','p');
+    })
+
+    $('.add').bind('click',function (){
+        $('.box').append('<p>新来的</p>');
+        // $('.add').unbind('click');
+    });
+    // $('.add').one('click',function (){
+    //     $('.box').append('<p>新来的</p>');
+    // });
+
+
+    // 合成事件
+    // mouseover mouseout
+    // $('.box').hover(function (){
+    //     $(this).css('background','red');// mouseover
+    // },function (){
+    //     $(this).css('background','#ccc');// mouseout
+    // });
+
+    // $('.box').toggle(function (){
+    //     alert(11);
+    // },function (){
+    //     alert(22);
+    // });
+
+});
+
+
+
+
+
+</script>
+</body>
+</html>

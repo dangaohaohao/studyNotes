@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+html,body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+}
+.wrap{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.fire{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: absolute;
+}
+
+</style>
+</head>
+<body>
+
+<div class="wrap"></div>
+
+<script src="utils.js"></script>
+<script>
+// 1.点击创建一颗烟花
+    // 获取点击坐标对象
+    // 实例化一个烟花对象
+// 2.烟花爆炸
+    // 创建x个烟花节点（随机20-40  for）
+    // 样式、坐标、颜色
+    // 添加到页面
+    // 运动->到终点后删除
+
+var wrap = $1('.wrap');
+
+// 点击发射
+wrap.onclick = function (ev){
+    var e = ev || window.event;
+    var client = {left: e.clientX, top: e.clientY};// 点击位置的坐标对象
+    new Fireworks(wrap,client);//实例化一个烟花对象
+}
+
+// 自动发射
+setInterval(function (){
+    var client = {
+        left: randomInt(200,wrap.clientWidth-200),
+        top: randomInt(50,wrap.clientHeight-140)
+    };// 点击位置的坐标对象
+    new Fireworks(wrap,client);//实例化一个烟花对象
+},2200);
+
+// 创建对象 
+function Fireworks(wrap,client){
+    this.wrap = wrap;//烟花所在的容器
+    this.client = client;//烟花运动终点坐标
+    this.fire = document.createElement('div');//烟花节点
+    this.init();//初始化
+}
+
+// 初始化
+Fireworks.prototype.init = function (){
+    this.fire.className = 'fire';
+    this.fire.style.left = this.client.left + 'px';//初始位置x
+    this.fire.style.bottom = '0px';//初始位置y
+    this.fire.style.background = randomColor();//随机颜色
+    this.wrap.appendChild(this.fire);//添加到页面
+    this.send();//发射
+}
+
+// 往上运动（缓冲运动）
+Fireworks.prototype.send = function (){
+    bufferMove(this.fire,this.client,function (){
+        this.wrap.removeChild(this.fire);//运动结束，删除节点
+        this.boom();// 爆炸
+    }.bind(this));
+}
+
+// 烟花爆炸
+Fireworks.prototype.boom = function (){
+    var _this = this;
+    // 创建x个烟花节点（随机20-40  for）样式、坐标、颜色
+    var len = randomInt(20,40);
+    for (var i = 0; i < len; i++){
+        var fire = document.createElement('div');
+        fire.className = 'fire';
+        fire.style.left = this.client.left + 'px';
+        fire.style.top = this.client.top + 'px';
+        fire.style.background = randomColor();
+        this.wrap.appendChild(fire);// 添加到页面
+        // 运动->到终点后删除
+        var pos = {
+            left: randomInt(10,this.wrap.clientWidth-10),
+            top: randomInt(10,this.wrap.clientHeight-100),
+        };
+
+        // 涉及同步异步问题，通过bind()传递参数
+        bufferMove(fire,pos,function (){
+            _this.wrap.removeChild(this);//运动结束，删除节点
+        }.bind(fire));
+    }
+}
+
+    
+</script>
+</body>
+</html>

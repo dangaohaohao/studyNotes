@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<button class="btn">按钮</button>
+<button class="btn2">执行其他任务</button>
+<h1 class="con"></h1>
+
+<script>
+var btn = document.querySelector('.btn');
+var btn2 = document.querySelector('.btn2');
+var con = document.querySelector('.con');
+
+
+// 支持检测
+// if (typeof Worker != 'undefined') {
+//     alert('支持');
+// } else {
+//     alert('不支持');
+// }
+
+btn2.onclick = function (){
+    console.log('执行其他任务');
+}
+
+// var num = 0;
+// for (var i = 0; i < 1000000000; i++){
+//     num+=i;
+// }
+// console.log(num);
+
+
+btn.onclick = function (){
+    var worker = new Worker('worker.js');
+
+    // worker.postMessage('干活了');//给worker线程发送数据
+    // worker.onmessage = function (event){
+    //     // console.log(event.data);
+    //     con.innerText = event.data;
+    // }
+
+    worker.postMessage('abc1001');//给worker线程发送数据
+    worker.onmessage = function (e){
+        var json = JSON.parse(e.data);
+        con.innerText = `姓名：${json.name}，性别：${json.sex}，年龄：${json.age}`;
+        worker.terminate();//关闭 worker线程
+    }
+}
+
+
+
+
+
+</script>
+</body>
+</html>

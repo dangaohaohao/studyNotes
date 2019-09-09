@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.box{
+    width: 300px;
+    margin: 50px auto 0;
+    overflow: hidden;
+}
+.cvs{
+    border: 1px solid #999;
+    margin: 20px 0 20px 50px;
+}
+.btn{
+    float: left;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 8px;
+    background-color: pink;
+    color: #fff;
+    position: relative;
+}
+.upload{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 40px;
+    opacity: 0;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+    <canvas class="cvs" width="200" height="200"></canvas>
+    <span class="btn">上传头像<input type="file" class="upload"></span>
+</div> 
+
+<script>
+var upload = document.querySelector('.upload');
+var cvs = document.querySelector('.cvs');
+var ctx = cvs.getContext('2d');
+
+upload.onchange = function (){
+    // console.log(this.files);//上传文件列表 FileList {0: File, length: 1}
+    var file = this.files[0];//获取上传文件对象
+
+    // 判断上传文件是否为图片
+    if ( !(/image\/\w+/.test(file.type)) ) {
+        alert('上传文件必须为图片！');
+        return false;
+    }
+
+    var reader = new FileReader();// 读取文件的对象
+    // console.log(reader);
+    reader.readAsDataURL(file);//把文件转成url
+    reader.onload = function (){
+        // console.log(this.result);//读取到的图片路径 base64
+        var img = new Image();
+        img.src = this.result;
+        img.onload = function (){
+            ctx.beginPath();
+            ctx.drawImage(this,0,0,200,200);
+            ctx.closePath();
+        }
+    }
+}
+
+</script>
+
+</body>
+</html>

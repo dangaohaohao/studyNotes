@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<input type="text">
+
+<script>
+
+// 整数
+var num1 = 10;
+var num2 = 20;
+// +  -  *  /  %
+// console.log( num1 + num2 );
+// console.log( num1 - num2 );
+// console.log( num1 * num2 );
+// console.log( num1 / num2 );
+
+// console.log( 5 % 3);//5 模 3 余2
+// console.log( 9 % 3);//9 模 3 余0
+
+// 2%7 == 2              7%4 == 3
+// (-2)%7 == -2          (-7)%4 == -3
+// 2%(-7) == 2           (7)%(-4) == 3
+// (-2)%(-7) == -2       (-7)%(-4) == -3
+
+// 1.不考虑正负号，小的数值 对 大的数值取余，余未小的数值
+// 2.余数的正负号，取决于运算符前面的数值的符号
+
+
+// 浮点数
+// var float = 0.1 + 0.2;
+// console.log(float);//0.30000000000000004
+
+// var float2 = 0.1 + 0.7;
+// console.log(float2);//0.7999999999999999
+
+// 进制：缝进制加一，原位归零
+// 10机制：1 2 3 4 5 6 7 8 9 10
+// 2进制：1 10 11 100 101 110 111.。。。
+// 8进制：1 2 3 4 5 6 7 10
+// 16进制：1 2 3 4 5 6 7 8 9 a b c d e f 10
+
+// 密码学：64进制，128进制。。。。
+
+// 十进制 0.1 转成 2进制：小数位 * 2，取乘积的整数部分，小数继续 *2
+// 0.1*2 = 0.2 ---- 0
+
+// 0.2*2 = 0.4 ---- 0
+// 0.4*2 = 0.8 ---- 0
+// 0.8*2 = 1.6 ---- 1
+// 0.6*2 = 1.2 ---- 1
+
+// 0.2*2 = 0.4 ---- 0
+// 0.4*2 = 0.8 ---- 0
+// 0.8*2 = 1.6 ---- 1
+// 0.6*2 = 1.2 ---- 1
+
+// 0.2*2 = 0.4 ---- 0
+// 0.4*2 = 0.8 ---- 0
+// 0.8*2 = 1.6 ---- 1
+// 0.6*2 = 1.2 ---- 1
+
+// 0.2*2 = 0.4 ---- 0
+// 0.4*2 = 0.8 ---- 0
+// 0.8*2 = 1.6 ---- 1
+// 0.6*2 = 1.2 ---- 1
+// .....
+// 0.1 => 0.0 0011 0011 0011 0011 0011 ....
+
+// 5月21日 
+// 5月22日 -->  1314
+// 522  5*16*16+2*16+2 = 1314
+
+
+// 解决办法：编程 => 工具API   0.30元
+
+// parseInt();
+// parse 解析
+// Int 整数
+
+// console.log( parseInt(1234.45) );//1234
+// console.log( parseInt('1234.45') );//1234
+// console.log( parseFloat('1234.45') );//1234.45
+// console.log( parseInt('123abc') );//123
+// console.log( parseInt('100px') );//100
+// console.log( parseInt('a100px') );//NaN
+
+// var float = (0.1+0.2)*100;
+// float = (parseInt(float)/100).toFixed(2);
+
+// var float = 0.1 + 0.2;
+// float = float * 100;
+// float = parseInt(float);
+// float = float / 100;
+// float = float.toFixed(2);
+// console.log( float );// '0.30'
+// console.log( typeof float );// string
+
+
+// 错误的计算结果：NaN (not a number) 非数字
+// 当进行计算，希望返回一个数值，结果并不是我们想要的数字时，返回 NaN
+
+var str = '123';
+var num = 10;
+// + 在字符串中，表示 连接 拼接
+// console.log( str + num );// 'abc10'  拼接
+// console.log( 'abc' + '10' );// 'abc10'  拼接
+// console.log( str * num );//NaN
+// console.log( str - num );//NaN
+// console.log( str / num );//NaN
+// console.log( typeof NaN );//number
+
+// NaN有两个特点：(Not a Number)
+//    1. 任何涉及NAN的操作都会返回NaN
+//    2. NaN与任何值都不相等，包括它本身
+
+var x = str * num;//NaN
+// console.log( x - 10 );//NaN
+// console.log( x + 10 );//NaN
+
+// console.log( NaN == NaN );//false
+
+// 工具 isNaN():判断值是否为NaN
+
+// console.log( isNaN(x) );//true
+
+var num1 = '13520559717';//纯数字字符串
+var num2 = '1352055971a';//非纯数字字符串
+
+// parseInt()
+
+
+// isNaN(x)做了什么？
+// 1.隐式类型转换
+
+// Number强制类型转换
+console.log( Number('123') );//123
+console.log( Number(456) );//456
+console.log( Number(true) );//1
+console.log( Number('123a') );//NaN
+
+console.log( isNaN('123') );//false
+console.log( isNaN(456) );//false
+console.log( isNaN(true) );//false
+console.log( isNaN('123a') );//true 是NaN
+
+// 判断输入是否为：纯数字
+var value = '13520559717';
+if (isNaN(value)) {
+    // 不是纯数字
+} else {
+    // 是纯数字
+}
+
+
+</script>
+</body>
+</html>

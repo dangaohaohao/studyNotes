@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<ul>
+    <li>括号1</li>
+    <li>括号2</li>
+    <li>括号3</li>
+    <li>括号4</li>
+    <li>括号5</li>
+</ul>
+
+<script>
+// var sympush = Symbol('push');
+// Array.prototype[sympush] = function (){
+//     alert(123);
+// }
+
+var lis = document.querySelectorAll('li');//元素集合（类数组对象）
+// console.log(lis);
+console.log(lis[Symbol.iterator]);//ƒ values() { [native code] }
+// console.log(lis[Symbol.iterator]());//Array Iterator {}
+// console.log(lis[Symbol.iterator]().next());//{value: li, done: false}
+
+// var iterator = lis[Symbol.iterator]();//迭代器对象
+// console.log( iterator.next() );//{value: li, done: false}
+// console.log( iterator.next() );//{value: li, done: false}
+// console.log( iterator.next() );//{value: li, done: false}
+// console.log( iterator.next() );//{value: li, done: false}
+// console.log( iterator.next() );//{value: li, done: false}
+// console.log( iterator.next() );//{value: undefined, done: true} 迭代结束
+
+
+// 部署了迭代器的数据结构：数组、字符串、元素集合、Set、Map
+// 访问一些属性会调用迭代器接口：Array.from()、（...）、for-of、Object.keys、Object.values
+
+
+var likeArray = {
+    0: 'aa',
+    1: 'bb',
+    2: 'cc',
+    length: 3
+}
+console.log(likeArray);
+
+// console.log( likeArray.0 );//报错
+// console.log( likeArray[0] );//'aa'
+// likeArray[3] = 'dd';
+// likeArray.push('dd');//likeArray.push is not a function
+// Array.prototype.push = function (){
+//     // this
+// }
+// Array.prototype.push.call(likeArray,'dd');
+// Array.prototype.push.call(lis,'abcd');//报错
+
+// console.log( likeArray );
+
+// lis = Array.from(lis);
+// console.log(lis);
+// lis.push('abcd');
+
+// likeArray = Array.from(likeArray);
+// console.log(likeArray);
+// likeArray.push('asdfsdef');
+
+
+// function toArr(arrs){//ES5
+//     var arr = [];
+//     for (var i = 0; i < arrs.length; i++){
+//         arr.push(arrs[i]);
+//     }
+//     return arr;
+// }
+// likeArray = toArr(likeArray);
+// likeArray.push('aaaaaaaaaaaa');
+// console.log(likeArray);
+
+
+// likeArray = Array.from(likeArray,function (item,index,arr){
+//     return item += '22';
+// });
+// console.log(likeArray);
+// likeArray.push('asdfsdef');
+
+
+// var arr2 = [...likeArray];//没有部署iterator接口
+// var arr2 = [...lis];// 什么鬼??
+// arr2.push('3456789');
+// console.log( arr2 );
+
+
+</script>
+
+</body>
+</html>

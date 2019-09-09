@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<script>
+
+var un = undefined;
+var nu = null;
+
+// var str1 = un.toString();
+// console.log(str1);
+// Uncaught TypeError: Cannot read property 'toString' of undefined
+//  未捕获    类型错误： 报文（undefined不能读取到属性'toString'）
+
+
+// var str2 = nu.toString();
+// console.log(str2);
+// Uncaught TypeError: Cannot read property 'toString' of null
+
+var bool = true;
+var num = 123;
+
+// var str3 = bool.toString();
+// console.log(bool);
+// console.log(typeof str3);// string 'true'
+
+// var str4 = num.toString();
+// console.log(num);
+// console.log(typeof str4);// string '123'
+
+// console.log(typeof String(un) );//string 'undefined'
+// console.log(typeof String(nu) );//string 'null'
+// console.log(typeof String(bool) );//string 'true'
+// console.log(typeof String(num) );//string '123'
+
+
+// undefined、null、0、NaN、''(空字符串)及false，会转成false，其它都会转换成true
+// console.log(Boolean(2)); // true
+// console.log(Boolean(0)); // false
+// console.log(Boolean('abc')); // true
+// console.log(Boolean('')); // false
+// console.log(Boolean(null)); // false
+
+
+// 自动转换
+// + ：数学计算 、 字符串拼接
+// var str1 = 12 + 'abc';
+// console.log(str1);//'12abc'
+
+// var str2 = 'abc' + true;
+// console.log(str2);// 'abctrue'
+
+// - :数学计算
+// var num1 = 12 - '10';
+// console.log(num1);// 2
+
+// var num2 = 12 - 'true';
+// console.log(num2);//NaN
+
+// var num3 = '15' - '8';
+// console.log(num3);//7
+
+// var num4 = '15' - 'true';
+// console.log(num4);//NaN
+
+
+// var a = 0||2;
+// var b = 1&&2;
+// console.log(a);// 2
+// console.log(b);// 2
+
+
+// console.log( undefined == null );//true
+// console.log( undefined === null );//false
+
+// console.log( 2 == '2' );//true
+// console.log( 2 == true );//false
+// console.log( 1 == true );//true
+// console.log( 1 === true );//false
+
+
+</script>
+</body>
+</html>

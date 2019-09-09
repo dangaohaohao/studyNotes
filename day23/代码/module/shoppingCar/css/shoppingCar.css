@@ -1,0 +1,57 @@
+.wrap{
+    width: 900px;
+    margin: 50px auto 0;
+}
+.title{
+    line-height: 40px;
+    background-color: #eee;
+    overflow: hidden;
+}
+.title span{
+    float: left;
+    font-size: 14px;
+    color: #666;
+    line-height: 40px;
+}
+.title .goods{
+    margin-left: 140px;
+}
+.title .price{
+    margin-left: 450px;
+}
+.title .remove{
+    margin-left: 140px;
+}
+.list{
+    min-height: 80px;
+    border: 1px solid #eee;
+}
+.list li{
+    margin-bottom: 14px;
+    padding: 4px 10px;
+    overflow: hidden;
+}
+.list li img{
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+.list li h3{
+    float: left;
+    width: 400px;
+    font-size: 14px;
+    color: #333;
+}
+.list li p{
+    float: left;
+    font-size: 14px;
+    color: red;
+    margin-left: 100px;
+}
+.list li span{
+    float: left;
+    font-size: 14px;
+    color: #333;
+    margin-left: 135px;
+    cursor: pointer;
+}

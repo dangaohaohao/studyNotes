@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<script>
+
+// 递归函数
+// function fn1(){
+//     console.log('fn1执行');
+//     // fn1();//直接调用
+//     fn2();//间接调用
+// }
+// fn1();
+// function fn2(){
+//     fn1();
+// }
+// Uncaught RangeError: Maximum call stack size exceeded
+// 未捕获     范围错误 ： 内存溢出
+
+
+// 老王有四个子女，老四比老三小2岁，老三比老二小2岁，老二比老大小2岁，老大现在16岁，问老四几岁？
+// 解：
+// 设：f() 返回某个儿子的年龄
+
+// f(4) = f(3)-2
+// f(3) = f(2)-2
+// f(2) = f(1)-2
+// f(1) = 16   
+
+// f(n) = f(n-1)-2
+// n==1  return 16;//递归出口条件
+
+// function countAge(n){
+//     if (n == 1) {//终止条件
+//         return 16;
+//     }
+//     return countAge(n-1)-2;
+// }
+// console.log( countAge(4) );//10
+// console.log( countAge(2) );//14
+
+
+// 阿里巴巴2015年前端面试题
+/**
+*@desc: fibonacci
+*@param: count {Number}
+*@return: result {Number} 第count个fibonacci值，计数从1开始
+  fibonacci数列为：[1, 1, 2, 3, 5, 8, 13, 21, 34 …]
+  getNthFibonacci(2) 返回值为1
+  getNthFibonacci(6) 返回值为8
+*/
+// f(7) = f(6)+f(5)
+// f(6) = f(5)+f(4)
+// f(5) = f(4)+f(3)
+// f(4) = f(3)+f(2)
+// f(3) = f(2)+f(1)
+// f(2) = 1
+// f(1) = 1
+
+// f(n) = f(n-1)+f(n-2)
+// 终止条件：n <= 2   return 1;
+function getNthFibonacci(n){
+    if (n <= 2) {
+        return 1;
+    }
+    return getNthFibonacci(n-1) + getNthFibonacci(n-2);
+}
+console.log( getNthFibonacci(6) );//8
+console.log( getNthFibonacci(2) );//1
+
+</script>
+</body>
+</html>

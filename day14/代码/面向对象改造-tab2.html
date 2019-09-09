@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>正常写法</title>
+<style>
+*{margin: 0; padding: 0;}
+.tab{
+    width: 880px;
+    margin: 50px auto 0;
+}
+.header{
+    overflow: hidden;
+}
+.header h3{
+    font-size: 16px;
+    color: #333;
+    float: left;
+    width: 220px;
+    line-height: 40px;
+    background-color: #eee;
+    text-align: center;
+    cursor: pointer;
+}
+.content .box{
+    padding-top: 20px;
+    overflow: hidden;
+    display: none;
+}
+.content .box img{
+    width: 200px;
+    height: 260px;
+    float: left;
+    margin: 0 10px;
+}
+
+.header .active{
+    background-color: #06A86E;
+    color: #fff;
+}
+.content .show{
+    display: block;
+}
+</style>
+</head>
+<body>
+<div class="tab">
+    <div class="header">
+        <h3>喜剧</h3>
+        <h3>剧情</h3>
+        <h3>动作</h3>
+        <h3>青春偶像</h3>
+    </div>
+    <div class="content">
+        <div class="box">
+            <img src="01.png" alt="">
+            <img src="01.png" alt="">
+            <img src="01.png" alt="">
+            <img src="01.png" alt="">
+        </div>
+        <div class="box">
+            <img src="02.png" alt="">
+            <img src="02.png" alt="">
+            <img src="02.png" alt="">
+            <img src="02.png" alt="">
+        </div>
+        <div class="box">
+            <img src="03.png" alt="">
+            <img src="03.png" alt="">
+            <img src="03.png" alt="">
+            <img src="03.png" alt="">
+        </div>
+        <div class="box">
+            <img src="04.png" alt="">
+            <img src="04.png" alt="">
+            <img src="04.png" alt="">
+            <img src="04.png" alt="">
+        </div>
+    </div>
+</div>
+<div class="tab">
+    <div class="header">
+        <h3>喜剧</h3>
+        <h3>剧情</h3>
+        <h3>动作</h3>
+        <h3>青春偶像</h3>
+    </div>
+    <div class="content">
+        <div class="box">
+            <img src="01.png" alt="">
+            <img src="01.png" alt="">
+            <img src="01.png" alt="">
+            <img src="01.png" alt="">
+        </div>
+        <div class="box">
+            <img src="02.png" alt="">
+            <img src="02.png" alt="">
+            <img src="02.png" alt="">
+            <img src="02.png" alt="">
+        </div>
+        <div class="box">
+            <img src="03.png" alt="">
+            <img src="03.png" alt="">
+            <img src="03.png" alt="">
+            <img src="03.png" alt="">
+        </div>
+        <div class="box">
+            <img src="04.png" alt="">
+            <img src="04.png" alt="">
+            <img src="04.png" alt="">
+            <img src="04.png" alt="">
+        </div>
+    </div>
+</div>
+
+<script>
+
+// 面向过程
+// var aH3 = document.querySelectorAll('.header h3');
+// var aBox = document.querySelectorAll('.box');
+// var prevIndex = 0;//记录上次选中的下标
+// for (var i = 0; i < aH3.length; i++){
+//     aH3[i].index = i;//给元素添加一个属性index,记录它的下标
+//     aH3[i].onclick = function (){
+//         aH3[prevIndex].className = '';
+//         aBox[prevIndex].className = 'box';
+//         aH3[this.index].className = 'active';
+//         aBox[this.index].className = 'box show';
+//         prevIndex = this.index;//更新上一次的下标
+//     }
+// }
+
+
+// 职责单一原则
+// 开闭原则 -> 对内开放扩展，对外关闭修改
+
+// 模块化
+(function (){
+
+    // 构造函数
+    function Tab(tits,cons,showIndex){
+        this.tits = tits;
+        this.cons = cons;
+        this.prevIndex = showIndex;
+    }
+
+    // 设置类名的方法
+    Tab.prototype.setClass = function (dom,oClass){
+        dom.className = oClass;
+    }
+
+    // 初始化
+    Tab.prototype.init = function (){
+        this.setClass(this.tits[this.prevIndex],'active');
+        this.setClass(this.cons[this.prevIndex],'box show');
+        // this.clickTab();
+        return this;
+    }
+
+    // 添加事件
+    Tab.prototype.clickTab = function (){
+        var _this = this;
+        for (var i = 0; i < this.tits.length; i++){
+            this.tits[i].index = i;
+            this.tits[i].onclick = function (){
+                // 去掉上次选中的样式
+                _this.setClass(_this.tits[_this.prevIndex],'');
+                _this.setClass(_this.cons[_this.prevIndex],'box');
+
+                // 给当前选中的元素添加样式
+                _this.setClass(_this.tits[this.index],'active');
+                _this.setClass(_this.cons[this.index],'box show');
+
+                // 更新上次选中元素的下标
+                _this.prevIndex = this.index;
+            }
+        }
+    }
+
+    // 返回一个初始化之后的实例对象
+    function factory(tits,cons,showIndex){
+        return new Tab(tits,cons,showIndex).init();
+    }
+
+    // 对外公开接口
+    window.$ = factory;
+
+})();
+var tabs = document.querySelectorAll('.tab');
+var tit1 = tabs[0].querySelectorAll('.header h3');
+var con1 = tabs[0].querySelectorAll('.box');
+var tit2 = tabs[1].querySelectorAll('.header h3');
+var con2 = tabs[1].querySelectorAll('.box');
+// console.log( $(tit1,con1,1) );
+$(tit1,con1,2).clickTab();
+$(tit2,con2,1).clickTab();
+
+</script>
+</body>
+</html>

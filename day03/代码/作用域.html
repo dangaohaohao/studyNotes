@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+</head>
+<body>
+
+
+
+<script>
+// 全局作用域
+
+// window：全局对象，浏览器提供
+// 访问window对象下的属性方法，可以省略 window. 而直接访问
+
+// console.log(window);
+
+var abc = 123;//全局变量
+function myFun(){
+    alert('我的函数');
+}
+
+// myFun();
+// window.myFun();
+
+// console.log(abc);
+// console.log(window.abc);
+
+// alert(123);
+// window.alert(456);
+
+var def = 456;//全局变量
+
+// function test(){
+//     // 局部作用域
+//     var aaa = '777';//局部变量  拥有局部作用域
+//     var def = '888';
+//     function fn(){
+//         alert('局部函数');
+//         console.log(def);//456
+//         console.log(aaa);
+//         // console.log(ooxx);
+//     }
+//     fn();
+// }
+// test();
+// fn();//Uncaught ReferenceError: fn is not defined
+// console.log(aaa);//Uncaught ReferenceError: aaa is not defined
+
+
+// var xixi = 'hehe';
+// console.log(xixi);
+
+// yoyo = 123123;//可以直接给一个未声明的变量赋值
+// console.log(yoyo);
+
+// console.log(yiyi);//不允许直接访问一个未声明的变量
+
+
+
+function f123(){
+    var hehe = 'haha';//局部变量  显式声明
+    yoyo = 1212;//全局变量  隐式声明
+    console.log(123456789);
+}
+// f123();
+// console.log(window);
+// console.log(yoyo);//1212
+// console.log(hehe);//报错
+
+
+
+// var i = 0;
+// function fn1(){
+//     i++;
+//     console.log(i);
+// }
+// fn1();
+// fn1();
+// fn1();
+
+
+
+function fn2(){
+    var i = 0;
+    i++;
+    console.log(i);
+}
+fn2();
+fn2();
+fn2();
+
+
+
+
+</script>
+</body>
+</html>
